@@ -51,6 +51,11 @@
 }
 
 /* ---------- Reset & Base ---------- */
+img, video, iframe, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
 *,
 *::before,
 *::after {
@@ -841,7 +846,7 @@ p {
 
 .apartments-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 24px;
   margin-bottom: 36px;
 }
@@ -944,7 +949,7 @@ p {
 /* ---------- Reviews ---------- */
 .reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 24px;
 }
 
@@ -1498,61 +1503,16 @@ p {
   opacity: 0.55;
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-  .navbar__nav,
-  .navbar__cta {
-    display: none;
-  }
-
-  .navbar__burger {
-    display: flex;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero__left-card {
-    margin: calc(var(--navbar-h) + 20px) auto 40px;
-    text-align: center;
-    padding: 32px 24px;
-  }
-
-  .hero__left-card h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero__left-card p {
-    font-size: 0.9rem;
-  }
-
-  .hero__left-card .btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 640px) {
-  .section {
-    padding: 48px 0;
-  }
-
-  .section--sm {
-    padding: 40px 0;
-  }
-
-  .apartments-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ============================================================
    NAVBAR — dual CTA buttons aligned
    ============================================================ */
-.navbar__cta {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+@media (min-width: 901px) {
+  .navbar__cta {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 }
 
 /* ============================================================
@@ -1597,6 +1557,7 @@ p {
   position: relative;
   z-index: 2;
   margin: calc(var(--navbar-h) + 40px) 0 40px 0;
+  width: 92%;
   max-width: 480px;
   background: rgba(245, 245, 243, 0.65);
   backdrop-filter: blur(14px);
@@ -1910,4 +1871,77 @@ p {
 
 .footer-logo-centered img:hover {
   opacity: 1;
+}
+/* ============================================================
+   FINAL RESPONSIVE OVERRIDES
+   ============================================================ */
+@media (max-width: 900px) {
+  .navbar__nav,
+  .navbar__cta {
+    display: none !important;
+  }
+
+  .navbar__burger {
+    display: flex;
+  }
+
+  .navbar__logo img {
+    height: 44px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero__left-card {
+    margin: calc(var(--navbar-h) + 20px) auto 40px;
+    text-align: center;
+    padding: 32px 24px;
+  }
+
+  .hero__left-card h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero__left-card p {
+    font-size: 0.9rem;
+  }
+
+  .hero__left-card .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 48px 0;
+  }
+
+  .section--sm {
+    padding: 40px 0;
+  }
+
+  .apartments-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .navbar__logo img {
+    height: 38px;
+  }
+
+  .hero__left-card {
+    padding: 24px 20px;
+    margin-top: calc(var(--navbar-h) + 15px);
+  }
+
+  .navbar__drawer {
+    max-height: calc(100vh - var(--navbar-h));
+    overflow-y: auto;
+    padding: 16px 20px 32px;
+  }
 }
