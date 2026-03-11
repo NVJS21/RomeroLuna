@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Romero Luna | Sitios de Interés · Málaga</title>
+  <meta name="description"
+    content="Los mejores sitios de interés en Málaga cerca de los Apartamentos Romero Luna. Mapa interactivo con museos, restaurantes, playas y más." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .places-intro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+
+    .place-category {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      color: var(--color-muted);
+      transition: var(--transition);
+    }
+
+    .place-category:hover {
+      border-color: rgba(201, 169, 110, 0.4);
+      color: var(--color-text);
+    }
+
+    .place-category__icon {
+      font-size: 1.4rem;
+    }
+  </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <!-- Fixed background pompas -->
+  <div aria-hidden="true" style="
+    position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  ">
+    <div style="position:absolute;width:340px;height:340px;border-radius:50%;
+      background:radial-gradient(circle, rgba(39,174,96,0.22) 0%, transparent 70%);
+      top:-60px;left:-80px;filter:blur(14px);"></div>
+    <div style="position:absolute;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(21,101,192,0.18) 0%, transparent 70%);
+      top:-40px;left:30%;filter:blur(12px);"></div>
+    <div style="position:absolute;width:300px;height:300px;border-radius:50%;
+      background:radial-gradient(circle, rgba(249,196,0,0.17) 0%, transparent 70%);
+      top:-50px;right:10%;filter:blur(13px);"></div>
+    <div style="position:absolute;width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(circle, rgba(229,57,53,0.16) 0%, transparent 70%);
+      top:80px;right:-60px;filter:blur(12px);"></div>
+    <div style="position:absolute;width:280px;height:280px;border-radius:50%;
+      background:radial-gradient(circle, rgba(39,174,96,0.14) 0%, transparent 70%);
+      bottom:5%;left:-60px;filter:blur(16px);"></div>
+    <div style="position:absolute;width:220px;height:220px;border-radius:50%;
+      background:radial-gradient(circle, rgba(249,196,0,0.14) 0%, transparent 70%);
+      bottom:10%;left:40%;filter:blur(14px);"></div>
+    <div style="position:absolute;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(21,101,192,0.13) 0%, transparent 70%);
+      bottom:5%;right:-40px;filter:blur(15px);"></div>
+  </div>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="../index.html" class="navbar__logo" aria-label="Romero Luna – Inicio">
+          <img src="../assets/romeroluna logo.png" alt="Romero Luna Apartamentos" />
+        </a>
+
+        <ul class="navbar__nav" role="list">
+          <li><a href="../index.html" class="navbar__link">Inicio</a></li>
+
+          <li><a href="servicios.html" class="navbar__link">Instalaciones</a></li>
+          <li><a href="resenas.html" class="navbar__link">Reseñas</a></li>
+          <li><a href="sobre-nosotros.html" class="navbar__link">Sobre Nosotros</a></li>
+          <li><a href="sitios-de-interes.html" class="navbar__link">Sitios de Interés</a></li>
+        </ul>
+
+        <div class="navbar__cta">
+          <a href="#contacto" class="btn btn-outline">Contacto</a>
+          <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
+            class="btn btn-primary">Reserva ya!</a>
+        </div>
+
+        <button class="navbar__burger" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="navbar__drawer" role="menu">
+    <a href="../index.html" class="navbar__link">Inicio</a>
+
+    <a href="servicios.html" class="navbar__link">Instalaciones</a>
+    <a href="resenas.html" class="navbar__link">Reseñas</a>
+    <a href="sobre-nosotros.html" class="navbar__link">Sobre Nosotros</a>
+    <a href="sitios-de-interes.html" class="navbar__link">Sitios de Interés</a>
+    <div class="navbar__cta">
+      <a href="#contacto" class="btn btn-outline">Contacto</a>
+      <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
+        class="btn btn-primary">Reserva ya!</a>
+    </div>
+  </div>
+
+  <!-- ======== PAGE HEADER ======== -->
+  <header class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">Descubre Málaga</span>
+      <h1>Sitios de Interés en Málaga</h1>
+      <p class="section-subtitle">Selecciona una categoría en el mapa para explorar los mejores museos,
+        restaurantes, playas y rincones de la ciudad.</p>
+    </div>
+  </header>
+
+  <!-- ======== CATEGORIES REMOVED ======== -->
+
+  <!-- ======== MAP ======== -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal" style="margin-bottom:24px;">
+        <span class="section-eyebrow">Mapa interactivo</span>
+        <h2 class="section-title">Explora el mapa</h2>
+        <p>Pincha en los iconos del mapa para ver las categorías y lugares de interés cerca de nuestros
+          apartamentos. Todos a menos de 10 minutos a pie.</p>
+      </div>
+      <div class="map-wrapper reveal">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1sYYxdMbiF_7rdu-dM1PmQTnFN7LI3TZR&ehbc=2E312F"
+          title="Mapa de sitios de interés en Málaga — Romero Luna" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <p style="text-align:center;margin-top:16px;font-size:0.8rem;">
+        Puedes abrir el mapa en pantalla completa haciendo clic en
+        <a href="https://www.google.com/maps/d/viewer?mid=1sYYxdMbiF_7rdu-dM1PmQTnFN7LI3TZR" target="_blank"
+          rel="noopener" style="color:var(--color-green);">este enlace</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ======== HIGHLIGHTS ======== -->
+  <section class="section--sm"
+    style="background:var(--color-surface);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom:40px;">
+        <span class="section-eyebrow">Los favoritos de nuestros anfitriones</span>
+        <h2 class="section-title centered">Lo que no te puedes perder</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:0 auto;"
+        class="reveal">
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fa-solid fa-palette"></i></div>
+          <div class="service-card__title">Museo Picasso</div>
+          <p class="service-card__list">El hijo más ilustre de Málaga. A 5 min a pie desde nuestros
+            apartamentos.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fa-brands fa-fort-awesome"></i></div>
+          <div class="service-card__title">Alcazaba y Castillo</div>
+          <p class="service-card__list">La fortaleza árabe más importante de Andalucía. Vistas espectaculares.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fa-solid fa-church"></i></div>
+          <div class="service-card__title">Catedral de Málaga</div>
+          <p class="service-card__list">La "Manquita", símbolo de la ciudad, a tan solo 2 minutos andando.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fa-solid fa-image"></i></div>
+          <div class="service-card__title">Museo Thyssen</div>
+          <p class="service-card__list">Colecciones del Renacimiento al siglo XX. A 300 metros de los
+            apartamentos.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fa-solid fa-masks-theater"></i></div>
+          <div class="service-card__title">Teatro Soho Caixabank</div>
+          <p class="service-card__list">El teatro de Antonio Banderas en el barrio del Soho. Espectáculos de
+            primer nivel.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon"><i class="fa-solid fa-wine-glass"></i></div>
+          <div class="service-card__title">Ruta de Tapas</div>
+          <p class="service-card__list">El Pimpi, El Tapeo de Cervantes y cientos de bares en un radio de 10
+            min.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER NUEVO ======== -->
+  <footer class="footer-new" id="contacto">
+    <div class="footer-new__top">
+      <div class="container">
+
+        <!-- 3 contact cards -->
+        <div class="footer-cards">
+
+          <!-- Card 1: Anfitrión -->
+          <div class="footer-card">
+            <div class="footer-card__icon"><i class="fa-solid fa-user"></i></div>
+            <div>
+              <div class="footer-card__name">Alejandro Castillejo</div>
+              <div class="footer-card__info">+34 610 54 38 50</div>
+            </div>
+            <div class="footer-card__actions">
+              <a href="https://wa.me/34610543850" target="_blank" rel="noopener"
+                class="footer-card__action-btn footer-card__action-btn--wa">
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp
+              </a>
+              <a href="tel:+34610543850" class="footer-card__action-btn footer-card__action-btn--call">
+                <i class="fa-solid fa-phone"></i>
+                Llamar
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2: Ubicación -->
+          <div class="footer-card">
+            <div class="footer-card__icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="footer-card__name">
+                <a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" target="_blank"
+                  rel="noopener" style="color:inherit;text-decoration:none;transition:color 0.2s;"
+                  onmouseover="this.style.color='var(--color-green)'" onmouseout="this.style.color='inherit'">
+                  Calle Lazcano, 5. 29008
+                </a>
+              </div>
+              <div class="footer-card__info">Málaga &mdash; España</div>
+            </div>
+            <a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" target="_blank"
+              rel="noopener" class="footer-card__action-btn footer-card__action-btn--call" style="width:fit-content;">
+              <i class="fa-solid fa-location-dot"></i>
+              Ver en Google Maps
+            </a>
+          </div>
+
+          <!-- Card 3: Email -->
+          <div class="footer-card">
+            <div class="footer-card__icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="footer-card__name">
+                <a href="mailto:alejandro@romeroluna.com" class="footer-card__info"
+                  style="color:var(--color-ink);font-weight:600;font-size:1rem;">alejandro@romeroluna.com</a>
+              </div>
+              <div class="footer-card__info">
+                <a href="https://romeroluna.com" target="_blank" rel="noopener">RomeroLuna.com</a>
+              </div>
+            </div>
+            <a href="mailto:alejandro@romeroluna.com" class="footer-card__action-btn footer-card__action-btn--wa"
+              style="width:fit-content;">
+              <i class="fa-solid fa-envelope"></i>
+              Enviar email
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Embedded map -->
+        <div class="footer-map__wrapper">
+          <a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" target="_blank" rel="noopener"
+            class="footer-map__link-overlay" aria-label="Abrir en Google Maps"></a>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.2!2d-4.4217!3d36.7219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f72c9b9b9b9b%3A0x0!2sCalle+Lazcano%2C+5%2C+29008+M%C3%A1laga!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses"
+            width="100%" height="280" style="border:0;display:block;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de los Apartamentos Romero Luna en Calle Lazcano, 5"></iframe>
+        </div>
+
+        <!-- Logo below the map -->
+        <div class="footer-logo-centered">
+          <a href="../index.html">
+            <img src="../assets/romeroluna logo.png" alt="Romero Luna Apartamentos" />
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-new__bottom">
+      <div class="container">
+        <div class="footer-new__bottom-inner">
+          <p class="footer-new__copy">&copy; 2025 Romero Luna Apartamentos &middot; Málaga</p>
+          <nav class="footer-new__links">
+            <a href="sobre-nosotros.html" class="footer-new__link">Sobre Nosotros</a>
+            <a href="sitios-de-interes.html" class="footer-new__link">Sitios de Interés</a>
+            <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
+              class="footer-new__link">Booking.com</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Romero Luna | Instalaciones · Apartamentos en Málaga Centro</title>
+  <meta name="description"
+    content="Servicios e instalaciones de los Apartamentos Romero Luna: Estudio Deluxe, Premium y Soho con cocina equipada, WiFi, AC y mucho más." />
+  <link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <!-- Fixed background pompas -->
+  <div aria-hidden="true" style="
+    position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  ">
+    <div style="position:absolute;width:340px;height:340px;border-radius:50%;
+      background:radial-gradient(circle, rgba(39,174,96,0.22) 0%, transparent 70%);
+      top:-60px;left:-80px;filter:blur(14px);"></div>
+    <div style="position:absolute;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(21,101,192,0.18) 0%, transparent 70%);
+      top:-40px;left:30%;filter:blur(12px);"></div>
+    <div style="position:absolute;width:300px;height:300px;border-radius:50%;
+      background:radial-gradient(circle, rgba(249,196,0,0.17) 0%, transparent 70%);
+      top:-50px;right:10%;filter:blur(13px);"></div>
+    <div style="position:absolute;width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(circle, rgba(229,57,53,0.16) 0%, transparent 70%);
+      top:80px;right:-60px;filter:blur(12px);"></div>
+    <div style="position:absolute;width:280px;height:280px;border-radius:50%;
+      background:radial-gradient(circle, rgba(39,174,96,0.14) 0%, transparent 70%);
+      bottom:5%;left:-60px;filter:blur(16px);"></div>
+    <div style="position:absolute;width:220px;height:220px;border-radius:50%;
+      background:radial-gradient(circle, rgba(249,196,0,0.14) 0%, transparent 70%);
+      bottom:10%;left:40%;filter:blur(14px);"></div>
+    <div style="position:absolute;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(21,101,192,0.13) 0%, transparent 70%);
+      bottom:5%;right:-40px;filter:blur(15px);"></div>
+  </div>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="../index.html" class="navbar__logo" aria-label="Romero Luna – Inicio">
+          <img src="../assets/romeroluna logo.png" alt="Romero Luna Apartamentos" />
+        </a>
+
+        <ul class="navbar__nav" role="list">
+          <li><a href="../index.html" class="navbar__link">Inicio</a></li>
+
+          <li><a href="servicios.html" class="navbar__link">Instalaciones</a></li>
+          <li><a href="resenas.html" class="navbar__link">Reseñas</a></li>
+          <li><a href="sobre-nosotros.html" class="navbar__link">Sobre Nosotros</a></li>
+          <li><a href="sitios-de-interes.html" class="navbar__link">Sitios de Interés</a></li>
+        </ul>
+
+        <div class="navbar__cta">
+          <a href="#contacto" class="btn btn-outline">Contacto</a>
+          <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
+            class="btn btn-primary">Reserva ya!</a>
+        </div>
+
+        <button class="navbar__burger" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="navbar__drawer" role="menu">
+    <a href="../index.html" class="navbar__link">Inicio</a>
+
+    <a href="servicios.html" class="navbar__link">Instalaciones</a>
+    <a href="resenas.html" class="navbar__link">Reseñas</a>
+    <a href="sobre-nosotros.html" class="navbar__link">Sobre Nosotros</a>
+    <a href="sitios-de-interes.html" class="navbar__link">Sitios de Interés</a>
+    <div class="navbar__cta">
+      <a href="#contacto" class="btn btn-outline">Contacto</a>
+      <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
+        class="btn btn-primary">Reserva ya!</a>
+    </div>
+  </div>
+
+  <!-- ======== PAGE HEADER ======== -->
+  <header class="page-header">
+    <div class="container">
+      <span class="section-eyebrow">Lo que ofrecemos</span>
+      <h1>Instalaciones y Servicios</h1>
+      <p class="section-subtitle">Descubre cada uno de nuestros estudios. Dos ubicaciones únicas en el centro de
+        Málaga, cada una con su propio encanto.</p>
+    </div>
+  </header>
+
+  <!-- Inline styles for compact carousel -->
+  <style>
+    .studio-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 800px) {
+      .studio-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Compact viewer */
+    .mini-viewer {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #111;
+      margin-bottom: 10px;
+      cursor: zoom-in;
+    }
+
+    .mini-viewer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.4s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    .mini-viewer img.fading {
+      opacity: 0;
+    }
+
+    /* Thumbnail strip */
+    .mini-thumbs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .mini-thumb {
+      flex-shrink: 0;
+      width: 64px;
+      height: 44px;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.65;
+      transition: border-color 0.2s, opacity 0.2s;
+    }
+
+    .mini-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    .mini-thumb:hover {
+      opacity: 0.9;
+    }
+
+    .mini-thumb.active {
+      border-color: #1565c0;
+      opacity: 1;
+    }
+
+    /* Fullscreen image overlay */
+    #img-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    #img-overlay.open {
+      display: flex;
+    }
+
+    #img-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+      animation: zoomIn 0.25s ease;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    #img-overlay-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      color: #fff;
+      font-size: 2.2rem;
+      cursor: pointer;
+      line-height: 1;
+      background: none;
+      border: none;
+      opacity: 0.8;
+    }
+
+    #img-overlay-close:hover {
+      opacity: 1;
+    }
+
+    /* Services 3+3 centered */
+    .services-grid-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .services-grid-wrap .service-card {
+      flex: 0 0 calc(33.333% - 24px);
+      max-width: 300px;
+    }
+
+    @media (max-width: 700px) {
+      .services-grid-wrap .service-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
+
+  <!-- Image fullscreen overlay -->
+  <div id="img-overlay">
+    <button id="img-overlay-close" aria-label="Cerrar">&times;</button>
+    <img id="img-overlay-src" src="" alt="Foto ampliada">
+  </div>
+
+  <!-- ======== SERVICES ======== -->
+  <section class="section">
+    <div class="container">
+
+      <!-- ── BLOQUE 1: Centro Histórico ── -->
+      <div class="location-block reveal">
+        <div class="location-header">
+          <div>
+            <span class="location-badge"><i class="fa-solid fa-location-dot"></i> Centro Histórico</span>
+            <h2 style="margin-top:12px;">Romero Luna<br />Centro Histórico</h2>
+            <p style="margin-top:8px;max-width:60ch;">A 100 metros de la Calle Larios y la Plaza de la
+              Constitución. El corazón palpitante del centro histórico de Málaga, rodeado de museos,
+              cultura y gastronomía.</p>
+          </div>
+        </div>
+
+        <!-- Estudio Premium -->
+        <div class="studio-row reveal">
+          <!-- Left: Info card -->
+          <div class="apartment-card" style="margin-bottom:0;">
+            <div class="apartment-card__name">Estudio Premium</div>
+            <div class="apartment-card__size"><i class="fa-solid fa-square-full" style="font-size:0.5em;vertical-align:middle;margin-right:6px;"></i> 30 m² · Individual + Doble</div>
+            <div class="apartment-card__amenities">
+              <span class="amenity-tag"><i class="fa-solid fa-bed"></i> Cama individual + doble</span>
+              <span class="amenity-tag"><i class="fa-solid fa-bath"></i> Baño privado con ducha</span>
+              <span class="amenity-tag"><i class="fa-solid fa-house"></i> Balcón</span>
+              <span class="amenity-tag"><i class="fa-solid fa-tv"></i> TV con Netflix</span>
+              <span class="amenity-tag"><i class="fa-solid fa-snowflake"></i> Aire acondicionado</span>
+              <span class="amenity-tag"><i class="fa-solid fa-globe"></i> WiFi alta velocidad</span>
+              <span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i> Cocina equipada</span>
+              <span class="amenity-tag"><i class="fa-solid fa-shirt"></i> Lavadora</span>
+            </div>
+            <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
+              class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;">Reservar en Booking</a>
+          </div>
+          <!-- Right: Carousel -->
+          <div>
+            <div class="mini-viewer">
+              <img id="mv-premium" src="../assets/Fotos/Estudio Premium/PR1.jpg" alt="Estudio Premium">
+            </div>
+            <div class="mini-thumbs" id="mt-premium">
+              <div class="mini-thumb active" data-src="../assets/Fotos/Estudio Premium/PR1.jpg"><img
+                  src="../assets/Fotos/Estudio Premium/PR1.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Estudio Premium/PR2.jpg"><img
+                  src="../assets/Fotos/Estudio Premium/PR2.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Estudio Premium/PR3.jpg"><img
+                  src="../assets/Fotos/Estudio Premium/PR3.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Estudio Premium/PR5.jpg"><img
+                  src="../assets/Fotos/Estudio Premium/PR5.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Estudio Premium/PR6.jpg"><img
+                  src="../assets/Fotos/Estudio Premium/PR6.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Estudio Premium/PR7.jpg"><img
+                  src="../assets/Fotos/Estudio Premium/PR7.jpg" alt=""></div>
+              </div>
+          </div>
+        </div>
+
+        <!-- Estudio Deluxe -->
+        <div class="studio-row reveal" style="margin-top:40px;">
+          <!-- Left: Info card -->
+          <div class="apartment-card" style="margin-bottom:0;">
+            <div class="apartment-card__name">Estudio Deluxe</div>
+            <div class="apartment-card__size"><i class="fa-solid fa-square-full" style="font-size:0.5em;vertical-align:middle;margin-right:6px;"></i> 40 m² · Cama King Size</div>
+            <div class="apartment-card__amenities">
+              <span class="amenity-tag"><i class="fa-solid fa-bed"></i> Cama matrimonio doble</span>
+              <span class="amenity-tag"><i class="fa-solid fa-bath"></i> Baño privado con ducha</span>
+              <span class="amenity-tag"><i class="fa-solid fa-house"></i> Balcón</span>
+              <span class="amenity-tag"><i class="fa-solid fa-tv"></i> TV con Netflix</span>
+              <span class="amenity-tag"><i class="fa-solid fa-snowflake"></i> Aire acondicionado</span>
+              <span class="amenity-tag"><i class="fa-solid fa-globe"></i> WiFi alta velocidad</span>
+              <span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i> Cocina equipada</span>
+              <span class="amenity-tag"><i class="fa-solid fa-shirt"></i> Lavadora</span>
+            </div>
+            <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
+              class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;">Reservar en Booking</a>
+          </div>
+          <!-- Right: Carousel -->
+          <div>
+            <div class="mini-viewer">
+              <img id="mv-deluxe" src="../assets/Fotos/Estudio Deluxe/img1.jpg" alt="Estudio Deluxe">
+            </div>
+            <div class="mini-thumbs" id="mt-deluxe">
+              <div class="mini-thumb active" data-src="../assets/Fotos/Estudio Deluxe/img1.jpg"><img
+                  src="../assets/Fotos/Estudio Deluxe/img1.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img2.jpg"><img
+                  src="../assets/Fotos/Estudio Deluxe/img2.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img3.jpg"><img
+                  src="../assets/Fotos/Estudio Deluxe/img3.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img5.jpg"><img
+                  src="../assets/Fotos/Estudio Deluxe/img5.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img6.jpg"><img
+                  src="../assets/Fotos/Estudio Deluxe/img6.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img7.jpg"><img
+                  src="../assets/Fotos/Estudio Deluxe/img7.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img8.jpg"><img
+                  src="../assets/Fotos/Estudio Deluxe/img8.jpg" alt=""></div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="divider" style="margin-bottom:80px;"></div>
+
+      <!-- ── BLOQUE 2: Centro Teatro Soho ── -->
+      <div class="location-block reveal">
+        <div class="location-header">
+          <div>
+            <span class="location-badge"
+              style="background:rgba(106,170,106,0.12);border-color:rgba(106,170,106,0.35);color:#8dbb8d;">
+              <i class="fa-solid fa-masks-theater"></i> Centro Teatro Soho&nbsp;&nbsp;<span
+                style="font-size:0.65rem;background:var(--color-green);color:#fff;padding:2px 8px;border-radius:999px;">NUEVO</span>
+            </span>
+            <h2 style="margin-top:12px;">Romero Luna<br />Centro Teatro Soho</h2>
+            <p style="margin-top:8px;max-width:60ch;">En el vibrante barrio del Teatro Soho, el nuevo
+              epicentro cultural y gastronómico de Málaga. Diseño contemporáneo con la misma esencia
+              Romero Luna.</p>
+          </div>
+        </div>
+
+        <!-- Estudio Soho -->
+        <div class="studio-row reveal">
+          <!-- Left: Info card -->
+          <div class="apartment-card" style="margin-bottom:0;border-color:rgba(106,170,106,0.3);">
+            <div class="apartment-card__name">Estudio Soho</div>
+            <div class="apartment-card__size" style="color:#8dbb8d;"><i class="fa-solid fa-square-full" style="font-size:0.5em;vertical-align:middle;margin-right:6px;"></i> Nuevo apartamento · Barrio del Soho</div>
+            <div class="apartment-card__amenities">
+              <span class="amenity-tag"><i class="fa-solid fa-bed"></i> Cama de matrimonio</span>
+              <span class="amenity-tag"><i class="fa-solid fa-bath"></i> Baño privado con ducha</span>
+              <span class="amenity-tag"><i class="fa-solid fa-tv"></i> TV con Netflix</span>
+              <span class="amenity-tag"><i class="fa-solid fa-snowflake"></i> Aire acondicionado</span>
+              <span class="amenity-tag"><i class="fa-solid fa-globe"></i> WiFi alta velocidad</span>
+              <span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i> Cocina equipada</span>
+              <span class="amenity-tag"><i class="fa-solid fa-masks-theater"></i> Barrio Teatro Soho</span>
+              <span class="amenity-tag"><i class="fa-solid fa-shirt"></i> Lavadora</span>
+            </div>
+            <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
+              class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;">Reservar en Booking</a>
+          </div>
+          <!-- Right: Carousel -->
+          <div>
+            <div class="mini-viewer">
+              <img id="mv-soho" src="../assets/Fotos/Soho/Hacia-adentroSoho.jpg" alt="Estudio Soho">
+            </div>
+            <div class="mini-thumbs" id="mt-soho">
+              <div class="mini-thumb active" data-src="../assets/Fotos/Soho/Hacia-adentroSoho.jpg"><img
+                  src="../assets/Fotos/Soho/Hacia-adentroSoho.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Soho/CamaSoho.jpg"><img
+                  src="../assets/Fotos/Soho/CamaSoho.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Soho/Hacia-afueraSoho.jpg"><img
+                  src="../assets/Fotos/Soho/Hacia-afueraSoho.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Soho/MuralSoho.jpg"><img
+                  src="../assets/Fotos/Soho/MuralSoho.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Soho/SofaSoho.jpg"><img
+                  src="../assets/Fotos/Soho/SofaSoho.jpg" alt=""></div>
+              <div class="mini-thumb" data-src="../assets/Fotos/Soho/WCSoho.jpg"><img
+                  src="../assets/Fotos/Soho/WCSoho.jpg" alt=""></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="divider" style="margin-bottom:72px;"></div>
+
+      <!-- ── Servicios Generales ── -->
+      <div class="reveal">
+        <div class="text-center" style="margin-bottom:48px;">
+          <span class="section-eyebrow">Comunes a todos los apartamentos</span>
+          <h2 class="section-title centered">Servicios Generales</h2>
+        </div>
+
+        <div class="services-grid-wrap">
+
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-solid fa-couch"></i></div>
+            <div class="service-card__title">Instalaciones</div>
+            <ul class="service-card__list">
+              <li>Zona de estar con sofá</li>
+              <li>TV de pantalla plana</li>
+              <li>Netflix · Amazon Prime</li>
+              <li>Spotify</li>
+              <li>Calefacción</li>
+              <li>Aire acondicionado</li>
+            </ul>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-solid fa-kitchen-set"></i></div>
+            <div class="service-card__title">Cocina</div>
+            <ul class="service-card__list">
+              <li>Totalmente equipada</li>
+              <li>Microondas</li>
+              <li>Fogones</li>
+              <li>Nevera</li>
+              <li>Tostadora</li>
+              <li>Cafetera</li>
+            </ul>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-solid fa-shower"></i></div>
+            <div class="service-card__title">Baño</div>
+            <ul class="service-card__list">
+              <li>Baño privado</li>
+              <li>Ducha</li>
+              <li>Secador de pelo</li>
+              <li>Artículos de higiene</li>
+              <li>Toallas incluidas</li>
+            </ul>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-solid fa-globe"></i></div>
+            <div class="service-card__title">Conectividad</div>
+            <ul class="service-card__list">
+              <li>WiFi alta velocidad</li>
+              <li>Gratuito en todo el piso</li>
+              <li>Ideal para teletrabajo</li>
+            </ul>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-solid fa-house"></i></div>
+            <div class="service-card__title">Extras</div>
+            <ul class="service-card__list">
+              <li>Balcón propio</li>
+              <li>Lavadora</li>
+              <li>Ropa de cama incluida</li>
+              <li>Check-in flexible</li>
+            </ul>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="service-card__title">Ubicación</div>
+            <ul class="service-card__list">
+              <li>200m Plaza Constitución</li>
+              <li>300m Museo Thyssen</li>
+              <li>Próximo Museo Picasso</li>
+              <li>Aeropuerto a 13 km</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Carousel script for Instalaciones -->
+  <script>
+    (function () {
+      var carousels = [
+        { viewerId: 'mv-deluxe', stripId: 'mt-deluxe' },
+        { viewerId: 'mv-premium', stripId: 'mt-premium' },
+        { viewerId: 'mv-soho', stripId: 'mt-soho' }
+      ];
+      var timers = {};
+
+      // --- Lightbox overlay ---
+      var overlay = document.getElementById('img-overlay');
+      var overlaySrc = document.getElementById('img-overlay-src');
+      var overlayClose = document.getElementById('img-overlay-close');
+
+      function openOverlay(src) {
+        overlaySrc.src = src;
+        overlay.classList.add('open');
+      }
+      function closeOverlay() {
+        overlay.classList.remove('open');
+        overlaySrc.src = '';
+      }
+
+      if (overlayClose) overlayClose.addEventListener('click', closeOverlay);
+      if (overlay) overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeOverlay();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeOverlay();
+      });
+
+      // --- Carousels ---
+      carousels.forEach(function (cfg) {
+        var viewer = document.getElementById(cfg.viewerId);
+        var strip = document.getElementById(cfg.stripId);
+        if (!viewer || !strip) return;
+
+        var thumbs = Array.from(strip.querySelectorAll('.mini-thumb'));
+        var current = 0;
+
+        // Click on the viewer opens lightbox
+        var viewerWrapper = viewer.closest('.mini-viewer');
+        if (viewerWrapper) {
+          viewerWrapper.addEventListener('click', function () {
+            openOverlay(thumbs[current].dataset.src);
+          });
+        }
+
+        function goTo(idx) {
+          current = (idx + thumbs.length) % thumbs.length;
+          viewer.classList.add('fading');
+          setTimeout(function () {
+            viewer.src = thumbs[current].dataset.src;
+            viewer.classList.remove('fading');
+          }, 400);
+          thumbs.forEach(function (t) { t.classList.remove('active'); });
+          thumbs[current].classList.add('active');
+          // Scroll only the thumb strip container, not the page
+          var strip2 = thumbs[current].parentElement;
+          if (strip2) {
+            var thumbLeft = thumbs[current].offsetLeft;
+            var thumbWidth = thumbs[current].offsetWidth;
+            var stripWidth = strip2.offsetWidth;
+            strip2.scrollLeft = thumbLeft - stripWidth / 2 + thumbWidth / 2;
+          }
+        }
+
+        function startTimer() {
+          clearInterval(timers[cfg.viewerId]);
+          timers[cfg.viewerId] = setInterval(function () { goTo(current + 1); }, 6000);
+        }
+
+        thumbs.forEach(function (thumb, idx) {
+          thumb.addEventListener('click', function () { goTo(idx); startTimer(); });
+        });
+
+        var row = viewer.closest('.studio-row');
+        if (row) {
+          row.addEventListener('mouseenter', function () { clearInterval(timers[cfg.viewerId]); });
+          row.addEventListener('mouseleave', startTimer);
+        }
+
+        startTimer();
+      });
+    })();
+  </script>
+
+
+  <!-- ======== FOOTER NUEVO ======== -->
+  <footer class="footer-new" id="contacto">
+    <div class="footer-new__top">
+      <div class="container">
+
+        <!-- 3 contact cards -->
+        <div class="footer-cards">
+
+          <!-- Card 1: Anfitrión -->
+          <div class="footer-card">
+            <div class="footer-card__icon"><i class="fa-solid fa-user"></i></div>
+            <div>
+              <div class="footer-card__name">Alejandro Castillejo</div>
+              <div class="footer-card__info">+34 610 54 38 50</div>
+            </div>
+            <div class="footer-card__actions">
+              <a href="https://wa.me/34610543850" target="_blank" rel="noopener"
+                class="footer-card__action-btn footer-card__action-btn--wa">
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp
+              </a>
+              <a href="tel:+34610543850" class="footer-card__action-btn footer-card__action-btn--call">
+                <i class="fa-solid fa-phone"></i>
+                Llamar
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2: Ubicación -->
+          <div class="footer-card">
+            <div class="footer-card__icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="footer-card__name">
+                <a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" target="_blank"
+                  rel="noopener" style="color:inherit;text-decoration:none;transition:color 0.2s;"
+                  onmouseover="this.style.color='var(--color-green)'" onmouseout="this.style.color='inherit'">
+                  Calle Lazcano, 5. 29008
+                </a>
+              </div>
+              <div class="footer-card__info">Málaga &mdash; España</div>
+            </div>
+            <a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" target="_blank"
+              rel="noopener" class="footer-card__action-btn footer-card__action-btn--call" style="width:fit-content;">
+              <i class="fa-solid fa-location-dot"></i>
+              Ver en Google Maps
+            </a>
+          </div>
+
+          <!-- Card 3: Email -->
+          <div class="footer-card">
+            <div class="footer-card__icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="footer-card__name">
+                <a href="mailto:alejandro@romeroluna.com" class="footer-card__info"
+                  style="color:var(--color-ink);font-weight:600;font-size:1rem;">alejandro@romeroluna.com</a>
+              </div>
+              <div class="footer-card__info">
+                <a href="https://romeroluna.com" target="_blank" rel="noopener">RomeroLuna.com</a>
+              </div>
+            </div>
+            <a href="mailto:alejandro@romeroluna.com" class="footer-card__action-btn footer-card__action-btn--wa"
+              style="width:fit-content;">
+              <i class="fa-solid fa-envelope"></i>
+              Enviar email
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Embedded map -->
+        <div class="footer-map__wrapper">
+          <a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" target="_blank" rel="noopener"
+            class="footer-map__link-overlay" aria-label="Abrir en Google Maps"></a>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.2!2d-4.4217!3d36.7219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f72c9b9b9b9b%3A0x0!2sCalle+Lazcano%2C+5%2C+29008+M%C3%A1laga!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses"
+            width="100%" height="280" style="border:0;display:block;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de los Apartamentos Romero Luna en Calle Lazcano, 5"></iframe>
+        </div>
+
+        <!-- Logo below the map -->
+        <div class="footer-logo-centered">
+          <a href="../index.html">
+            <img src="../assets/romeroluna logo.png" alt="Romero Luna Apartamentos" />
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-new__bottom">
+      <div class="container">
+        <div class="footer-new__bottom-inner">
+          <p class="footer-new__copy">&copy; 2025 Romero Luna Apartamentos &middot; Málaga</p>
+          <nav class="footer-new__links">
+            <a href="sobre-nosotros.html" class="footer-new__link">Sobre Nosotros</a>
+            <a href="sitios-de-interes.html" class="footer-new__link">Sitios de Interés</a>
+            <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
+              class="footer-new__link">Booking.com</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
