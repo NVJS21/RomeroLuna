@@ -949,8 +949,14 @@ p {
 /* ---------- Reviews ---------- */
 .reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .review-card {
@@ -1943,5 +1949,79 @@ p {
     max-height: calc(100vh - var(--navbar-h));
     overflow-y: auto;
     padding: 16px 20px 32px;
+  }
+}
+
+/* ============================================================
+   PAGE-SPECIFIC REFINEMENTS (Extracted from HTML)
+   ============================================================ */
+
+/* Instalaciones Studio Rows */
+.studio-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+
+.mini-viewer {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+  margin-bottom: 10px;
+  cursor: zoom-in;
+}
+
+.mini-viewer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.4s ease;
+}
+
+.mini-thumbs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.mini-thumb {
+  flex-shrink: 0;
+  width: 64px;
+  height: 44px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.65;
+  transition: border-color 0.2s, opacity 0.2s;
+}
+
+.mini-thumb.active {
+  border-color: var(--color-blue);
+  opacity: 1;
+}
+
+/* Sitios de Interés Highlights */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .studio-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .highlights-grid {
+    grid-template-columns: 1fr;
   }
 }

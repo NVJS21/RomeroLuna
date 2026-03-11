@@ -97,87 +97,30 @@
 
   <!-- Inline styles for compact carousel -->
   <style>
-    .studio-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: start;
-      margin-bottom: 40px;
+    /* Services 3+3 centered */
+    .services-grid-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
     }
 
-    @media (max-width: 800px) {
-      .studio-row {
-        grid-template-columns: 1fr;
+    .services-grid-wrap .service-card {
+      flex: 0 0 calc(33.333% - 24px);
+      max-width: 300px;
+    }
+
+    @media (max-width: 700px) {
+      .services-grid-wrap .service-card {
+        flex: 0 0 100%;
+        max-width: 100%;
       }
     }
+  </style>
 
-    /* Compact viewer */
-    .mini-viewer {
-      width: 100%;
-      aspect-ratio: 4/3;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #111;
-      margin-bottom: 10px;
-      cursor: zoom-in;
-    }
-
-    .mini-viewer img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: opacity 0.4s ease;
-      user-select: none;
-      -webkit-user-drag: none;
-      pointer-events: none;
-    }
-
-    .mini-viewer img.fading {
-      opacity: 0;
-    }
-
-    /* Thumbnail strip */
-    .mini-thumbs {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: thin;
-    }
-
-    .mini-thumb {
-      flex-shrink: 0;
-      width: 64px;
-      height: 44px;
-      border-radius: 6px;
-      overflow: hidden;
-      cursor: pointer;
-      border: 2px solid transparent;
-      opacity: 0.65;
-      transition: border-color 0.2s, opacity 0.2s;
-    }
-
-    .mini-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      user-select: none;
-      -webkit-user-drag: none;
-      pointer-events: none;
-    }
-
-    .mini-thumb:hover {
-      opacity: 0.9;
-    }
-
-    .mini-thumb.active {
-      border-color: #1565c0;
-      opacity: 1;
-    }
-
-    /* Fullscreen image overlay */
+  <!-- Image fullscreen overlay -->
+  <!-- Image fullscreen overlay -->
+  <style>
     #img-overlay {
       display: none;
       position: fixed;
@@ -230,29 +173,8 @@
     #img-overlay-close:hover {
       opacity: 1;
     }
-
-    /* Services 3+3 centered */
-    .services-grid-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
-    }
-
-    .services-grid-wrap .service-card {
-      flex: 0 0 calc(33.333% - 24px);
-      max-width: 300px;
-    }
-
-    @media (max-width: 700px) {
-      .services-grid-wrap .service-card {
-        flex: 0 0 100%;
-        max-width: 100%;
-      }
-    }
   </style>
 
-  <!-- Image fullscreen overlay -->
   <div id="img-overlay">
     <button id="img-overlay-close" aria-label="Cerrar">&times;</button>
     <img id="img-overlay-src" src="" alt="Foto ampliada">
