@@ -10,31 +10,32 @@
 /* ---------- Design Tokens ---------- */
 :root {
   /* Base */
-  --color-bg: #ffffff;
-  --color-bg-warm: #fdfaf6;
+  --color-bg: #fdfcfb; /* page background slightly warm */
+  --color-bg-warm: #fbf8f5;
   --color-surface: #f7f3ee;
   --color-surface-2: #f0ebe3;
-  --color-border: #e8e0d5;
+  --color-border: #20201e; /* Black stroke for borders */
   --color-text: #1a1a1a;
-  --color-muted: #7a7060;
+  --color-muted: #5a5a54;
   --color-white: #ffffff;
 
-  /* Palette from logo */
-  --color-green: #5a9e3a;
-  --color-green-lt: #d4edca;
-  --color-yellow: #d4c01a;
-  --color-yellow-lt: #f7f1b0;
-  --color-blue: #3a7dc9;
-  --color-blue-lt: #cce0f5;
-  --color-red: #d94f4f;
-  --color-red-lt: #fad4d4;
-  --color-ink: #1a1a1a;
+  /* Palette from logo (User requested) */
+  --color-green: #66a307;
+  --color-green-lt: rgba(102, 163, 7, 0.12);
+  --color-yellow: #f2ff00;
+  --color-yellow-lt: rgba(242, 255, 0, 0.18);
+  --color-blue: #4f9be9;
+  --color-blue-lt: rgba(79, 155, 233, 0.15);
+  --color-red: #f90946;
+  --color-red-lt: rgba(249, 9, 70, 0.12);
+  --color-ink: #20201e;
 
-  /* Primary accent: green (the 'R' of the logo) */
+  /* Primary accent */
   --color-accent: var(--color-green);
   --color-accent-lt: var(--color-green-lt);
 
   --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Nunito', system-ui, sans-serif;
   --font-body: 'Nunito', system-ui, sans-serif;
 
   --radius-sm: 8px;
@@ -124,9 +125,10 @@ h4 {
 }
 
 p {
-  color: var(--color-muted);
-  font-weight: 400;
+  color: var(--color-ink);
+  font-weight: 500;
   max-width: 70ch;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.75);
 }
 
 /* ---------- Utility ---------- */
@@ -502,17 +504,16 @@ p {
 /* ---------- Card ---------- */
 .card {
   background: var(--color-white);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: 2.5px solid var(--color-ink);
+  border-radius: 18px 26px 14px 22px;
   overflow: hidden;
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 6px 6px 0 var(--color-ink);
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-green-lt);
+  transform: translate(-3px, -3px);
+  box-shadow: 10px 10px 0 var(--color-ink);
 }
 
 .card__body {
@@ -827,22 +828,19 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 16px;
+  padding: 7px 18px;
   border-radius: var(--radius-pill);
-  background: var(--color-green-lt);
-  border: 1.5px solid var(--color-green);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  background: var(--color-green); /* Solid background for intensity */
+  border: 2px solid var(--color-ink); /* Black border for contrast/legibility */
+  font-size: 0.78rem;
+  font-weight: 800; /* Extra-bold */
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-green);
+  color: #fff; /* White text on green background */
+  box-shadow: 4px 4px 0 var(--color-ink); /* Custom offset shadow to fit Picasso rest */
 }
 
-.location-badge.soho {
-  background: var(--color-blue-lt);
-  border-color: var(--color-blue);
-  color: var(--color-blue);
-}
+
 
 .apartments-grid {
   display: grid;
@@ -853,17 +851,16 @@ p {
 
 .apartment-card {
   background: var(--color-white);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: 2.5px solid var(--color-ink);
+  border-radius: 20px 15px 25px 18px;
   padding: 28px;
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 6px 6px 0 var(--color-ink);
 }
 
 .apartment-card:hover {
-  border-color: var(--color-green);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
+  transform: translate(-4px, -4px);
+  box-shadow: 11px 11px 0 var(--color-ink);
 }
 
 .apartment-card__name {
@@ -908,18 +905,18 @@ p {
 
 .service-card {
   background: var(--color-white);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: 2.5px solid var(--color-ink);
+  border-radius: 16px 24px 18px 12px;
   padding: 24px 20px;
   text-align: center;
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 6px 6px 0 var(--color-ink);
 }
 
 .service-card:hover {
-  border-color: var(--color-green);
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--color-ink);
   background: var(--color-bg-warm);
-  transform: translateY(-2px);
 }
 
 .service-card__icon {
@@ -961,16 +958,16 @@ p {
 
 .review-card {
   background: var(--color-white);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: 2.5px solid var(--color-ink);
+  border-radius: 22px 18px 16px 24px;
   padding: 26px;
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 6px 6px 0 var(--color-ink);
 }
 
 .review-card:hover {
-  border-color: var(--color-green);
-  box-shadow: var(--shadow-md);
+  transform: translate(-4px, -4px);
+  box-shadow: 11px 11px 0 var(--color-ink);
 }
 
 .review-card__stars {
@@ -1445,57 +1442,6 @@ p {
 
   50% {
     transform: translateX(-50%) translateY(8px);
-  }
-}
-
-/* ---------- Info Strip ---------- */
-.info-strip {
-  background: var(--color-white);
-  border-top: 2px solid var(--color-border);
-  border-bottom: 2px solid var(--color-border);
-}
-
-.info-strip__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  background: var(--color-border);
-}
-
-.info-item {
-  background: var(--color-white);
-  padding: 28px 24px;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.info-item:hover {
-  background: var(--color-bg-warm);
-}
-
-.info-item__num {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  color: var(--color-green);
-  font-weight: 700;
-}
-
-.info-item__label {
-  font-size: 0.8rem;
-  color: var(--color-muted);
-  margin-top: 4px;
-  font-weight: 600;
-}
-
-@media (max-width: 768px) {
-  .info-strip__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .info-strip__grid {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -1990,6 +1936,14 @@ p {
   padding-bottom: 4px;
 }
 
+@media (max-width: 640px) {
+  .mini-thumbs {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
+  }
+}
+
 .mini-thumb {
   flex-shrink: 0;
   width: 64px;
@@ -2000,6 +1954,14 @@ p {
   border: 2px solid transparent;
   opacity: 0.65;
   transition: border-color 0.2s, opacity 0.2s;
+}
+
+@media (max-width: 640px) {
+  .mini-thumb {
+    width: calc(25% - 5px);
+    height: auto;
+    aspect-ratio: 3/2;
+  }
 }
 
 .mini-thumb.active {

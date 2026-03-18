@@ -1,209 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Romero Luna | Apartamentos en Málaga Centro</title>
-  <meta name="description"
-    content="Los Apartamentos Romero Luna se encuentran en el corazón de Málaga, a 200 m de la Plaza de la Constitución. WiFi, AC, balcón y todas las comodidades." />
-  <link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-</head>
-
-<body>
-
-  <!-- Fixed background pompas -->
-  <!-- ======== ARTISTIC BACKGROUND (PICASSO/MIRÓ STYLE) ======== -->
-  <svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" style="
-    position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
-  " xmlns="http://www.w3.org/2000/svg">
-    
-    <defs>
-      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="3.5" result="blur" />
-        <feMerge>
-          <feMergeNode in="blur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    </defs>
-
-    <!-- Central Logo Watermark (Fixed in center) - OPACIDAD BAJA PARA LEGUIBILIDAD -->
-    <g style="mix-blend-mode: multiply; opacity: 0.15;">
-      <image href="assets/romeroluna logo.png" x="50%" y="50%" width="440" height="440" transform="translate(-220, -220)" />
-    </g>
-
-    <!-- Top Left: Yellow Blob with offset Stroke -->
-    <g transform="translate(-40, -40) rotate(10)">
-      <path d="M 200 100 C 150 200, 350 250, 400 150 C 450 50, 250 0, 200 100 Z" fill="var(--color-yellow)" opacity="0.75" />
-      <path d="M 180 120 C 130 220, 330 270, 380 170 C 430 70, 230 20, 180 120 Z" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.2" stroke-dasharray="6 3" />
-    </g>
-
-    <!-- Top Right: Red Circle & Squiggle -->
-    <g transform="translate(1000, 50)">
-      <circle cx="200" cy="100" r="70" fill="var(--color-red)" opacity="0.75" />
-      <circle cx="210" cy="92" r="72" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.25" />
-      <path d="M 90 80 Q 140 20 170 110 T 240 40" fill="none" stroke="var(--color-ink)" stroke-width="3.5" stroke-linecap="round" opacity="0.2" />
-    </g>
-
-    <!-- Middle Left: Green abstract shape -->
-    <g transform="translate(80, 400) rotate(-15)">
-      <path d="M 0 0 L 160 -40 L 140 140 L -20 100 Z" fill="var(--color-green)" opacity="0.85" />
-      <path d="M 10 12 L 170 -30 L 150 150 L -10 112 Z" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.2" />
-    </g>
-
-    <!-- Bottom Right: Blue Large Shape -->
-    <g transform="translate(950, 520) rotate(20)">
-      <path d="M 100 200 C 50 50, 350 -50, 400 150 C 450 350, 150 350, 100 200 Z" fill="var(--color-blue)" opacity="0.75" />
-      <path d="M 120 180 C 70 30, 370 -70, 420 130 C 470 330, 170 330, 120 180 Z" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.2" />
-    </g>
-
-    <!-- Continuous Line (Scribble) floating -->
-    <path d="M 200 180 C 400 40, 700 280, 800 80 C 900 -120, 1200 180, 1400 40 M -40 700 Q 150 550 350 750 T 700 600 S 1000 800, 1200 750" 
-          fill="none" stroke="var(--color-ink)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.15" />
-
-    <!-- Miró-style Stars/Asterisks (Con Efecto Glow) -->
-    <!-- Star 1 (Top Left area) -->
-    <g transform="translate(420, 160) scale(0.7)" opacity="0.8">
-      <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80 M 20 80 L 80 20" fill="none" stroke="var(--color-ink)" stroke-width="3.5" stroke-linecap="round" opacity="0.3" />
-      <circle cx="50" cy="50" r="5" fill="var(--color-red)" filter="url(#glow)" />
-    </g>
-
-    <!-- Star 2 (Middle Right area) - MOVIDA -->
-    <g transform="translate(980, 420) scale(0.6)" opacity="0.75">
-      <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.25" />
-      <circle cx="50" cy="50" r="4.5" fill="var(--color-yellow)" filter="url(#glow)" />
-    </g>
-
-    <!-- Star 3 (Bottom Left area) -->
-    <g transform="translate(250, 680) scale(0.65)" opacity="0.75">
-      <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80 M 20 80 L 80 20" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.3" />
-      <circle cx="50" cy="50" r="5" fill="var(--color-blue)" filter="url(#glow)" />
-    </g>
-
-    <!-- Star 4 (Top Right area) -->
-    <g transform="translate(1220, 240) scale(0.55)" opacity="0.75">
-      <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80" fill="none" stroke="var(--color-ink)" stroke-width="2.5" stroke-linecap="round" opacity="0.25" />
-      <circle cx="50" cy="50" r="4.5" fill="var(--color-green)" filter="url(#glow)" />
-    </g>
-
-    <!-- Star 5 (Center Top area) -->
-    <g transform="translate(680, 80) scale(0.6)" opacity="0.8">
-      <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.25" />
-      <circle cx="50" cy="50" r="4.5" fill="var(--color-red)" filter="url(#glow)" />
-    </g>
-
-    <!-- NUEVAS ESTRELLAS -->
-    <!-- Star 6 (Far Top Left) -->
-    <g transform="translate(120, 120) scale(0.6)" opacity="0.75">
-      <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.25" />
-      <circle cx="50" cy="50" r="4.5" fill="var(--color-green)" filter="url(#glow)" />
-    </g>
-
-    <!-- Star 7 (Bottom Right corner) -->
-    <g transform="translate(1300, 780) scale(0.7)" opacity="0.8">
-      <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80 M 20 80 L 80 20" fill="none" stroke="var(--color-ink)" stroke-width="3.5" stroke-linecap="round" opacity="0.3" />
-      <circle cx="50" cy="50" r="5" fill="var(--color-blue)" filter="url(#glow)" />
-    </g>
-
-    <!-- Star 8 (Middle Left) -->
-    <g transform="translate(40, 280) scale(0.55)" opacity="0.7">
-      <path d="M 50 10 L 50 90 M 10 50 L 90 50" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.25" />
-      <circle cx="50" cy="50" r="4" fill="var(--color-yellow)" filter="url(#glow)" />
-    </g>
-
-    <!-- Star 9 (Far Bottom Left) -->
-    <g transform="translate(80, 820) scale(0.6)" opacity="0.8">
-      <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.25" />
-      <circle cx="50" cy="50" r="4.5" fill="var(--color-red)" filter="url(#glow)" />
-    </g>
-
-  </svg>
-
-  <!-- ======== NAVBAR ======== -->
-  <nav class="navbar" role="navigation" aria-label="Navegación principal">
-    <div class="container">
-      <div class="navbar__inner">
-        <a href="index.html" class="navbar__logo" aria-label="Romero Luna – Inicio">
-          <img src="assets/romeroluna logo.png" alt="Romero Luna Apartamentos" />
-        </a>
-
-        <ul class="navbar__nav" role="list">
-          <li><a href="#inicio" class="navbar__link">Inicio</a></li>
-          <li><a href="#apartamentos" class="navbar__link">Apartamentos</a></li>
-          <li><a href="#resenas" class="navbar__link">Reseñas</a></li>
-          <li><a href="#sobre-nosotros" class="navbar__link">Sobre Nosotros</a></li>
-          <li><a href="#sitios-de-interes" class="navbar__link">Sitios de Interés</a></li>
-        </ul>
-
-        <div class="navbar__cta">
-          <a href="#contacto" class="btn btn-outline">Contacto</a>
-          <button class="btn btn-primary js-trigger-booking">Reserva ya!</button>
-        </div>
-
-        <button class="navbar__burger" aria-label="Abrir menú" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile drawer -->
-  <div class="navbar__drawer" role="menu">
-    <a href="#inicio" class="navbar__link">Inicio</a>
-    <a href="#apartamentos" class="navbar__link">Apartamentos</a>
-    <a href="#resenas" class="navbar__link">Reseñas</a>
-    <a href="#sobre-nosotros" class="navbar__link">Sobre Nosotros</a>
-    <a href="#sitios-de-interes" class="navbar__link">Sitios de Interés</a>
-    <div class="navbar__cta">
-      <a href="#contacto" class="btn btn-outline">Contacto</a>
-      <button class="btn btn-primary js-trigger-booking">Reserva ya!</button>
-    </div>
-  </div>
-
-  <!-- ======== HERO ======== -->
-  <section class="hero--photo" id="inicio" aria-label="Sección principal">
-    <!-- Background photo with fallback Miró class -->
-    <img class="hero__bg-img" src="assets/Fotos/Inicio/imagenLanding.jpg"
-      alt="Salón del Estudio Deluxe de los Apartamentos Romero Luna"
-      onerror="this.style.display='none'; this.parentElement.classList.add('hero--miro-fallback');" />
-    <div class="hero__photo-overlay"></div>
-
-    <div class="container" style="position:relative;z-index:2;width:100%;">
-      <div class="hero__left-card reveal">
-        <h1>Alójate en el corazón de Málaga</h1>
-        <p>
-          Los Apartamentos Romero Luna se encuentran a 200 metros de la plaza
-          de la Constitución y a 300 metros del Museo Carmen Thyssen y ofrecen
-          alojamiento con aire acondicionado y conexión WiFi gratuita.
-        </p>
-        <p style="margin-top:14px;">
-          A nuestros clientes les encanta nuestros apartamentos, por eso tenemos
-          una puntuación media de un
-          <span class="booking-score-inline">9.4</span>
-          en <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
-            class="booking-link">Booking</a>.
-        </p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;">
-          <button class="btn btn-primary js-trigger-booking">
-            Reserva ya!
-          </button>
-        </div>
-        <div style="display:flex;justify-content:space-between;gap:16px;margin-top:16px;width:100%;">
-          <a href="#apartamentos-centro" class="btn btn-primary" style="flex:1;text-align:center;justify-content:center;padding:12px 16px;font-size:0.85rem;background:var(--color-green);border-color:var(--color-ink);color:#fff;">Apartamentos Centro Histórico</a>
-          <a href="#apartamentos-soho" class="btn btn-primary" style="flex:1;text-align:center;justify-content:center;padding:12px 16px;font-size:0.85rem;background:var(--color-blue);border-color:var(--color-ink);color:#fff;">Apartamento Centro Teatro Soho</a>
-        </div>
-      </div>
-    </div>
-
-
-  </section>
-  
-
-
-  
-
 <!-- ============================================================ -->
 <!-- CONSOLIDATED CONTENT START -->
 <!-- ============================================================ -->
@@ -340,7 +134,7 @@
     <div class="container">
 
       <!-- ── BLOQUE 1: Centro Histórico ── -->
-      <div class="location-block reveal" id="apartamentos-centro">
+      <div class="location-block reveal" id="apartamentos-soho" id="apartamentos-centro">
         <div class="location-header">
           <div>
             <span class="location-badge"><i class="fa-solid fa-location-dot"></i> Centro Histórico</span>
@@ -440,10 +234,11 @@
       <div class="divider" style="margin-bottom:80px;"></div>
 
       <!-- ── BLOQUE 2: Centro Teatro Soho ── -->
-      <div class="location-block reveal" id="apartamentos-soho">
+      <div class="location-block reveal">
         <div class="location-header">
           <div>
-            <span class="location-badge">
+            <span class="location-badge"
+              style="background:rgba(106,170,106,0.12);border-color:rgba(106,170,106,0.35);color:#8dbb8d;">
               <i class="fa-solid fa-masks-theater"></i> Centro Teatro Soho&nbsp;&nbsp;<span
                 style="font-size:0.65rem;background:var(--color-green);color:#fff;padding:2px 8px;border-radius:999px;">NUEVO</span>
             </span>
@@ -678,17 +473,16 @@
 <!-- ======== RESEÑAS ======== -->
 <!-- ======== SCORE HIGHLIGHT ======== -->
   <section class="section--sm" id="resenas"
-    style="position:relative;background:var(--color-surface);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);">
-    <div style="position:absolute;inset:0;background-image:url('assets/romeroluna logo.png');background-repeat:no-repeat;background-position:center;background-size:480px;mix-blend-mode:multiply;opacity:0.09;z-index:0;"></div>
-    <div class="container" style="position:relative;z-index:1;">
+    style="background:var(--color-surface);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);">
+    <div class="container">
       <div style="display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;" class="reveal">
         <div class="score-badge">
-          <span class="score-badge__num">9.4</span>
+          <span class="score-badge__num">9,2</span>
           <span class="score-badge__label">Booking.com</span>
         </div>
         <div style="max-width:420px;">
           <h2 style="font-family:var(--font-heading);margin-bottom:12px;">Excelente valoración</h2>
-          <p>Nuestros huéspedes nos valoran con un <strong style="color:var(--color-green);">9.4 sobre
+          <p>Nuestros huéspedes nos valoran con un <strong style="color:var(--color-green);">9,2 sobre
               10</strong> en Booking.com, siendo la ubicación, la limpieza y la atención del anfitrión los
             aspectos mejor valorados.</p>
           <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
@@ -710,7 +504,7 @@
       <div class="reviews-grid">
 
         <!-- Reseña 1: Mari Puri – Google 5/5 -->
-        <div class="review-card reveal" style="transition-delay: 0.1s;">
+        <div class="review-card reveal">
           <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">"La ubicación 100 sobre 10, la limpieza, la decoración, esas frasecitas, esa
             Nespresso... es una locura de profesionales. Alejandro e Isabel son lo que es Málaga: amabilidad, cariño,
@@ -725,7 +519,7 @@
         </div>
 
         <!-- Reseña 2: Belén – Booking 10/10 -->
-        <div class="review-card reveal" style="transition-delay: 0.3s;">
+        <div class="review-card reveal">
           <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">"Un 10! El apartamento muy bonito, el lugar perfecto para unos días de turismo en
             Málaga. Alejandro el mejor!! y ya sé dónde voy a alojarme la próxima vez que vaya a Málaga."</p>
@@ -739,7 +533,7 @@
         </div>
 
         <!-- Reseña 3: Marcelo – Booking 10/10 -->
-        <div class="review-card reveal" style="transition-delay: 0.5s;">
+        <div class="review-card reveal">
           <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">"Muy recomendable. Departamento super moderno, muy cómodo y super limpio. Todo
             funciona perfecto y no falta nada. Tiene una excelente ubicación. Alejandro es muy atento y se ocupa de que
@@ -754,7 +548,7 @@
         </div>
 
         <!-- Reseña 4: Luis – Booking 10/10 -->
-        <div class="review-card reveal" style="transition-delay: 0.2s;">
+        <div class="review-card reveal">
           <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">"Excepcional. El dueño, Alejandro, un fenómeno: nos ayudó hasta compartiendo
             coche porque las calles estaban cortadas por las procesiones. Su amabilidad estupenda y el mapa secreto...
@@ -769,7 +563,7 @@
         </div>
 
         <!-- Reseña 5: Raquel – Booking 10/10 -->
-        <div class="review-card reveal" style="transition-delay: 0.4s;">
+        <div class="review-card reveal">
           <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">"Excelente ubicación y muy cómodo. El apartamento tiene una excelente ubicación
             en el centro histórico. Hemos dormido estupéndamente y el dueño, además de muy simpático, nos facilitó mucha
@@ -784,7 +578,7 @@
         </div>
 
         <!-- Reseña 6: Beatriz – Booking 10/10 -->
-        <div class="review-card reveal" style="transition-delay: 0.6s;">
+        <div class="review-card reveal">
           <div class="review-card__stars">★★★★★</div>
           <p class="review-card__text">"Fantástico. Lo mejor sin duda Alejandro, el propietario. Muy buen recibimiento y
             pendiente de cualquier cosa que necesites. La ubicación totalmente céntrica. Apartamento insonorizado: a
@@ -816,11 +610,6 @@
 <!-- ======== ABOUT ======== -->
   <section class="section" id="sobre-nosotros">
     <div class="container">
-      <div class="text-center reveal" style="margin-bottom:48px;">
-        <span class="section-eyebrow">Quiénes somos</span>
-        <h2 class="section-title centered">Anfitriones: Isabel y Alejandro</h2>
-        <p class="section-subtitle">Dos malagueños de corazón, encantados de compartir su ciudad y hacer de tu estancia una experiencia única.</p>
-      </div>
       <div class="about-grid reveal">
 
         <!-- Host card -->
@@ -913,9 +702,9 @@
   </section>
 
   <!-- ======== MALAGA SECTION ======== -->
-  <section class="section--sm" style="position:relative;background:var(--color-surface);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);">
-    <div style="position:absolute;inset:0;background-image:url('assets/romeroluna logo.png');background-repeat:no-repeat;background-position:center;background-size:480px;mix-blend-mode:multiply;opacity:0.09;z-index:0;"></div>
-    <div class="container" style="position:relative;z-index:1;">
+  <section class="section--sm"
+    style="background:var(--color-surface);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);">
+    <div class="container">
       <div class="text-center reveal" style="margin-bottom:48px;">
         <span class="section-eyebrow">Nuestra ciudad</span>
         <h2 class="section-title centered">Por qué Málaga</h2>
@@ -978,9 +767,9 @@
   </section>
 
   <!-- ======== HIGHLIGHTS ======== -->
-  <section class="section--sm" style="position:relative;background:var(--color-surface);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);">
-    <div style="position:absolute;inset:0;background-image:url('assets/romeroluna logo.png');background-repeat:no-repeat;background-position:center;background-size:480px;mix-blend-mode:multiply;opacity:0.09;z-index:0;"></div>
-    <div class="container" style="position:relative;z-index:1;">
+  <section class="section--sm"
+    style="background:var(--color-surface);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);">
+    <div class="container">
       <div class="text-center reveal" style="margin-bottom:40px;">
         <span class="section-eyebrow">Los favoritos de nuestros anfitriones</span>
         <h2 class="section-title centered">Lo que no te puedes perder</h2>
@@ -1026,207 +815,3 @@
   </section>
 
   
-
-
-<!-- ======== FOOTER NUEVO ======== -->
-  <footer class="footer-new" id="contacto">
-    <div class="footer-new__top">
-      <div class="container">
-
-        <!-- 3 contact cards -->
-        <div class="footer-cards">
-
-          <!-- Card 1: Anfitrión -->
-          <div class="footer-card">
-            <div class="footer-card__icon"><i class="fa-solid fa-user"></i></div>
-            <div>
-              <div class="footer-card__name">Alejandro Castillejo</div>
-              <div class="footer-card__info">+34 610 54 38 50</div>
-            </div>
-            <div class="footer-card__actions">
-              <a href="https://wa.me/34610543850" target="_blank" rel="noopener"
-                class="footer-card__action-btn footer-card__action-btn--wa">
-                <i class="fa-brands fa-whatsapp"></i>
-                WhatsApp
-              </a>
-              <a href="tel:+34610543850" class="footer-card__action-btn footer-card__action-btn--call">
-                <i class="fa-solid fa-phone"></i>
-                Llamar
-              </a>
-            </div>
-          </div>
-
-          <!-- Card 2: Ubicación -->
-          <div class="footer-card">
-            <div class="footer-card__icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div>
-              <div class="footer-card__name">
-                <a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" target="_blank"
-                  rel="noopener" style="color:inherit;text-decoration:none;transition:color 0.2s;"
-                  onmouseover="this.style.color='var(--color-green)'" onmouseout="this.style.color='inherit'">
-                  Calle Lazcano, 5. 29008
-                </a>
-              </div>
-              <div class="footer-card__info">Málaga &mdash; España</div>
-            </div>
-            <a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" target="_blank"
-              rel="noopener" class="footer-card__action-btn footer-card__action-btn--call" style="width:fit-content;">
-              <i class="fa-solid fa-location-dot"></i>
-              Ver en Google Maps
-            </a>
-          </div>
-
-          <!-- Card 3: Email -->
-          <div class="footer-card">
-            <div class="footer-card__icon"><i class="fa-solid fa-envelope"></i></div>
-            <div>
-              <div class="footer-card__name">
-                <a href="mailto:alejandro@romeroluna.com" class="footer-card__info"
-                  style="color:var(--color-ink);font-weight:600;font-size:1rem;">alejandro@romeroluna.com</a>
-              </div>
-              <div class="footer-card__info">
-                <a href="https://romeroluna.com" target="_blank" rel="noopener">RomeroLuna.com</a>
-              </div>
-            </div>
-            <a href="mailto:alejandro@romeroluna.com" class="footer-card__action-btn footer-card__action-btn--wa"
-              style="width:fit-content;">
-              <i class="fa-solid fa-envelope"></i>
-              Enviar email
-            </a>
-          </div>
-
-        </div>
-
-        <!-- Embedded map -->
-        <div class="footer-map__wrapper">
-          <a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" target="_blank" rel="noopener"
-            class="footer-map__link-overlay" aria-label="Abrir en Google Maps"></a>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.2!2d-4.4217!3d36.7219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f72c9b9b9b9b%3A0x0!2sCalle+Lazcano%2C+5%2C+29008+M%C3%A1laga!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses"
-            width="100%" height="280" style="border:0;display:block;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Ubicación de los Apartamentos Romero Luna en Calle Lazcano, 5"></iframe>
-        </div>
-
-        <!-- Logo below the map -->
-        <div class="footer-logo-centered">
-          <a href="index.html">
-            <img src="assets/romeroluna logo.png" alt="Romero Luna Apartamentos" />
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Bottom bar -->
-    <div class="footer-new__bottom">
-      <div class="container">
-        <div class="footer-new__bottom-inner">
-          <p class="footer-new__copy">&copy; 2025 Romero Luna Apartamentos &middot; Málaga</p>
-          <nav class="footer-new__links">
-            <a href="#apartamentos" class="footer-new__link">Apartamentos</a>
-            <a href="#sobre-nosotros" class="footer-new__link">Sobre Nosotros</a>
-            <a href="#sitios-de-interes" class="footer-new__link">Sitios de Interés</a>
-            <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
-              class="footer-new__link">Booking.com</a>
-            <a href="#" class="footer-new__link">Aviso Legal</a>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ======== BOOKING MODAL ======== -->
-  <style>
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      z-index: 10000;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-    .modal.open {
-      display: flex;
-    }
-    .modal-content {
-      background: #fff;
-      padding: 32px;
-      border-radius: var(--radius-md);
-      max-width: 440px;
-      width: 100%;
-      position: relative;
-      text-align: center;
-      box-shadow: var(--shadow-lg);
-      animation: modalEnter 0.25s ease-out;
-    }
-    @keyframes modalEnter {
-      from { transform: scale(0.92); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    .modal-close {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      background: none;
-      border: none;
-      font-size: 1.6rem;
-      cursor: pointer;
-      color: var(--color-muted);
-      transition: color 0.2s;
-    }
-    .modal-close:hover {
-      color: var(--color-red);
-    }
-    .modal-content h2 {
-      margin-bottom: 8px;
-      font-size: 1.5rem;
-    }
-    .modal-content p {
-      font-size: 0.9rem;
-      color: var(--color-muted);
-      margin: 0 auto 24px auto;
-    }
-    .modal-options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .modal-option {
-      width: 100%;
-      justify-content: center;
-      padding: 14px;
-      font-size: 0.9rem;
-    }
-  </style>
-
-  <div id="booking-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-content">
-      <button class="modal-close" id="modal-close" aria-label="Cerrar">&times;</button>
-      <h2 id="modal-title">Reservar Apartamento</h2>
-      <p>Escoge la opción que prefieras para gestionar tu estancia con nosotros:</p>
-      
-      <div class="modal-options">
-        <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener" class="btn btn-primary modal-option">
-          <i class="fa-solid fa-hotel"></i> Reservar en Booking.com
-        </a>
-        
-        <a href="https://wa.me/34610543850?text=Hola,%20me%20gustaría%20reservar%20un%20apartamento." target="_blank" rel="noopener" class="btn btn-outline modal-option" style="border-color:#25D366;color:#25D366;">
-          <i class="fa-brands fa-whatsapp"></i> WhatsApp Directo
-        </a>
-        
-        <a href="mailto:alejandro@romeroluna.com?subject=Reserva%20Apartamento&body=Hola,%20me%20gustaría%20reservar%20un%20apartamento%20en%20las%20fechas..." class="btn btn-outline modal-option">
-          <i class="fa-solid fa-envelope"></i> Enviar Email
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/main.js"></script>
-</body>
-
-</html>

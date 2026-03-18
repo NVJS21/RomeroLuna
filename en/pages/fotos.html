@@ -1,0 +1,442 @@
+html
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rosemary Moon | Photos · Apartments in Malaga Center</title>
+<meta content="Photo gallery of the Romero Luna Apartments: Deluxe Studio, Premium Studio and Soho Studio in the center of Malaga." name="description"/>
+<link href="../../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+Fixed background bubbles
+<div aria-hidden="true" style="
+    position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  ">
+<div style="position:absolute;width:340px;height:340px;border-radius:50%;
+      background:radial-gradient(circle, rgba(39,174,96,0.22) 0%, transparent 70%);
+      top:-60px;left:-80px;filter:blur(14px);"></div>
+<div style="position:absolute;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(21,101,192,0.18) 0%, transparent 70%);
+      top:-40px;left:30%;filter:blur(12px);"></div>
+<div style="position:absolute;width:300px;height:300px;border-radius:50%;
+      background:radial-gradient(circle, rgba(249,196,0,0.17) 0%, transparent 70%);
+      top:-50px;right:10%;filter:blur(13px);"></div>
+<div style="position:absolute;width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(circle, rgba(229,57,53,0.16) 0%, transparent 70%);
+      top:80px;right:-60px;filter:blur(12px);"></div>
+<div style="position:absolute;width:280px;height:280px;border-radius:50%;
+      background:radial-gradient(circle, rgba(39,174,96,0.14) 0%, transparent 70%);
+      bottom:5%;left:-60px;filter:blur(16px);"></div>
+<div style="position:absolute;width:220px;height:220px;border-radius:50%;
+      background:radial-gradient(circle, rgba(249,196,0,0.14) 0%, transparent 70%);
+      bottom:10%;left:40%;filter:blur(14px);"></div>
+<div style="position:absolute;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(21,101,192,0.13) 0%, transparent 70%);
+      bottom:5%;right:-40px;filter:blur(15px);"></div>
+</div>
+======== NAVBAR ========
+<nav aria-label="Navegación principal" class="navbar" role="navigation">
+<div class="container">
+<div class="navbar__inner">
+<a aria-label="Romero Luna – Inicio" class="navbar__logo" href="../index.html">
+<img alt="Romero Luna Apartments" src="../../assets/romeroluna logo.png"/>
+</a>
+<ul class="navbar__nav" role="list">
+<li><a class="navbar__link" href="../index.html">Start</a></li>
+<li><a class="navbar__link" href="servicios.html">Facilities</a></li>
+<li><a class="navbar__link" href="resenas.html">Reviews</a></li>
+<li><a class="navbar__link" href="sobre-nosotros.html">About us</a></li>
+<li><a class="navbar__link" href="sitios-de-interes.html">Sites of Interest</a></li>
+</ul>
+<div class="navbar__cta">
+<a class="btn btn-outline" href="#contacto">Contact</a>
+<a class="btn btn-primary" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" target="_blank">Book now!</a>
+</div>
+<button aria-expanded="false" aria-label="Abrir menú" class="navbar__burger">
+<span></span><span></span><span></span>
+</button>
+</div>
+</div>
+</nav>
+mobile drawer
+<div class="navbar__drawer" role="menu">
+<a class="navbar__link" href="../index.html">Start</a>
+<a class="navbar__link" href="servicios.html">Facilities</a>
+<a class="navbar__link" href="resenas.html">Reviews</a>
+<a class="navbar__link" href="sobre-nosotros.html">About us</a>
+<a class="navbar__link" href="sitios-de-interes.html">Sites of Interest</a>
+<div class="navbar__cta">
+<a class="btn btn-outline" href="#contacto">Contact</a>
+<a class="btn btn-primary" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" target="_blank">Book now!</a>
+</div>
+</div>
+======== PAGE HEADER ========
+<header class="page-header">
+<div class="container">
+<span class="section-eyebrow">Gallery</span>
+<h1>Photos of the Apartments</h1>
+<p class="section-subtitle">Enjoy the city of Malaga from our studios in the center
+        historical. Every corner designed for your comfort.</p>
+</div>
+</header>
+Gallery inline styles
+<style>
+    .gallery-section {
+      padding: 32px 0 64px;
+    }
+
+    .gallery-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 32px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0;
+    }
+
+    .gallery-tab-btn {
+      background: none;
+      border: none;
+      font-family: var(--font-body, 'Nunito', sans-serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #888;
+      cursor: pointer;
+      padding: 10px 24px;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .gallery-tab-btn.active {
+      color: #2e7d32;
+      border-bottom-color: #2e7d32;
+    }
+
+    .gallery-tab-btn:hover {
+      color: #2e7d32;
+    }
+
+    .gallery-panel {
+      display: none;
+    }
+
+    .gallery-panel.active {
+      display: block;
+    }
+
+    /* Main viewer */
+    .gl-viewer {
+      width: 100%;
+      height: 480px;
+      background: #111;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .gl-viewer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.35s ease;
+    }
+
+    .gl-viewer img.fading {
+      opacity: 0;
+    }
+
+    /* Thumbnail strip */
+    .gl-thumbs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 4px 2px 12px;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc #f0f0f0;
+    }
+
+    .gl-thumbs::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .gl-thumbs::-webkit-scrollbar-track {
+      background: #f0f0f0;
+      border-radius: 4px;
+    }
+
+    .gl-thumbs::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    .gl-thumb {
+      flex-shrink: 0;
+      width: 140px;
+      height: 95px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+      opacity: 0.7;
+    }
+
+    .gl-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gl-thumb:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+
+    .gl-thumb.active {
+      border-color: #1565c0;
+      opacity: 1;
+    }
+
+    @media (max-width: 640px) {
+      .gl-viewer {
+        height: 260px;
+      }
+
+      .gl-thumb {
+        width: 90px;
+        height: 62px;
+      }
+    }
+  </style>
+======== GALLERY ========
+<section class="gallery-section">
+<div class="container">
+Tab buttons
+<div class="gallery-tabs">
+<button class="gallery-tab-btn active" data-panel="deluxe">Deluxe Studio</button>
+<button class="gallery-tab-btn" data-panel="premium">Premium Studio</button>
+<button class="gallery-tab-btn" data-panel="soho">Soho Studio</button>
+</div>
+===== PANEL: DELUXE =====
+<div class="gallery-panel active" id="panel-deluxe">
+<p style="text-align:center;margin-bottom:24px;color:#555;font-size:0.95rem;">Our most spacious studio, with<strong>40 m²</strong>, king size bed, balcony and all the comforts.</p>
+<div class="gl-viewer">
+<img alt="Deluxe Studio" id="viewer-deluxe" src="../../assets/Fotos/Estudio Deluxe/img1.jpg"/>
+</div>
+<div class="gl-thumbs" id="strip-deluxe">
+<div class="gl-thumb active" data-src="../assets/Fotos/Estudio Deluxe/img1.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img1.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Estudio Deluxe/img2.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img2.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Estudio Deluxe/img3.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img3.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Estudio Deluxe/img5.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img5.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Estudio Deluxe/img6.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img6.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Estudio Deluxe/img7.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img7.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Estudio Deluxe/img8.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img8.jpg"/></div>
+</div>
+</div>
+===== PANEL: PREMIUM =====
+<div class="gallery-panel" id="panel-premium">
+<p style="text-align:center;margin-bottom:24px;color:#555;font-size:0.95rem;">Cozy studio<strong>30 m²</strong>with single and double bed, perfect for couples and travelers
+          individual.</p>
+<div class="gl-viewer">
+<img alt="Premium Studio" id="viewer-premium" src="../../assets/Fotos/Estudio Premium/PR1.jpg"/>
+</div>
+<div class="gl-thumbs" id="strip-premium">
+<div class="gl-thumb active" data-src="../assets/Fotos/Estudio Premium/PR1.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR1.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Estudio Premium/PR2.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR2.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Estudio Premium/PR3.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR3.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Estudio Premium/PR5.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR5.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Estudio Premium/PR6.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR6.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Estudio Premium/PR7.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR7.jpg"/></div>
+</div>
+</div>
+===== PANEL: SOHO =====
+<div class="gallery-panel" id="panel-soho">
+<p style="text-align:center;margin-bottom:24px;color:#555;font-size:0.95rem;">Our new studio in the neighborhood of<strong>Soho Theater</strong>, the most vibrant area of ​​Malaga.</p>
+<div class="gl-viewer">
+<img alt="Soho Studio" id="viewer-soho" src="../../assets/Fotos/Soho/Hacia-adentroSoho.jpg"/>
+</div>
+<div class="gl-thumbs" id="strip-soho">
+<div class="gl-thumb active" data-src="../assets/Fotos/Soho/Hacia-adentroSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/Hacia-adentroSoho.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Soho/CamaSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/CamaSoho.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Soho/Hacia-afueraSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/Hacia-afueraSoho.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Soho/MuralSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/MuralSoho.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Soho/SofaSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/SofaSoho.jpg"/></div>
+<div class="gl-thumb" data-src="../assets/Fotos/Soho/WCSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/WCSoho.jpg"/></div>
+</div>
+</div>
+</div>
+</section>
+Gallery self-contained script
+<script>
+    (function () {
+      // ---- Gallery logic ----
+      var galleries = [
+        { panelId: 'panel-deluxe', viewerId: 'viewer-deluxe', stripId: 'strip-deluxe' },
+        { panelId: 'panel-premium', viewerId: 'viewer-premium', stripId: 'strip-premium' },
+        { panelId: 'panel-soho', viewerId: 'viewer-soho', stripId: 'strip-soho' }
+      ];
+
+      var timers = {};
+
+      function initGallery(cfg) {
+        var viewer = document.getElementById(cfg.viewerId);
+        var strip = document.getElementById(cfg.stripId);
+        if (!viewer || !strip) return;
+
+        var thumbs = Array.from(strip.querySelectorAll('.gl-thumb'));
+        var current = 0;
+
+        function goTo(idx) {
+          current = (idx + thumbs.length) % thumbs.length;
+          // Fade out
+          viewer.classList.add('fading');
+          setTimeout(function () {
+            viewer.src = thumbs[current].dataset.src;
+            viewer.classList.remove('fading');
+          }, 350);
+          // Update thumb active class
+          thumbs.forEach(function (t) { t.classList.remove('active'); });
+          thumbs[current].classList.add('active');
+          // Scroll strip to keep active thumb visible
+          // Scroll only the thumb strip, not the page
+          var strip2 = thumbs[current].parentElement;
+          if (strip2) {
+            var thumbLeft = thumbs[current].offsetLeft;
+            var thumbWidth = thumbs[current].offsetWidth;
+            var stripWidth = strip2.offsetWidth;
+            strip2.scrollLeft = thumbLeft - stripWidth / 2 + thumbWidth / 2;
+          }
+        }
+
+        function startTimer() {
+          clearInterval(timers[cfg.panelId]);
+          timers[cfg.panelId] = setInterval(function () {
+            goTo(current + 1);
+          }, 4000);
+        }
+
+        // Bind thumbnail clicks
+        thumbs.forEach(function (thumb, idx) {
+          thumb.addEventListener('click', function () {
+            goTo(idx);
+            startTimer(); // reset timer on manual click
+          });
+        });
+
+        // Pause on hover
+        var panel = document.getElementById(cfg.panelId);
+        if (panel) {
+          panel.addEventListener('mouseenter', function () { clearInterval(timers[cfg.panelId]); });
+          panel.addEventListener('mouseleave', function () { startTimer(); });
+        }
+
+        startTimer();
+      }
+
+      // Init all galleries
+      galleries.forEach(function (cfg) { initGallery(cfg); });
+
+      // ---- Tab switching ----
+      var tabBtns = document.querySelectorAll('.gallery-tab-btn');
+      var panels = document.querySelectorAll('.gallery-panel');
+
+      tabBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var target = btn.dataset.panel;
+          tabBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          panels.forEach(function (p) { p.classList.remove('active'); });
+          var targetPanel = document.getElementById('panel-' + target);
+          if (targetPanel) targetPanel.classList.add('active');
+        });
+      });
+    })();
+  </script>
+Lightbox
+<div aria-label="Visor de fotos" aria-modal="true" class="lightbox" role="dialog">
+<button aria-label="Cerrar" class="lightbox__close">×</button>
+<button aria-label="Anterior" class="lightbox__nav lightbox__prev">‹</button>
+<img alt="Enlarged photo" class="lightbox__img" src="../../">
+<button aria-label="Siguiente" class="lightbox__nav lightbox__next">›</button>
+</img></div>
+======== NEW FOOTER ========
+<footer class="footer-new" id="contacto">
+<div class="footer-new__top">
+<div class="container">
+3 contact cards
+<div class="footer-cards">
+Card 1: Host
+<div class="footer-card">
+<div class="footer-card__icon"><i class="fa-solid fa-user"></i></div>
+<div>
+<div class="footer-card__name">Alejandro Castillejo</div>
+<div class="footer-card__info">+34 610 54 38 50</div>
+</div>
+<div class="footer-card__actions">
+<a class="footer-card__action-btn footer-card__action-btn--wa" href="https://wa.me/34610543850" rel="noopener" target="_blank">
+<i class="fa-brands fa-whatsapp"></i>WhatsApp</a>
+<a class="footer-card__action-btn footer-card__action-btn--call" href="tel:+34610543850">
+<i class="fa-solid fa-phone"></i>Call</a>
+</div>
+</div>
+Card 2: Location
+<div class="footer-card">
+<div class="footer-card__icon"><i class="fa-solid fa-location-dot"></i></div>
+<div>
+<div class="footer-card__name">
+<a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" onmouseout="this.style.color='inherit'" onmouseover="this.style.color='var(--color-green)'" rel="noopener" style="color:inherit;text-decoration:none;transition:color 0.2s;" target="_blank">Calle Lazcano, 5. 29008</a>
+</div>
+<div class="footer-card__info">Malaga — Spain</div>
+</div>
+<a class="footer-card__action-btn footer-card__action-btn--call" href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" rel="noopener" style="width:fit-content;" target="_blank">
+<i class="fa-solid fa-location-dot"></i>View on Google Maps</a>
+</div>
+Card 3: Email
+<div class="footer-card">
+<div class="footer-card__icon"><i class="fa-solid fa-envelope"></i></div>
+<div>
+<div class="footer-card__name">
+<a class="footer-card__info" href="mailto:alejandro@romeroluna.com" style="color:var(--color-ink);font-weight:600;font-size:1rem;">alejandro@romeroluna.com</a>
+</div>
+<div class="footer-card__info">
+<a href="https://romeroluna.com" rel="noopener" target="_blank">RomeroLuna.com</a>
+</div>
+</div>
+<a class="footer-card__action-btn footer-card__action-btn--wa" href="mailto:alejandro@romeroluna.com" style="width:fit-content;">
+<i class="fa-solid fa-envelope"></i>Send email</a>
+</div>
+</div>
+Embedded map
+<div class="footer-map__wrapper">
+<a aria-label="Abrir en Google Maps" class="footer-map__link-overlay" href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" rel="noopener" target="_blank"></a>
+<iframe allowfullscreen="" height="280" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.2!2d-4.4217!3d36.7219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f72c9b9b9b9b%3A0x0!2sCalle+Lazcano%2C+5%2C+29008+M%C3%A1laga!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" style="border:0;display:block;" title="Ubicación de los Apartamentos Romero Luna en Calle Lazcano, 5" width="100%"></iframe>
+</div>
+Logo below the map
+<div class="footer-logo-centered">
+<a href="../index.html">
+<img alt="Romero Luna Apartments" src="../../assets/romeroluna logo.png">
+</img></a>
+</div>
+</div>
+</div>
+bottom bar
+<div class="footer-new__bottom">
+<div class="container">
+<div class="footer-new__bottom-inner">
+<p class="footer-new__copy">© 2025 Romero Luna Apartments · Málaga</p>
+<nav class="footer-new__links">
+<a class="footer-new__link" href="sobre-nosotros.html">About us</a>
+<a class="footer-new__link" href="sitios-de-interes.html">Sites of Interest</a>
+<a class="footer-new__link" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" target="_blank">Booking.com</a>
+</nav>
+</div>
+</div>
+</div>
+</footer>
+<script src="../../js/main.js"></script>
+</body>
+</html>

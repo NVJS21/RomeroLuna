@@ -1,0 +1,171 @@
+html
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rosemary Moon | Apartments in Malaga Center</title>
+<meta content="The Romero Luna Apartments are located in the heart of Malaga, 200 meters from the Plaza de la Constitución. WiFi, AC, balcony and all amenities." name="description"/>
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+Fixed background bubbles
+<div aria-hidden="true" style="
+    position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  ">
+<div style="position:absolute;width:340px;height:340px;border-radius:50%;
+      background:radial-gradient(circle, rgba(39,174,96,0.22) 0%, transparent 70%);
+      top:-60px;left:-80px;filter:blur(14px);"></div>
+<div style="position:absolute;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(21,101,192,0.18) 0%, transparent 70%);
+      top:-40px;left:30%;filter:blur(12px);"></div>
+<div style="position:absolute;width:300px;height:300px;border-radius:50%;
+      background:radial-gradient(circle, rgba(249,196,0,0.17) 0%, transparent 70%);
+      top:-50px;right:10%;filter:blur(13px);"></div>
+<div style="position:absolute;width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(circle, rgba(229,57,53,0.16) 0%, transparent 70%);
+      top:80px;right:-60px;filter:blur(12px);"></div>
+<div style="position:absolute;width:280px;height:280px;border-radius:50%;
+      background:radial-gradient(circle, rgba(39,174,96,0.14) 0%, transparent 70%);
+      bottom:5%;left:-60px;filter:blur(16px);"></div>
+<div style="position:absolute;width:220px;height:220px;border-radius:50%;
+      background:radial-gradient(circle, rgba(249,196,0,0.14) 0%, transparent 70%);
+      bottom:10%;left:40%;filter:blur(14px);"></div>
+<div style="position:absolute;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(21,101,192,0.13) 0%, transparent 70%);
+      bottom:5%;right:-40px;filter:blur(15px);"></div>
+</div>
+======== NAVBAR ========
+<nav aria-label="Navegación principal" class="navbar" role="navigation">
+<div class="container">
+<div class="navbar__inner">
+<a aria-label="Romero Luna – Inicio" class="navbar__logo" href="index.html">
+<img alt="Romero Luna Apartments" src="../assets/romeroluna logo.png"/>
+</a>
+<ul class="navbar__nav" role="list">
+<li><a class="navbar__link" href="index.html">Start</a></li>
+<li><a class="navbar__link" href="pages/servicios.html">Facilities</a></li>
+<li><a class="navbar__link" href="pages/resenas.html">Reviews</a></li>
+<li><a class="navbar__link" href="pages/sobre-nosotros.html">About us</a></li>
+<li><a class="navbar__link" href="pages/sitios-de-interes.html">Sites of Interest</a></li>
+</ul>
+<div class="navbar__cta">
+<a class="btn btn-outline" href="#contacto">Contact</a>
+<a class="btn btn-primary" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" target="_blank">Book now!</a>
+</div>
+<button aria-expanded="false" aria-label="Abrir menú" class="navbar__burger">
+<span></span><span></span><span></span>
+</button>
+</div>
+</div>
+</nav>
+mobile drawer
+<div class="navbar__drawer" role="menu">
+<a class="navbar__link" href="index.html">Start</a>
+<a class="navbar__link" href="pages/servicios.html">Facilities</a>
+<a class="navbar__link" href="pages/resenas.html">Reviews</a>
+<a class="navbar__link" href="pages/sobre-nosotros.html">About us</a>
+<a class="navbar__link" href="pages/sitios-de-interes.html">Sites of Interest</a>
+<div class="navbar__cta">
+<a class="btn btn-outline" href="#contacto">Contact</a>
+<a class="btn btn-primary" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" target="_blank">Book now!</a>
+</div>
+</div>
+======== HERO ========
+<section aria-label="Sección principal" class="hero--photo">
+Background photo with fallback Miró class
+<img alt="Deluxe Studio Living Room of the Romero Luna Apartments" class="hero__bg-img" onerror="this.style.display='none'; this.parentElement.classList.add('hero--miro-fallback');" src="../assets/Fotos/Inicio/imagenLanding.jpg"/>
+<div class="hero__photo-overlay"></div>
+<div class="container" style="position:relative;z-index:2;width:100%;">
+<div class="hero__left-card reveal">
+<h1>Stay in the heart of Malaga</h1>
+<p>The Romero Luna Apartments are located 200 meters from the square
+          from the Constitution and 300 meters from the Carmen Thyssen Museum and offer
+          Air-conditioned accommodation with free WiFi.</p>
+<p style="margin-top:14px;">Our clients love our apartments, that's why we have
+          an average score of a<span class="booking-score-inline">9.2</span>in<a class="booking-link" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" target="_blank">Booking</a>.
+        </p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;">
+<a class="btn btn-primary" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" target="_blank">Book now!</a>
+<a class="btn btn-primary" href="pages/servicios.html">See Photos</a>
+</div>
+</div>
+</div>
+</section>
+======== NEW FOOTER ========
+<footer class="footer-new" id="contacto">
+<div class="footer-new__top">
+<div class="container">
+3 contact cards
+<div class="footer-cards">
+Card 1: Host
+<div class="footer-card">
+<div class="footer-card__icon"><i class="fa-solid fa-user"></i></div>
+<div>
+<div class="footer-card__name">Alejandro Castillejo</div>
+<div class="footer-card__info">+34 610 54 38 50</div>
+</div>
+<div class="footer-card__actions">
+<a class="footer-card__action-btn footer-card__action-btn--wa" href="https://wa.me/34610543850" rel="noopener" target="_blank">
+<i class="fa-brands fa-whatsapp"></i>WhatsApp</a>
+<a class="footer-card__action-btn footer-card__action-btn--call" href="tel:+34610543850">
+<i class="fa-solid fa-phone"></i>Call</a>
+</div>
+</div>
+Card 2: Location
+<div class="footer-card">
+<div class="footer-card__icon"><i class="fa-solid fa-location-dot"></i></div>
+<div>
+<div class="footer-card__name">
+<a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" onmouseout="this.style.color='inherit'" onmouseover="this.style.color='var(--color-green)'" rel="noopener" style="color:inherit;text-decoration:none;transition:color 0.2s;" target="_blank">Calle Lazcano, 5. 29008</a>
+</div>
+<div class="footer-card__info">Malaga — Spain</div>
+</div>
+<a class="footer-card__action-btn footer-card__action-btn--call" href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" rel="noopener" style="width:fit-content;" target="_blank">
+<i class="fa-solid fa-location-dot"></i>View on Google Maps</a>
+</div>
+Card 3: Email
+<div class="footer-card">
+<div class="footer-card__icon"><i class="fa-solid fa-envelope"></i></div>
+<div>
+<div class="footer-card__name">
+<a class="footer-card__info" href="mailto:alejandro@romeroluna.com" style="color:var(--color-ink);font-weight:600;font-size:1rem;">alejandro@romeroluna.com</a>
+</div>
+<div class="footer-card__info">
+<a href="https://romeroluna.com" rel="noopener" target="_blank">RomeroLuna.com</a>
+</div>
+</div>
+<a class="footer-card__action-btn footer-card__action-btn--wa" href="mailto:alejandro@romeroluna.com" style="width:fit-content;">
+<i class="fa-solid fa-envelope"></i>Send email</a>
+</div>
+</div>
+Embedded map
+<div class="footer-map__wrapper">
+<a aria-label="Abrir en Google Maps" class="footer-map__link-overlay" href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" rel="noopener" target="_blank"></a>
+<iframe allowfullscreen="" height="280" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.2!2d-4.4217!3d36.7219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f72c9b9b9b9b%3A0x0!2sCalle+Lazcano%2C+5%2C+29008+M%C3%A1laga!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" style="border:0;display:block;" title="Ubicación de los Apartamentos Romero Luna en Calle Lazcano, 5" width="100%"></iframe>
+</div>
+Logo below the map
+<div class="footer-logo-centered">
+<a href="index.html">
+<img alt="Romero Luna Apartments" src="../assets/romeroluna logo.png"/>
+</a>
+</div>
+</div>
+</div>
+bottom bar
+<div class="footer-new__bottom">
+<div class="container">
+<div class="footer-new__bottom-inner">
+<p class="footer-new__copy">© 2025 Romero Luna Apartments · Málaga</p>
+<nav class="footer-new__links">
+<a class="footer-new__link" href="pages/sobre-nosotros.html">About us</a>
+<a class="footer-new__link" href="pages/sitios-de-interes.html">Sites of Interest</a>
+<a class="footer-new__link" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" target="_blank">Booking.com</a>
+</nav>
+</div>
+</div>
+</div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

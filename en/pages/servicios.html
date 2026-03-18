@@ -1,0 +1,534 @@
+html
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rosemary Moon | Facilities · Apartments in Malaga Center</title>
+<meta content="Services and facilities of the Romero Luna Apartments: Deluxe, Premium and Soho Studio with equipped kitchen, WiFi, AC and much more." name="description"/>
+<link href="../../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+Fixed background bubbles
+<div aria-hidden="true" style="
+    position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  ">
+<div style="position:absolute;width:340px;height:340px;border-radius:50%;
+      background:radial-gradient(circle, rgba(39,174,96,0.22) 0%, transparent 70%);
+      top:-60px;left:-80px;filter:blur(14px);"></div>
+<div style="position:absolute;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(21,101,192,0.18) 0%, transparent 70%);
+      top:-40px;left:30%;filter:blur(12px);"></div>
+<div style="position:absolute;width:300px;height:300px;border-radius:50%;
+      background:radial-gradient(circle, rgba(249,196,0,0.17) 0%, transparent 70%);
+      top:-50px;right:10%;filter:blur(13px);"></div>
+<div style="position:absolute;width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(circle, rgba(229,57,53,0.16) 0%, transparent 70%);
+      top:80px;right:-60px;filter:blur(12px);"></div>
+<div style="position:absolute;width:280px;height:280px;border-radius:50%;
+      background:radial-gradient(circle, rgba(39,174,96,0.14) 0%, transparent 70%);
+      bottom:5%;left:-60px;filter:blur(16px);"></div>
+<div style="position:absolute;width:220px;height:220px;border-radius:50%;
+      background:radial-gradient(circle, rgba(249,196,0,0.14) 0%, transparent 70%);
+      bottom:10%;left:40%;filter:blur(14px);"></div>
+<div style="position:absolute;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(21,101,192,0.13) 0%, transparent 70%);
+      bottom:5%;right:-40px;filter:blur(15px);"></div>
+</div>
+======== NAVBAR ========
+<nav aria-label="Navegación principal" class="navbar" role="navigation">
+<div class="container">
+<div class="navbar__inner">
+<a aria-label="Romero Luna – Inicio" class="navbar__logo" href="../index.html">
+<img alt="Romero Luna Apartments" src="../../assets/romeroluna logo.png"/>
+</a>
+<ul class="navbar__nav" role="list">
+<li><a class="navbar__link" href="../index.html">Start</a></li>
+<li><a class="navbar__link" href="servicios.html">Facilities</a></li>
+<li><a class="navbar__link" href="resenas.html">Reviews</a></li>
+<li><a class="navbar__link" href="sobre-nosotros.html">About us</a></li>
+<li><a class="navbar__link" href="sitios-de-interes.html">Sites of Interest</a></li>
+</ul>
+<div class="navbar__cta">
+<a class="btn btn-outline" href="#contacto">Contact</a>
+<a class="btn btn-primary" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" target="_blank">Book now!</a>
+</div>
+<button aria-expanded="false" aria-label="Abrir menú" class="navbar__burger">
+<span></span><span></span><span></span>
+</button>
+</div>
+</div>
+</nav>
+mobile drawer
+<div class="navbar__drawer" role="menu">
+<a class="navbar__link" href="../index.html">Start</a>
+<a class="navbar__link" href="servicios.html">Facilities</a>
+<a class="navbar__link" href="resenas.html">Reviews</a>
+<a class="navbar__link" href="sobre-nosotros.html">About us</a>
+<a class="navbar__link" href="sitios-de-interes.html">Sites of Interest</a>
+<div class="navbar__cta">
+<a class="btn btn-outline" href="#contacto">Contact</a>
+<a class="btn btn-primary" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" target="_blank">Book now!</a>
+</div>
+</div>
+======== PAGE HEADER ========
+<header class="page-header">
+<div class="container">
+<span class="section-eyebrow">What we offer</span>
+<h1>Facilities and Services</h1>
+<p class="section-subtitle">Discover each of our studies. Two unique locations in the center of
+        Malaga, each with its own charm.</p>
+</div>
+</header>
+Inline styles for compact carousel
+<style>
+    /* Services 3+3 centered */
+    .services-grid-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .services-grid-wrap .service-card {
+      flex: 0 0 calc(33.333% - 24px);
+      max-width: 300px;
+    }
+
+    @media (max-width: 700px) {
+      .services-grid-wrap .service-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
+Image fullscreen overlay
+Image fullscreen overlay
+<style>
+    #img-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    #img-overlay.open {
+      display: flex;
+    }
+
+    #img-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+      animation: zoomIn 0.25s ease;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    #img-overlay-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      color: #fff;
+      font-size: 2.2rem;
+      cursor: pointer;
+      line-height: 1;
+      background: none;
+      border: none;
+      opacity: 0.8;
+    }
+
+    #img-overlay-close:hover {
+      opacity: 1;
+    }
+  </style>
+<div id="img-overlay">
+<button aria-label="Cerrar" id="img-overlay-close">×</button>
+<img alt="Enlarged photo" id="img-overlay-src" src="../../"/>
+</div>
+======== SERVICES ========
+<section class="section">
+<div class="container">
+── BLOCK 1: Historic Center ──
+<div class="location-block reveal">
+<div class="location-header">
+<div>
+<span class="location-badge"><i class="fa-solid fa-location-dot"></i>Historic Center</span>
+<h2 style="margin-top:12px;">Rosemary Moon<br/>Historic Center</h2>
+<p style="margin-top:8px;max-width:60ch;">100 meters from Calle Larios and Plaza de la
+              Constitution. The beating heart of the historic center of Malaga, surrounded by museums,
+              culture and gastronomy.</p>
+</div>
+</div>
+Premium Studio
+<div class="studio-row reveal">
+Left: Info card
+<div class="apartment-card" style="margin-bottom:0;">
+<div class="apartment-card__name">Premium Studio</div>
+<div class="apartment-card__size"><i class="fa-solid fa-square-full" style="font-size:0.5em;vertical-align:middle;margin-right:6px;"></i>30 m² · Single + Double</div>
+<div class="apartment-card__amenities">
+<span class="amenity-tag"><i class="fa-solid fa-bed"></i>Single + double bed</span>
+<span class="amenity-tag"><i class="fa-solid fa-bath"></i>Private bathroom with shower</span>
+<span class="amenity-tag"><i class="fa-solid fa-house"></i>Balcony</span>
+<span class="amenity-tag"><i class="fa-solid fa-tv"></i>TV with Netflix</span>
+<span class="amenity-tag"><i class="fa-solid fa-snowflake"></i>Air-conditioning</span>
+<span class="amenity-tag"><i class="fa-solid fa-globe"></i>high speed WiFi</span>
+<span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i>Equipped kitchen</span>
+<span class="amenity-tag"><i class="fa-solid fa-shirt"></i>Washing machine</span>
+</div>
+<a class="btn btn-primary" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" style="width:100%;justify-content:center;margin-top:16px;" target="_blank">Book on Booking</a>
+</div>
+Right: Carousel
+<div>
+<div class="mini-viewer">
+<img alt="Premium Studio" id="mv-premium" src="../../assets/Fotos/Estudio Premium/PR1.jpg"/>
+</div>
+<div class="mini-thumbs" id="mt-premium">
+<div class="mini-thumb active" data-src="../assets/Fotos/Estudio Premium/PR1.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR1.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Estudio Premium/PR2.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR2.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Estudio Premium/PR3.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR3.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Estudio Premium/PR5.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR5.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Estudio Premium/PR6.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR6.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Estudio Premium/PR7.jpg"><img alt="" src="../../assets/Fotos/Estudio Premium/PR7.jpg"/></div>
+</div>
+</div>
+</div>
+Deluxe Studio
+<div class="studio-row reveal" style="margin-top:40px;">
+Left: Info card
+<div class="apartment-card" style="margin-bottom:0;">
+<div class="apartment-card__name">Deluxe Studio</div>
+<div class="apartment-card__size"><i class="fa-solid fa-square-full" style="font-size:0.5em;vertical-align:middle;margin-right:6px;"></i>40 m² · King Size Bed</div>
+<div class="apartment-card__amenities">
+<span class="amenity-tag"><i class="fa-solid fa-bed"></i>Double double bed</span>
+<span class="amenity-tag"><i class="fa-solid fa-bath"></i>Private bathroom with shower</span>
+<span class="amenity-tag"><i class="fa-solid fa-house"></i>Balcony</span>
+<span class="amenity-tag"><i class="fa-solid fa-tv"></i>TV with Netflix</span>
+<span class="amenity-tag"><i class="fa-solid fa-snowflake"></i>Air-conditioning</span>
+<span class="amenity-tag"><i class="fa-solid fa-globe"></i>high speed WiFi</span>
+<span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i>Equipped kitchen</span>
+<span class="amenity-tag"><i class="fa-solid fa-shirt"></i>Washing machine</span>
+</div>
+<a class="btn btn-primary" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" style="width:100%;justify-content:center;margin-top:16px;" target="_blank">Book on Booking</a>
+</div>
+Right: Carousel
+<div>
+<div class="mini-viewer">
+<img alt="Deluxe Studio" id="mv-deluxe" src="../../assets/Fotos/Estudio Deluxe/img1.jpg"/>
+</div>
+<div class="mini-thumbs" id="mt-deluxe">
+<div class="mini-thumb active" data-src="../assets/Fotos/Estudio Deluxe/img1.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img1.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img2.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img2.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img3.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img3.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img5.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img5.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img6.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img6.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img7.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img7.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Estudio Deluxe/img8.jpg"><img alt="" src="../../assets/Fotos/Estudio Deluxe/img8.jpg"/></div>
+</div>
+</div>
+</div>
+</div>
+<div class="divider" style="margin-bottom:80px;"></div>
+── BLOCK 2: Soho Theater Center ──
+<div class="location-block reveal">
+<div class="location-header">
+<div>
+<span class="location-badge" style="background:rgba(106,170,106,0.12);border-color:rgba(106,170,106,0.35);color:#8dbb8d;">
+<i class="fa-solid fa-masks-theater"></i>Soho Theater Center<span style="font-size:0.65rem;background:var(--color-green);color:#fff;padding:2px 8px;border-radius:999px;">NEW</span>
+</span>
+<h2 style="margin-top:12px;">Rosemary Moon<br/>Soho Theater Center</h2>
+<p style="margin-top:8px;max-width:60ch;">In the vibrant Soho Theater neighborhood, the new
+              cultural and gastronomic epicenter of Malaga. Contemporary design with the same essence
+              Rosemary Moon.</p>
+</div>
+</div>
+Soho Studio
+<div class="studio-row reveal">
+Left: Info card
+<div class="apartment-card" style="margin-bottom:0;border-color:rgba(106,170,106,0.3);">
+<div class="apartment-card__name">Soho Studio</div>
+<div class="apartment-card__size" style="color:#8dbb8d;"><i class="fa-solid fa-square-full" style="font-size:0.5em;vertical-align:middle;margin-right:6px;"></i>New apartment · Soho neighborhood</div>
+<div class="apartment-card__amenities">
+<span class="amenity-tag"><i class="fa-solid fa-bed"></i>Double bed</span>
+<span class="amenity-tag"><i class="fa-solid fa-bath"></i>Private bathroom with shower</span>
+<span class="amenity-tag"><i class="fa-solid fa-tv"></i>TV with Netflix</span>
+<span class="amenity-tag"><i class="fa-solid fa-snowflake"></i>Air-conditioning</span>
+<span class="amenity-tag"><i class="fa-solid fa-globe"></i>high speed WiFi</span>
+<span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i>Equipped kitchen</span>
+<span class="amenity-tag"><i class="fa-solid fa-masks-theater"></i>Soho Theater Neighborhood</span>
+<span class="amenity-tag"><i class="fa-solid fa-shirt"></i>Washing machine</span>
+</div>
+<a class="btn btn-primary" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" style="width:100%;justify-content:center;margin-top:16px;" target="_blank">Book on Booking</a>
+</div>
+Right: Carousel
+<div>
+<div class="mini-viewer">
+<img alt="Soho Studio" id="mv-soho" src="../../assets/Fotos/Soho/Hacia-adentroSoho.jpg"/>
+</div>
+<div class="mini-thumbs" id="mt-soho">
+<div class="mini-thumb active" data-src="../assets/Fotos/Soho/Hacia-adentroSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/Hacia-adentroSoho.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Soho/CamaSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/CamaSoho.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Soho/Hacia-afueraSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/Hacia-afueraSoho.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Soho/MuralSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/MuralSoho.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Soho/SofaSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/SofaSoho.jpg"/></div>
+<div class="mini-thumb" data-src="../assets/Fotos/Soho/WCSoho.jpg"><img alt="" src="../../assets/Fotos/Soho/WCSoho.jpg"/></div>
+</div>
+</div>
+</div>
+</div>
+<div class="divider" style="margin-bottom:72px;"></div>
+── General Services ──
+<div class="reveal">
+<div class="text-center" style="margin-bottom:48px;">
+<span class="section-eyebrow">Common to all apartments</span>
+<h2 class="section-title centered">General Services</h2>
+</div>
+<div class="services-grid-wrap">
+<div class="service-card">
+<div class="service-card__icon"><i class="fa-solid fa-couch"></i></div>
+<div class="service-card__title">Facilities</div>
+<ul class="service-card__list">
+<li>Living area with sofa</li>
+<li>flat screen TV</li>
+<li>Netflix · Amazon Prime</li>
+<li>Spotify</li>
+<li>Heating</li>
+<li>Air-conditioning</li>
+</ul>
+</div>
+<div class="service-card">
+<div class="service-card__icon"><i class="fa-solid fa-kitchen-set"></i></div>
+<div class="service-card__title">Kitchen</div>
+<ul class="service-card__list">
+<li>Fully equipped</li>
+<li>Microwave</li>
+<li>Stoves</li>
+<li>Fridge</li>
+<li>Toaster</li>
+<li>coffee maker</li>
+</ul>
+</div>
+<div class="service-card">
+<div class="service-card__icon"><i class="fa-solid fa-shower"></i></div>
+<div class="service-card__title">Bathroom</div>
+<ul class="service-card__list">
+<li>Private bathroom</li>
+<li>Shower</li>
+<li>hair dryer</li>
+<li>hygiene items</li>
+<li>Towels included</li>
+</ul>
+</div>
+<div class="service-card">
+<div class="service-card__icon"><i class="fa-solid fa-globe"></i></div>
+<div class="service-card__title">Connectivity</div>
+<ul class="service-card__list">
+<li>high speed WiFi</li>
+<li>Free throughout the apartment</li>
+<li>Ideal for teleworking</li>
+</ul>
+</div>
+<div class="service-card">
+<div class="service-card__icon"><i class="fa-solid fa-house"></i></div>
+<div class="service-card__title">Extras</div>
+<ul class="service-card__list">
+<li>own balcony</li>
+<li>Washing machine</li>
+<li>Bed linen included</li>
+<li>Flexible check-in</li>
+</ul>
+</div>
+<div class="service-card">
+<div class="service-card__icon"><i class="fa-solid fa-location-dot"></i></div>
+<div class="service-card__title">Location</div>
+<ul class="service-card__list">
+<li>200m Plaza Constitución</li>
+<li>300m Thyssen Museum</li>
+<li>Next Picasso Museum</li>
+<li>Airport 13 km</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+Carousel script for Installations
+<script>
+    (function () {
+      var carousels = [
+        { viewerId: 'mv-deluxe', stripId: 'mt-deluxe' },
+        { viewerId: 'mv-premium', stripId: 'mt-premium' },
+        { viewerId: 'mv-soho', stripId: 'mt-soho' }
+      ];
+      var timers = {};
+
+      // --- Lightbox overlay ---
+      var overlay = document.getElementById('img-overlay');
+      var overlaySrc = document.getElementById('img-overlay-src');
+      var overlayClose = document.getElementById('img-overlay-close');
+
+      function openOverlay(src) {
+        overlaySrc.src = src;
+        overlay.classList.add('open');
+      }
+      function closeOverlay() {
+        overlay.classList.remove('open');
+        overlaySrc.src = '';
+      }
+
+      if (overlayClose) overlayClose.addEventListener('click', closeOverlay);
+      if (overlay) overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeOverlay();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeOverlay();
+      });
+
+      // --- Carousels ---
+      carousels.forEach(function (cfg) {
+        var viewer = document.getElementById(cfg.viewerId);
+        var strip = document.getElementById(cfg.stripId);
+        if (!viewer || !strip) return;
+
+        var thumbs = Array.from(strip.querySelectorAll('.mini-thumb'));
+        var current = 0;
+
+        // Click on the viewer opens lightbox
+        var viewerWrapper = viewer.closest('.mini-viewer');
+        if (viewerWrapper) {
+          viewerWrapper.addEventListener('click', function () {
+            openOverlay(thumbs[current].dataset.src);
+          });
+        }
+
+        function goTo(idx) {
+          current = (idx + thumbs.length) % thumbs.length;
+          viewer.classList.add('fading');
+          setTimeout(function () {
+            viewer.src = thumbs[current].dataset.src;
+            viewer.classList.remove('fading');
+          }, 400);
+          thumbs.forEach(function (t) { t.classList.remove('active'); });
+          thumbs[current].classList.add('active');
+          // Scroll only the thumb strip container, not the page
+          var strip2 = thumbs[current].parentElement;
+          if (strip2) {
+            var thumbLeft = thumbs[current].offsetLeft;
+            var thumbWidth = thumbs[current].offsetWidth;
+            var stripWidth = strip2.offsetWidth;
+            strip2.scrollLeft = thumbLeft - stripWidth / 2 + thumbWidth / 2;
+          }
+        }
+
+        function startTimer() {
+          clearInterval(timers[cfg.viewerId]);
+          timers[cfg.viewerId] = setInterval(function () { goTo(current + 1); }, 6000);
+        }
+
+        thumbs.forEach(function (thumb, idx) {
+          thumb.addEventListener('click', function () { goTo(idx); startTimer(); });
+        });
+
+        var row = viewer.closest('.studio-row');
+        if (row) {
+          row.addEventListener('mouseenter', function () { clearInterval(timers[cfg.viewerId]); });
+          row.addEventListener('mouseleave', startTimer);
+        }
+
+        startTimer();
+      });
+    })();
+  </script>
+======== NEW FOOTER ========
+<footer class="footer-new" id="contacto">
+<div class="footer-new__top">
+<div class="container">
+3 contact cards
+<div class="footer-cards">
+Card 1: Host
+<div class="footer-card">
+<div class="footer-card__icon"><i class="fa-solid fa-user"></i></div>
+<div>
+<div class="footer-card__name">Alejandro Castillejo</div>
+<div class="footer-card__info">+34 610 54 38 50</div>
+</div>
+<div class="footer-card__actions">
+<a class="footer-card__action-btn footer-card__action-btn--wa" href="https://wa.me/34610543850" rel="noopener" target="_blank">
+<i class="fa-brands fa-whatsapp"></i>WhatsApp</a>
+<a class="footer-card__action-btn footer-card__action-btn--call" href="tel:+34610543850">
+<i class="fa-solid fa-phone"></i>Call</a>
+</div>
+</div>
+Card 2: Location
+<div class="footer-card">
+<div class="footer-card__icon"><i class="fa-solid fa-location-dot"></i></div>
+<div>
+<div class="footer-card__name">
+<a href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" onmouseout="this.style.color='inherit'" onmouseover="this.style.color='var(--color-green)'" rel="noopener" style="color:inherit;text-decoration:none;transition:color 0.2s;" target="_blank">Calle Lazcano, 5. 29008</a>
+</div>
+<div class="footer-card__info">Malaga — Spain</div>
+</div>
+<a class="footer-card__action-btn footer-card__action-btn--call" href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" rel="noopener" style="width:fit-content;" target="_blank">
+<i class="fa-solid fa-location-dot"></i>View on Google Maps</a>
+</div>
+Card 3: Email
+<div class="footer-card">
+<div class="footer-card__icon"><i class="fa-solid fa-envelope"></i></div>
+<div>
+<div class="footer-card__name">
+<a class="footer-card__info" href="mailto:alejandro@romeroluna.com" style="color:var(--color-ink);font-weight:600;font-size:1rem;">alejandro@romeroluna.com</a>
+</div>
+<div class="footer-card__info">
+<a href="https://romeroluna.com" rel="noopener" target="_blank">RomeroLuna.com</a>
+</div>
+</div>
+<a class="footer-card__action-btn footer-card__action-btn--wa" href="mailto:alejandro@romeroluna.com" style="width:fit-content;">
+<i class="fa-solid fa-envelope"></i>Send email</a>
+</div>
+</div>
+Embedded map
+<div class="footer-map__wrapper">
+<a aria-label="Abrir en Google Maps" class="footer-map__link-overlay" href="https://www.google.com/maps/place/Calle+Lazcano,+5,+29008+M%C3%A1laga" rel="noopener" target="_blank"></a>
+<iframe allowfullscreen="" height="280" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.2!2d-4.4217!3d36.7219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72f72c9b9b9b9b%3A0x0!2sCalle+Lazcano%2C+5%2C+29008+M%C3%A1laga!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" style="border:0;display:block;" title="Ubicación de los Apartamentos Romero Luna en Calle Lazcano, 5" width="100%"></iframe>
+</div>
+Logo below the map
+<div class="footer-logo-centered">
+<a href="../index.html">
+<img alt="Romero Luna Apartments" src="../../assets/romeroluna logo.png">
+</img></a>
+</div>
+</div>
+</div>
+bottom bar
+<div class="footer-new__bottom">
+<div class="container">
+<div class="footer-new__bottom-inner">
+<p class="footer-new__copy">© 2025 Romero Luna Apartments · Málaga</p>
+<nav class="footer-new__links">
+<a class="footer-new__link" href="sobre-nosotros.html">About us</a>
+<a class="footer-new__link" href="sitios-de-interes.html">Sites of Interest</a>
+<a class="footer-new__link" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" rel="noopener" target="_blank">Booking.com</a>
+</nav>
+</div>
+</div>
+</div>
+</footer>
+<script src="../../js/main.js"></script>
+</body>
+</html>

@@ -2,6 +2,34 @@
    ROMERO LUNA — Main JavaScript
    ============================================================ */
 
+/* ---------- I18n Redirect ---------- */
+(function autoRedirectLang() {
+  if (sessionStorage.getItem('langRedirected')) return;
+
+  const lang = navigator.language || navigator.userLanguage;
+  if (!lang.startsWith('es')) {
+    // If not Spanish and not already in 'en/' folder, redirect
+    const path = window.location.pathname;
+    if (!path.includes('/en/')) {
+      sessionStorage.setItem('langRedirected', 'true');
+      
+      // We need to calculate how deep we are to insert /en/ properly.
+      // Usually, just appending /en/ before the page name or redirecting to /en/index.html
+      // A safe way for a static site is using window.location.origin
+      let newPath = path;
+      if (path.includes('/pages/')) {
+        newPath = path.replace('/pages/', '/en/pages/');
+      } else {
+        const parts = path.split('/');
+        const page = parts.pop() || 'index.html';
+        const basedir = parts.join('/') || '';
+        newPath = `${basedir}/en/${page === '' ? 'index.html' : page}`;
+      }
+      window.location.href = window.location.origin + newPath;
+    }
+  }
+})();
+
 /* ---------- Navbar: scroll + burger ---------- */
 (function initNavbar() {
   const navbar = document.querySelector('.navbar');
@@ -219,3 +247,102 @@
     startAutoPlay();
   });
 })();
+
+/* ---------- Booking Modal ---------- */
+(function initBookingModal() {
+  const modal = document.getElementById('booking-modal');
+  const triggers = document.querySelectorAll('.js-trigger-booking');
+  const closeBtn = document.getElementById('modal-close');
+
+  if (!modal) return;
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Use event delegation for dynamic elements if any, or trigger for each
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', openModal);
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeModal();
+    }
+  });
+})();
+
+/* ---------- Smooth Scroll and Scroll Spy ---------- */
+(function initScrollSpy() {
+  const links = document.querySelectorAll('.navbar__link, .footer-new__link, .btn-outline[href^="#"]');
+  const sections = document.querySelectorAll('section[id]');
+
+  if (!links.length) return;
+
+  // Smooth Scroll
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const navbar = document.querySelector('.navbar');
+          const offset = navbar ? navbar.offsetHeight : 70;
+          
+          window.scrollTo({
+            top: target.offsetTop - offset + 5, // small buffer
+            behavior: 'smooth'
+          });
+
+          // Update active link manually on click to be responsive
+          links.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          
+          // Close drawer on click (already handled in drawer links but good to have)
+        }
+      }
+    });
+  });
+
+  // Scroll Spy
+  function spy() {
+    let current = "";
+    const scrollPos = window.scrollY + 120; // offset
+
+    sections.forEach(section => {
+      if (scrollPos >= section.offsetTop) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    // Only update if current changed (performance)
+    if (current) {
+        links.forEach(link => {
+          const href = link.getAttribute('href');
+          link.classList.remove('active');
+          if (href === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+    }
+  }
+
+  window.addEventListener('scroll', spy, { passive: true });
+})();
+
