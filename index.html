@@ -29,92 +29,92 @@
       </filter>
     </defs>
 
-    <!-- Central Logo Watermark (Fixed in center) - OPACIDAD BAJA PARA LEGUIBILIDAD -->
-    <g style="mix-blend-mode: multiply; opacity: 0.15;">
+    <!-- Central Logo Watermark (Fixed in center) -->
+    <g class="bg-logo" style="mix-blend-mode: multiply; opacity: 0.15;">
       <image href="assets/romeroluna logo.png" x="50%" y="50%" width="440" height="440" transform="translate(-220, -220)" />
     </g>
 
     <!-- Top Left: Yellow Blob with offset Stroke -->
-    <g transform="translate(-40, -40) rotate(10)">
+    <g class="bg-blob bg-yellow" transform="translate(-40, -40) rotate(10)">
       <path d="M 200 100 C 150 200, 350 250, 400 150 C 450 50, 250 0, 200 100 Z" fill="var(--color-yellow)" opacity="0.75" />
       <path d="M 180 120 C 130 220, 330 270, 380 170 C 430 70, 230 20, 180 120 Z" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.2" stroke-dasharray="6 3" />
     </g>
 
     <!-- Top Right: Red Circle & Squiggle -->
-    <g transform="translate(1000, 50)">
+    <g class="bg-blob bg-red" transform="translate(1000, 50)">
       <circle cx="200" cy="100" r="70" fill="var(--color-red)" opacity="0.75" />
       <circle cx="210" cy="92" r="72" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.25" />
       <path d="M 90 80 Q 140 20 170 110 T 240 40" fill="none" stroke="var(--color-ink)" stroke-width="3.5" stroke-linecap="round" opacity="0.2" />
     </g>
 
     <!-- Middle Left: Green abstract shape -->
-    <g transform="translate(80, 400) rotate(-15)">
+    <g class="bg-blob bg-green" transform="translate(80, 400) rotate(-15)">
       <path d="M 0 0 L 160 -40 L 140 140 L -20 100 Z" fill="var(--color-green)" opacity="0.85" />
       <path d="M 10 12 L 170 -30 L 150 150 L -10 112 Z" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.2" />
     </g>
 
     <!-- Bottom Right: Blue Large Shape -->
-    <g transform="translate(950, 520) rotate(20)">
+    <g class="bg-blob bg-blue" transform="translate(950, 520) rotate(20)">
       <path d="M 100 200 C 50 50, 350 -50, 400 150 C 450 350, 150 350, 100 200 Z" fill="var(--color-blue)" opacity="0.75" />
       <path d="M 120 180 C 70 30, 370 -70, 420 130 C 470 330, 170 330, 120 180 Z" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.2" />
     </g>
 
     <!-- Continuous Line (Scribble) floating -->
-    <path d="M 200 180 C 400 40, 700 280, 800 80 C 900 -120, 1200 180, 1400 40 M -40 700 Q 150 550 350 750 T 700 600 S 1000 800, 1200 750" 
+    <path class="bg-scribble" d="M 200 180 C 400 40, 700 280, 800 80 C 900 -120, 1200 180, 1400 40 M -40 700 Q 150 550 350 750 T 700 600 S 1000 800, 1200 750" 
           fill="none" stroke="var(--color-ink)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.15" />
 
     <!-- Miró-style Stars/Asterisks (Con Efecto Glow) -->
     <!-- Star 1 (Top Left area) -->
-    <g transform="translate(420, 160) scale(0.7)" opacity="0.8">
+    <g class="bg-star" transform="translate(420, 160) scale(0.7)" opacity="0.8">
       <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80 M 20 80 L 80 20" fill="none" stroke="var(--color-ink)" stroke-width="3.5" stroke-linecap="round" opacity="0.3" />
       <circle cx="50" cy="50" r="5" fill="var(--color-red)" filter="url(#glow)" />
     </g>
 
-    <!-- Star 2 (Middle Right area) - MOVIDA -->
-    <g transform="translate(980, 420) scale(0.6)" opacity="0.75">
+    <!-- Star 2 (Middle Right area) -->
+    <g class="bg-star" transform="translate(980, 420) scale(0.6)" opacity="0.75">
       <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.25" />
       <circle cx="50" cy="50" r="4.5" fill="var(--color-yellow)" filter="url(#glow)" />
     </g>
 
     <!-- Star 3 (Bottom Left area) -->
-    <g transform="translate(250, 680) scale(0.65)" opacity="0.75">
+    <g class="bg-star" transform="translate(250, 680) scale(0.65)" opacity="0.75">
       <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80 M 20 80 L 80 20" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.3" />
       <circle cx="50" cy="50" r="5" fill="var(--color-blue)" filter="url(#glow)" />
     </g>
 
     <!-- Star 4 (Top Right area) -->
-    <g transform="translate(1220, 240) scale(0.55)" opacity="0.75">
+    <g class="bg-star" transform="translate(1220, 240) scale(0.55)" opacity="0.75">
       <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80" fill="none" stroke="var(--color-ink)" stroke-width="2.5" stroke-linecap="round" opacity="0.25" />
       <circle cx="50" cy="50" r="4.5" fill="var(--color-green)" filter="url(#glow)" />
     </g>
 
     <!-- Star 5 (Center Top area) -->
-    <g transform="translate(680, 80) scale(0.6)" opacity="0.8">
+    <g class="bg-star" transform="translate(680, 80) scale(0.6)" opacity="0.8">
       <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.25" />
       <circle cx="50" cy="50" r="4.5" fill="var(--color-red)" filter="url(#glow)" />
     </g>
 
     <!-- NUEVAS ESTRELLAS -->
     <!-- Star 6 (Far Top Left) -->
-    <g transform="translate(120, 120) scale(0.6)" opacity="0.75">
+    <g class="bg-star" transform="translate(120, 120) scale(0.6)" opacity="0.75">
       <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.25" />
       <circle cx="50" cy="50" r="4.5" fill="var(--color-green)" filter="url(#glow)" />
     </g>
 
     <!-- Star 7 (Bottom Right corner) -->
-    <g transform="translate(1300, 780) scale(0.7)" opacity="0.8">
+    <g class="bg-star" transform="translate(1300, 780) scale(0.7)" opacity="0.8">
       <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80 M 20 80 L 80 20" fill="none" stroke="var(--color-ink)" stroke-width="3.5" stroke-linecap="round" opacity="0.3" />
       <circle cx="50" cy="50" r="5" fill="var(--color-blue)" filter="url(#glow)" />
     </g>
 
     <!-- Star 8 (Middle Left) -->
-    <g transform="translate(40, 280) scale(0.55)" opacity="0.7">
+    <g class="bg-star" transform="translate(40, 280) scale(0.55)" opacity="0.7">
       <path d="M 50 10 L 50 90 M 10 50 L 90 50" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.25" />
       <circle cx="50" cy="50" r="4" fill="var(--color-yellow)" filter="url(#glow)" />
     </g>
 
     <!-- Star 9 (Far Bottom Left) -->
-    <g transform="translate(80, 820) scale(0.6)" opacity="0.8">
+    <g class="bg-star" transform="translate(80, 820) scale(0.6)" opacity="0.8">
       <path d="M 50 10 L 50 90 M 10 50 L 90 50 M 20 20 L 80 80" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.25" />
       <circle cx="50" cy="50" r="4.5" fill="var(--color-red)" filter="url(#glow)" />
     </g>

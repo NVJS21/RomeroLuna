@@ -1987,3 +1987,32 @@ p {
     grid-template-columns: 1fr;
   }
 }
+
+/* ======== ARTISTIC BG RESPONSIVE ======== */
+@media (max-width: 768px) {
+  /* Central Logo: Scale down slightly on mobile to avoid overflows */
+  .bg-logo {
+    transform: scale(0.65) translate(260px, 120px) !important;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  
+  /* Blobs: Pull inwards following the viewport center (X=720) */
+  .bg-yellow {
+    transform: translate(480px, -20px) rotate(10deg) scale(0.65) !important;
+  }
+  .bg-red {
+    transform: translate(640px, 40px) scale(0.65) !important;
+  }
+  .bg-green {
+    transform: translate(460px, 360px) rotate(-15deg) scale(0.65) !important;
+  }
+  .bg-blue {
+    transform: translate(700px, 480px) rotate(20deg) scale(0.65) !important;
+  }
+  
+  /* Stars: scale down to fit well */
+  .bg-star {
+    transform: scale(0.7) !important;
+  }
+}
