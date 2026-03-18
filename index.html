@@ -139,7 +139,7 @@
 
         <div class="navbar__cta">
           <a href="#contacto" class="btn btn-outline">Contacto</a>
-          <button class="btn btn-primary js-trigger-booking">Reserva ya!</button>
+          <button class="btn btn-primary js-trigger-booking">Reserva ya! <span class="discount-badge">-10%</span></button>
         </div>
 
         <button class="navbar__burger" aria-label="Abrir menú" aria-expanded="false">
@@ -158,7 +158,7 @@
     <a href="#sitios-de-interes" class="navbar__link">Sitios de Interés</a>
     <div class="navbar__cta">
       <a href="#contacto" class="btn btn-outline">Contacto</a>
-      <button class="btn btn-primary js-trigger-booking">Reserva ya!</button>
+      <button class="btn btn-primary js-trigger-booking">Reserva ya! <span class="discount-badge">-10%</span></button>
     </div>
   </div>
 
@@ -187,7 +187,7 @@
         </p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;">
           <button class="btn btn-primary js-trigger-booking">
-            Reserva ya!
+            Reserva ya! <span class="discount-badge">-10%</span>
           </button>
         </div>
         <div style="display:flex;justify-content:space-between;gap:16px;margin-top:16px;width:100%;">
@@ -367,8 +367,7 @@
               <span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i> Cocina equipada</span>
               <span class="amenity-tag"><i class="fa-solid fa-shirt"></i> Lavadora</span>
             </div>
-            <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
-              class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;">Reservar en Booking</a>
+            <button class="btn btn-primary js-trigger-booking" data-apartment="Estudio Premium" style="width:100%;justify-content:center;margin-top:16px;">Reserva el apartamento</button>
           </div>
           <!-- Right: Carousel -->
           <div>
@@ -408,8 +407,7 @@
               <span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i> Cocina equipada</span>
               <span class="amenity-tag"><i class="fa-solid fa-shirt"></i> Lavadora</span>
             </div>
-            <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
-              class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;">Reservar en Booking</a>
+            <button class="btn btn-primary js-trigger-booking" data-apartment="Estudio Deluxe" style="width:100%;justify-content:center;margin-top:16px;">Reserva el apartamento</button>
           </div>
           <!-- Right: Carousel -->
           <div>
@@ -470,8 +468,7 @@
               <span class="amenity-tag"><i class="fa-solid fa-masks-theater"></i> Barrio Teatro Soho</span>
               <span class="amenity-tag"><i class="fa-solid fa-shirt"></i> Lavadora</span>
             </div>
-            <a href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener"
-              class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;">Reservar en Booking</a>
+            <button class="btn btn-primary js-trigger-booking" data-apartment="Estudio Soho" style="width:100%;justify-content:center;margin-top:16px;">Reserva el apartamento</button>
           </div>
           <!-- Right: Carousel -->
           <div>
@@ -1215,11 +1212,11 @@
           <i class="fa-solid fa-hotel"></i> Reservar en Booking.com
         </a>
         
-        <a href="https://wa.me/34610543850?text=Hola,%20me%20gustaría%20reservar%20un%20apartamento." target="_blank" rel="noopener" class="btn btn-outline modal-option" style="border-color:#25D366;color:#25D366;">
+        <a id="modal-whatsapp" href="https://wa.me/34610543850?text=Hola,%20me%20gustaría%20reservar%20un%20apartamento." target="_blank" rel="noopener" class="btn btn-outline modal-option" style="border-color:#25D366;color:#25D366;">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp Directo
         </a>
         
-        <a href="mailto:alejandro@romeroluna.com?subject=Reserva%20Apartamento&body=Hola,%20me%20gustaría%20reservar%20un%20apartamento%20en%20las%20fechas..." class="btn btn-outline modal-option">
+        <a id="modal-email" href="mailto:alejandro@romeroluna.com?subject=Reserva%20Apartamento&body=Hola,%20me%20gustaría%20reservar%20un%20apartamento%20en%20las%20fechas..." class="btn btn-outline modal-option">
           <i class="fa-solid fa-envelope"></i> Enviar Email
         </a>
       </div>

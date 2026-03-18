@@ -258,6 +258,29 @@
 
   function openModal(e) {
     if (e) e.preventDefault();
+    
+    // 1. Identify trigger and get apartment name if exists
+    const trigger = e.target ? e.target.closest('.js-trigger-booking') : null;
+    const apartment = trigger ? trigger.getAttribute('data-apartment') : null;
+    
+    // 2. Build template message
+    let message = "Hola, me gustaría reservar un apartamento con el 10% de descuento en las fechas...";
+    if (apartment) {
+      message = `Hola, me gustaría reservar el ${apartment} con el 10% de descuento en las fechas...`;
+    }
+    
+    // 3. Update WhatsApp link
+    const waLink = document.getElementById('modal-whatsapp');
+    if (waLink) {
+      waLink.href = `https://wa.me/34610543850?text=${encodeURIComponent(message)}`;
+    }
+    
+    // 4. Update Email link
+    const mailLink = document.getElementById('modal-email');
+    if (mailLink) {
+      mailLink.href = `mailto:alejandro@romeroluna.com?subject=${encodeURIComponent("Reserva Apartamento")}&body=${encodeURIComponent(message)}`;
+    }
+
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
