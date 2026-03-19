@@ -36,26 +36,22 @@
 
     <!-- Top Left: Yellow Blob with offset Stroke -->
     <g class="bg-blob bg-yellow" transform="translate(-40, -40) rotate(10)">
-      <path d="M 200 100 C 150 200, 350 250, 400 150 C 450 50, 250 0, 200 100 Z" fill="var(--color-yellow)" opacity="0.75" />
       <path d="M 180 120 C 130 220, 330 270, 380 170 C 430 70, 230 20, 180 120 Z" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.2" stroke-dasharray="6 3" />
     </g>
 
     <!-- Top Right: Red Circle & Squiggle -->
     <g class="bg-blob bg-red" transform="translate(1000, 50)">
-      <circle cx="200" cy="100" r="70" fill="var(--color-red)" opacity="0.75" />
       <circle cx="210" cy="92" r="72" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.25" />
       <path d="M 90 80 Q 140 20 170 110 T 240 40" fill="none" stroke="var(--color-ink)" stroke-width="3.5" stroke-linecap="round" opacity="0.2" />
     </g>
 
-    <!-- Middle Left: Green abstract shape -->
+    <!-- Middle Left: Green abstract shape (Smooth Blob) -->
     <g class="bg-blob bg-green" transform="translate(80, 400) rotate(-15)">
-      <path d="M 0 0 L 160 -40 L 140 140 L -20 100 Z" fill="var(--color-green)" opacity="0.85" />
-      <path d="M 10 12 L 170 -30 L 150 150 L -10 112 Z" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.2" />
+      <path d="M 100 80 C 40 160, 220 180, 240 100 C 260 20, 160 10, 100 80 Z" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.2" />
     </g>
 
     <!-- Bottom Right: Blue Large Shape -->
     <g class="bg-blob bg-blue" transform="translate(950, 520) rotate(20)">
-      <path d="M 100 200 C 50 50, 350 -50, 400 150 C 450 350, 150 350, 100 200 Z" fill="var(--color-blue)" opacity="0.75" />
       <path d="M 120 180 C 70 30, 370 -70, 420 130 C 470 330, 170 330, 120 180 Z" fill="none" stroke="var(--color-ink)" stroke-width="3" opacity="0.2" />
     </g>
 
@@ -351,87 +347,77 @@
           </div>
         </div>
 
-        <!-- Estudio Premium -->
-        <div class="studio-row reveal">
-          <!-- Left: Info card -->
-          <div class="apartment-card" style="margin-bottom:0;">
-            <div class="apartment-card__name">Estudio Premium</div>
-            <div class="apartment-card__size"><i class="fa-solid fa-square-full" style="font-size:0.5em;vertical-align:middle;margin-right:6px;"></i> 30 m² · Individual + Doble</div>
-            <div class="apartment-card__amenities">
-              <span class="amenity-tag"><i class="fa-solid fa-bed"></i> Cama individual + doble</span>
-              <span class="amenity-tag"><i class="fa-solid fa-bath"></i> Baño privado con ducha</span>
-              <span class="amenity-tag"><i class="fa-solid fa-house"></i> Balcón</span>
-              <span class="amenity-tag"><i class="fa-solid fa-tv"></i> TV con Netflix</span>
-              <span class="amenity-tag"><i class="fa-solid fa-snowflake"></i> Aire acondicionado</span>
-              <span class="amenity-tag"><i class="fa-solid fa-globe"></i> WiFi alta velocidad</span>
-              <span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i> Cocina equipada</span>
-              <span class="amenity-tag"><i class="fa-solid fa-shirt"></i> Lavadora</span>
-            </div>
-            <button class="btn btn-primary js-trigger-booking" data-apartment="Estudio Premium" style="width:100%;justify-content:center;margin-top:16px;">Reserva el apartamento <span class="discount-badge">-10%</span></button>
-          </div>
-          <!-- Right: Carousel -->
-          <div>
-            <div class="mini-viewer">
-              <img id="mv-premium" src="assets/Fotos/Estudio Premium/PR1.jpg" alt="Estudio Premium">
-            </div>
-            <div class="mini-thumbs" id="mt-premium">
-              <div class="mini-thumb active" data-src="assets/Fotos/Estudio Premium/PR1.jpg"><img
-                  src="assets/Fotos/Estudio Premium/PR1.jpg" alt=""></div>
-              <div class="mini-thumb" data-src="assets/Fotos/Estudio Premium/PR2.jpg"><img
-                  src="assets/Fotos/Estudio Premium/PR2.jpg" alt=""></div>
-              <div class="mini-thumb" data-src="assets/Fotos/Estudio Premium/PR3.jpg"><img
-                  src="assets/Fotos/Estudio Premium/PR3.jpg" alt=""></div>
-              <div class="mini-thumb" data-src="assets/Fotos/Estudio Premium/PR5.jpg"><img
-                  src="assets/Fotos/Estudio Premium/PR5.jpg" alt=""></div>
-              <div class="mini-thumb" data-src="assets/Fotos/Estudio Premium/PR6.jpg"><img
-                  src="assets/Fotos/Estudio Premium/PR6.jpg" alt=""></div>
-              <div class="mini-thumb" data-src="assets/Fotos/Estudio Premium/PR7.jpg"><img
-                  src="assets/Fotos/Estudio Premium/PR7.jpg" alt=""></div>
+        <div class="apartments-split">
+
+          <!-- Columna 1: Estudio Premium -->
+          <div class="apartment-col">
+            <div class="apartment-card">
+              <div class="apartment-card__name">Estudio Premium</div>
+              <div class="apartment-card__size"><i class="fa-solid fa-square-full" style="font-size:0.5em;vertical-align:middle;margin-right:6px;"></i> 30 m² · Individual + Doble</div>
+              <div class="apartment-card__amenities">
+                <span class="amenity-tag"><i class="fa-solid fa-bed"></i> Cama individual + doble</span>
+                <span class="amenity-tag"><i class="fa-solid fa-bath"></i> Baño privado con ducha</span>
+                <span class="amenity-tag"><i class="fa-solid fa-house"></i> Balcón</span>
+                <span class="amenity-tag"><i class="fa-solid fa-tv"></i> TV con Netflix</span>
+                <span class="amenity-tag"><i class="fa-solid fa-snowflake"></i> Aire acondicionado</span>
+                <span class="amenity-tag"><i class="fa-solid fa-globe"></i> WiFi alta velocidad</span>
+                <span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i> Cocina equipada</span>
+                <span class="amenity-tag"><i class="fa-solid fa-shirt"></i> Lavadora</span>
               </div>
+              <button class="btn btn-primary js-trigger-booking" data-apartment="Estudio Premium" style="width:100%;justify-content:center;margin-top:16px;">Reserva el apartamento <span class="discount-badge">-10%</span></button>
+            </div>
+            <!-- Carousel -->
+            <div>
+              <div class="mini-viewer">
+                <img id="mv-premium" src="assets/Fotos/Estudio Premium/PR1.jpg" alt="Estudio Premium">
+              </div>
+              <div class="mini-thumbs" id="mt-premium">
+                <div class="mini-thumb active" data-src="assets/Fotos/Estudio Premium/PR1.jpg"><img src="assets/Fotos/Estudio Premium/PR1.jpg" alt=""></div>
+                <div class="mini-thumb" data-src="assets/Fotos/Estudio Premium/PR2.jpg"><img src="assets/Fotos/Estudio Premium/PR2.jpg" alt=""></div>
+                <div class="mini-thumb" data-src="assets/Fotos/Estudio Premium/PR3.jpg"><img src="assets/Fotos/Estudio Premium/PR3.jpg" alt=""></div>
+                <div class="mini-thumb" data-src="assets/Fotos/Estudio Premium/PR5.jpg"><img src="assets/Fotos/Estudio Premium/PR5.jpg" alt=""></div>
+                <div class="mini-thumb" data-src="assets/Fotos/Estudio Premium/PR6.jpg"><img src="assets/Fotos/Estudio Premium/PR6.jpg" alt=""></div>
+                <div class="mini-thumb" data-src="assets/Fotos/Estudio Premium/PR7.jpg"><img src="assets/Fotos/Estudio Premium/PR7.jpg" alt=""></div>
+              </div>
+            </div>
           </div>
+
+          <!-- Columna 2: Estudio Deluxe -->
+          <div class="apartment-col">
+            <div class="apartment-card">
+              <div class="apartment-card__name">Estudio Deluxe</div>
+              <div class="apartment-card__size"><i class="fa-solid fa-square-full" style="font-size:0.5em;vertical-align:middle;margin-right:6px;"></i> 40 m² · Cama King Size</div>
+              <div class="apartment-card__amenities">
+                <span class="amenity-tag"><i class="fa-solid fa-bed"></i> Cama matrimonio doble</span>
+                <span class="amenity-tag"><i class="fa-solid fa-bath"></i> Baño privado con ducha</span>
+                <span class="amenity-tag"><i class="fa-solid fa-house"></i> Balcón</span>
+                <span class="amenity-tag"><i class="fa-solid fa-tv"></i> TV con Netflix</span>
+                <span class="amenity-tag"><i class="fa-solid fa-snowflake"></i> Aire acondicionado</span>
+                <span class="amenity-tag"><i class="fa-solid fa-globe"></i> WiFi alta velocidad</span>
+                <span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i> Cocina equipada</span>
+                <span class="amenity-tag"><i class="fa-solid fa-shirt"></i> Lavadora</span>
+              </div>
+              <button class="btn btn-primary js-trigger-booking" data-apartment="Estudio Deluxe" style="width:100%;justify-content:center;margin-top:16px;">Reserva el apartamento <span class="discount-badge">-10%</span></button>
+            </div>
+            <!-- Carousel -->
+            <div>
+              <div class="mini-viewer">
+                <img id="mv-deluxe" src="assets/Fotos/Estudio Deluxe/img1.jpg" alt="Estudio Deluxe">
+              </div>
+              <div class="mini-thumbs" id="mt-deluxe">
+                <div class="mini-thumb active" data-src="assets/Fotos/Estudio Deluxe/img1.jpg"><img src="assets/Fotos/Estudio Deluxe/img1.jpg" alt=""></div>
+                <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img2.jpg"><img src="assets/Fotos/Estudio Deluxe/img2.jpg" alt=""></div>
+                <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img3.jpg"><img src="assets/Fotos/Estudio Deluxe/img3.jpg" alt=""></div>
+                <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img5.jpg"><img src="assets/Fotos/Estudio Deluxe/img5.jpg" alt=""></div>
+                <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img6.jpg"><img src="assets/Fotos/Estudio Deluxe/img6.jpg" alt=""></div>
+                <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img7.jpg"><img src="assets/Fotos/Estudio Deluxe/img7.jpg" alt=""></div>
+                <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img8.jpg"><img src="assets/Fotos/Estudio Deluxe/img8.jpg" alt=""></div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Estudio Deluxe -->
-        <div class="studio-row reveal" style="margin-top:40px;">
-          <!-- Left: Info card -->
-          <div class="apartment-card" style="margin-bottom:0;">
-            <div class="apartment-card__name">Estudio Deluxe</div>
-            <div class="apartment-card__size"><i class="fa-solid fa-square-full" style="font-size:0.5em;vertical-align:middle;margin-right:6px;"></i> 40 m² · Cama King Size</div>
-            <div class="apartment-card__amenities">
-              <span class="amenity-tag"><i class="fa-solid fa-bed"></i> Cama matrimonio doble</span>
-              <span class="amenity-tag"><i class="fa-solid fa-bath"></i> Baño privado con ducha</span>
-              <span class="amenity-tag"><i class="fa-solid fa-house"></i> Balcón</span>
-              <span class="amenity-tag"><i class="fa-solid fa-tv"></i> TV con Netflix</span>
-              <span class="amenity-tag"><i class="fa-solid fa-snowflake"></i> Aire acondicionado</span>
-              <span class="amenity-tag"><i class="fa-solid fa-globe"></i> WiFi alta velocidad</span>
-              <span class="amenity-tag"><i class="fa-solid fa-kitchen-set"></i> Cocina equipada</span>
-              <span class="amenity-tag"><i class="fa-solid fa-shirt"></i> Lavadora</span>
-            </div>
-            <button class="btn btn-primary js-trigger-booking" data-apartment="Estudio Deluxe" style="width:100%;justify-content:center;margin-top:16px;">Reserva el apartamento <span class="discount-badge">-10%</span></button>
-          </div>
-          <!-- Right: Carousel -->
-          <div>
-            <div class="mini-viewer">
-              <img id="mv-deluxe" src="assets/Fotos/Estudio Deluxe/img1.jpg" alt="Estudio Deluxe">
-            </div>
-            <div class="mini-thumbs" id="mt-deluxe">
-              <div class="mini-thumb active" data-src="assets/Fotos/Estudio Deluxe/img1.jpg"><img
-                  src="assets/Fotos/Estudio Deluxe/img1.jpg" alt=""></div>
-              <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img2.jpg"><img
-                  src="assets/Fotos/Estudio Deluxe/img2.jpg" alt=""></div>
-              <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img3.jpg"><img
-                  src="assets/Fotos/Estudio Deluxe/img3.jpg" alt=""></div>
-              <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img5.jpg"><img
-                  src="assets/Fotos/Estudio Deluxe/img5.jpg" alt=""></div>
-              <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img6.jpg"><img
-                  src="assets/Fotos/Estudio Deluxe/img6.jpg" alt=""></div>
-              <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img7.jpg"><img
-                  src="assets/Fotos/Estudio Deluxe/img7.jpg" alt=""></div>
-              <div class="mini-thumb" data-src="assets/Fotos/Estudio Deluxe/img8.jpg"><img
-                  src="assets/Fotos/Estudio Deluxe/img8.jpg" alt=""></div>
-              </div>
-          </div>
-        </div>
 
       </div>
 
@@ -502,12 +488,12 @@
           <h2 class="section-title centered">Servicios Generales</h2>
         </div>
 
-        <div class="services-grid-wrap">
-
-          <div class="service-card">
-            <div class="service-card__icon"><i class="fa-solid fa-couch"></i></div>
-            <div class="service-card__title">Instalaciones</div>
-            <ul class="service-card__list">
+        <div class="bento-services">
+          
+          <div class="bento-sector">
+            <div class="bento-sector__icon"><i class="fa-solid fa-couch"></i></div>
+            <div class="bento-sector__title">Instalaciones</div>
+            <ul class="bento-sector__list">
               <li>Zona de estar con sofá</li>
               <li>TV de pantalla plana</li>
               <li>Netflix · Amazon Prime</li>
@@ -517,10 +503,10 @@
             </ul>
           </div>
 
-          <div class="service-card">
-            <div class="service-card__icon"><i class="fa-solid fa-kitchen-set"></i></div>
-            <div class="service-card__title">Cocina</div>
-            <ul class="service-card__list">
+          <div class="bento-sector">
+            <div class="bento-sector__icon"><i class="fa-solid fa-kitchen-set"></i></div>
+            <div class="bento-sector__title">Cocina</div>
+            <ul class="bento-sector__list">
               <li>Totalmente equipada</li>
               <li>Microondas</li>
               <li>Fogones</li>
@@ -530,10 +516,10 @@
             </ul>
           </div>
 
-          <div class="service-card">
-            <div class="service-card__icon"><i class="fa-solid fa-shower"></i></div>
-            <div class="service-card__title">Baño</div>
-            <ul class="service-card__list">
+          <div class="bento-sector">
+            <div class="bento-sector__icon"><i class="fa-solid fa-shower"></i></div>
+            <div class="bento-sector__title">Baño</div>
+            <ul class="bento-sector__list">
               <li>Baño privado</li>
               <li>Ducha</li>
               <li>Secador de pelo</li>
@@ -542,20 +528,20 @@
             </ul>
           </div>
 
-          <div class="service-card">
-            <div class="service-card__icon"><i class="fa-solid fa-globe"></i></div>
-            <div class="service-card__title">Conectividad</div>
-            <ul class="service-card__list">
+          <div class="bento-sector">
+            <div class="bento-sector__icon"><i class="fa-solid fa-globe"></i></div>
+            <div class="bento-sector__title">Conectividad</div>
+            <ul class="bento-sector__list">
               <li>WiFi alta velocidad</li>
               <li>Gratuito en todo el piso</li>
               <li>Ideal para teletrabajo</li>
             </ul>
           </div>
 
-          <div class="service-card">
-            <div class="service-card__icon"><i class="fa-solid fa-house"></i></div>
-            <div class="service-card__title">Extras</div>
-            <ul class="service-card__list">
+          <div class="bento-sector">
+            <div class="bento-sector__icon"><i class="fa-solid fa-house"></i></div>
+            <div class="bento-sector__title">Extras</div>
+            <ul class="bento-sector__list">
               <li>Balcón propio</li>
               <li>Lavadora</li>
               <li>Ropa de cama incluida</li>
@@ -563,10 +549,10 @@
             </ul>
           </div>
 
-          <div class="service-card">
-            <div class="service-card__icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="service-card__title">Ubicación</div>
-            <ul class="service-card__list">
+          <div class="bento-sector">
+            <div class="bento-sector__icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="bento-sector__title">Ubicación</div>
+            <ul class="bento-sector__list">
               <li>200m Plaza Constitución</li>
               <li>300m Museo Thyssen</li>
               <li>Próximo Museo Picasso</li>
@@ -810,9 +796,9 @@
 
 <!-- ======== SOBRE NOSOTROS ======== -->
 <!-- ======== ABOUT ======== -->
-  <section class="section" id="sobre-nosotros">
+  <section class="section" id="sobre-nosotros" style="padding-top:40px;">
     <div class="container">
-      <div class="text-center reveal" style="margin-bottom:48px;">
+      <div class="text-center reveal" style="margin-bottom:24px;">
         <span class="section-eyebrow">Quiénes somos</span>
         <h2 class="section-title centered">Anfitriones: Isabel y Alejandro</h2>
         <p class="section-subtitle">Dos malagueños de corazón, encantados de compartir su ciudad y hacer de tu estancia una experiencia única.</p>
@@ -982,41 +968,53 @@
         <h2 class="section-title centered">Lo que no te puedes perder</h2>
       </div>
       <div class="highlights-grid reveal">
-        <div class="service-card">
-          <div class="service-card__icon"><i class="fa-solid fa-palette"></i></div>
-          <div class="service-card__title">Museo Picasso</div>
-          <p class="service-card__list">El hijo más ilustre de Málaga. A 5 min a pie desde nuestros
-            apartamentos.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-card__icon"><i class="fa-brands fa-fort-awesome"></i></div>
-          <div class="service-card__title">Alcazaba y Castillo</div>
-          <p class="service-card__list">La fortaleza árabe más importante de Andalucía. Vistas espectaculares.
-          </p>
-        </div>
-        <div class="service-card">
-          <div class="service-card__icon"><i class="fa-solid fa-church"></i></div>
-          <div class="service-card__title">Catedral de Málaga</div>
-          <p class="service-card__list">La "Manquita", símbolo de la ciudad, a tan solo 2 minutos andando.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-card__icon"><i class="fa-solid fa-image"></i></div>
-          <div class="service-card__title">Museo Thyssen</div>
-          <p class="service-card__list">Colecciones del Renacimiento al siglo XX. A 300 metros de los
-            apartamentos.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-card__icon"><i class="fa-solid fa-masks-theater"></i></div>
-          <div class="service-card__title">Teatro Soho Caixabank</div>
-          <p class="service-card__list">El teatro de Antonio Banderas en el barrio del Soho. Espectáculos de
-            primer nivel.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-card__icon"><i class="fa-solid fa-wine-glass"></i></div>
-          <div class="service-card__title">Ruta de Tapas</div>
-          <p class="service-card__list">El Pimpi, El Tapeo de Cervantes y cientos de bares en un radio de 10
-            min.</p>
-        </div>
+        <a href="https://www.google.com/maps/d/viewer?mid=1sYYxdMbiF_7rdu-dM1PmQTnFN7LI3TZR&ehbc=2E312F&ll=36.7217,-4.4184&z=17" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-solid fa-palette"></i></div>
+            <div class="service-card__title">Museo Picasso</div>
+            <p class="service-card__list">El hijo más ilustre de Málaga. A 5 min a pie desde nuestros
+              apartamentos.</p>
+          </div>
+        </a>
+        <a href="https://www.google.com/maps/d/viewer?mid=1sYYxdMbiF_7rdu-dM1PmQTnFN7LI3TZR&ehbc=2E312F&ll=36.7214,-4.4156&z=17" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-brands fa-fort-awesome"></i></div>
+            <div class="service-card__title">Alcazaba y Castillo</div>
+            <p class="service-card__list">La fortaleza árabe más importante de Andalucía. Vistas espectaculares.
+            </p>
+          </div>
+        </a>
+        <a href="https://www.google.com/maps/d/viewer?mid=1sYYxdMbiF_7rdu-dM1PmQTnFN7LI3TZR&ehbc=2E312F&ll=36.7201,-4.4193&z=17" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-solid fa-church"></i></div>
+            <div class="service-card__title">Catedral de Málaga</div>
+            <p class="service-card__list">La "Manquita", símbolo de la ciudad, a tan solo 2 minutos andando.</p>
+          </div>
+        </a>
+        <a href="https://www.google.com/maps/d/viewer?mid=1sYYxdMbiF_7rdu-dM1PmQTnFN7LI3TZR&ehbc=2E312F&ll=36.7216,-4.4229&z=17" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-solid fa-image"></i></div>
+            <div class="service-card__title">Museo Thyssen</div>
+            <p class="service-card__list">Colecciones del Renacimiento al siglo XX. A 300 metros de los
+              apartamentos.</p>
+          </div>
+        </a>
+        <a href="https://www.google.com/maps/d/viewer?mid=1sYYxdMbiF_7rdu-dM1PmQTnFN7LI3TZR&ehbc=2E312F&ll=36.7158,-4.4236&z=17" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-solid fa-masks-theater"></i></div>
+            <div class="service-card__title">Teatro Soho Caixabank</div>
+            <p class="service-card__list">El teatro de Antonio Banderas en el barrio del Soho. Espectáculos de
+              primer nivel.</p>
+          </div>
+        </a>
+        <a href="https://www.google.com/maps/d/viewer?mid=1sYYxdMbiF_7rdu-dM1PmQTnFN7LI3TZR&ehbc=2E312F" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
+          <div class="service-card">
+            <div class="service-card__icon"><i class="fa-solid fa-wine-glass"></i></div>
+            <div class="service-card__title">Ruta de Tapas</div>
+            <p class="service-card__list">El Pimpi, El Tapeo de Cervantes y cientos de bares en un radio de 10
+              min.</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
