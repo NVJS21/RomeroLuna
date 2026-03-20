@@ -370,6 +370,8 @@
             <div>
               <div class="mini-viewer">
                 <img id="mv-premium" src="assets/Fotos/Estudio Premium/PR1.jpg" alt="Estudio Premium">
+                <button class="mv-arrow mv-prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="mv-arrow mv-next" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
               </div>
               <div class="mini-thumbs" id="mt-premium">
                 <div class="mini-thumb active" data-src="assets/Fotos/Estudio Premium/PR1.jpg"><img src="assets/Fotos/Estudio Premium/PR1.jpg" alt=""></div>
@@ -403,6 +405,8 @@
             <div>
               <div class="mini-viewer">
                 <img id="mv-deluxe" src="assets/Fotos/Estudio Deluxe/img1.jpg" alt="Estudio Deluxe">
+                <button class="mv-arrow mv-prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="mv-arrow mv-next" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
               </div>
               <div class="mini-thumbs" id="mt-deluxe">
                 <div class="mini-thumb active" data-src="assets/Fotos/Estudio Deluxe/img1.jpg"><img src="assets/Fotos/Estudio Deluxe/img1.jpg" alt=""></div>
@@ -459,6 +463,8 @@
           <div>
             <div class="mini-viewer">
               <img id="mv-soho" src="assets/Fotos/Soho/Hacia-adentroSoho.jpg" alt="Estudio Soho">
+              <button class="mv-arrow mv-prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+              <button class="mv-arrow mv-next" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
             <div class="mini-thumbs" id="mt-soho">
               <div class="mini-thumb active" data-src="assets/Fotos/Soho/Hacia-adentroSoho.jpg"><img
@@ -607,12 +613,31 @@
         var thumbs = Array.from(strip.querySelectorAll('.mini-thumb'));
         var current = 0;
 
-        // Click on the viewer opens lightbox
+        // Click on the viewer opens lightbox (if not clicking arrows)
         var viewerWrapper = viewer.closest('.mini-viewer');
         if (viewerWrapper) {
-          viewerWrapper.addEventListener('click', function () {
+          viewerWrapper.addEventListener('click', function (e) {
+            if (e.target.closest('.mv-arrow')) return; // Ignore arrows
             openOverlay(thumbs[current].dataset.src);
           });
+          
+          // Arrow listeners
+          var prevBtn = viewerWrapper.querySelector('.mv-prev');
+          var nextBtn = viewerWrapper.querySelector('.mv-next');
+          if (prevBtn) {
+            prevBtn.addEventListener('click', function(e) {
+              e.stopPropagation();
+              goTo(current - 1);
+              startTimer();
+            });
+          }
+          if (nextBtn) {
+            nextBtn.addEventListener('click', function(e) {
+              e.stopPropagation();
+              goTo(current + 1);
+              startTimer();
+            });
+          }
         }
 
         function goTo(idx) {
