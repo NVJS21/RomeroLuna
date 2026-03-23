@@ -250,35 +250,116 @@
 
 /* ---------- Booking Modal ---------- */
 (function initBookingModal() {
-  const modal = document.getElementById('booking-modal');
+  // 1. Inject Modal if doesn't exist
+  let modal = document.getElementById('booking-modal');
+  if (!modal) {
+    const isEn = window.location.pathname.includes('/en/');
+    const title = isEn ? 'Direct Booking' : 'Reserva Directa';
+    const subtitle = isEn ? 'Choose an option to manage your stay:' : 'Escoge una opción para gestionar tu estancia:';
+    const waText = isEn ? 'WhatsApp Direct' : 'WhatsApp Directo';
+    const mailText = isEn ? 'Send Email Request' : 'Enviar Solicitud Email';
+    const bookingText = isEn ? 'Book on Booking.com' : 'Reservar en Booking.com';
+    
+    // Form labels
+    const labelName = isEn ? 'Name' : 'Nombre';
+    const labelEmail = isEn ? 'Email' : 'Email';
+    const labelPhone = isEn ? 'Phone (Optional)' : 'Teléfono (Opcional)';
+    const labelMessage = isEn ? 'Dates and Comments' : 'Fechas y Comentarios';
+    const submitText = isEn ? 'Send' : 'Enviar';
+
+    const modalHtml = `
+      <div id="booking-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+          <button class="modal-close" id="modal-close" aria-label="Cerrar">&times;</button>
+          <h2 id="modal-title">${title}</h2>
+          <p>${subtitle}</p>
+          
+          <div class="modal-options" id="modal-initial-options">
+            <a id="modal-booking-option" href="https://www.booking.com/hotel/es/apartamentos-romero-luna.es.html" target="_blank" rel="noopener" class="btn btn-primary modal-option">
+              <i class="fa-solid fa-hotel"></i> ${bookingText}
+            </a>
+            <a id="modal-whatsapp" href="#" target="_blank" rel="noopener" class="btn btn-outline modal-option" style="border-color:#25D366;color:#25D366;">
+              <i class="fa-brands fa-whatsapp"></i> ${waText} <span class="discount-badge" style="margin-left:6px;">-10%</span>
+            </a>
+            <button id="modal-show-form" class="btn btn-outline modal-option">
+              <i class="fa-solid fa-envelope"></i> ${mailText} <span class="discount-badge" style="margin-left:6px;">-10%</span>
+            </button>
+          </div>
+
+          <!-- Contact Form -->
+          <form id="booking-contact-form" style="display:none; text-align:left; margin-top:20px; border-top:1px solid var(--color-border); padding-top:16px;">
+            <div class="form-group">
+              <label for="form-name">${labelName}</label>
+              <input type="text" id="form-name" required />
+            </div>
+            <div class="form-group">
+              <label for="form-email">${labelEmail}</label>
+              <input type="email" id="form-email" required />
+            </div>
+            <div class="form-group">
+              <label for="form-phone">${labelPhone}</label>
+              <input type="tel" id="form-phone" />
+            </div>
+            <div class="form-group">
+              <label for="form-message">${labelMessage}</label>
+              <textarea id="form-message" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">${submitText}</button>
+          </form>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    modal = document.getElementById('booking-modal');
+  }
+
   const triggers = document.querySelectorAll('.js-trigger-booking');
   const closeBtn = document.getElementById('modal-close');
+  const showFormBtn = document.getElementById('modal-show-form');
+  const contactForm = document.getElementById('booking-contact-form');
+  const optionsDiv = document.getElementById('modal-initial-options');
 
   if (!modal) return;
 
   function openModal(e) {
     if (e) e.preventDefault();
     
-    // 1. Identify trigger and get apartment name if exists
+    // Reset form visibility
+    if (contactForm) contactForm.style.display = 'none';
+    if (optionsDiv) optionsDiv.style.display = 'flex';
+
+    // 1. Identify trigger and get apartment name
     const trigger = e.target ? e.target.closest('.js-trigger-booking') : null;
-    const apartment = trigger ? trigger.getAttribute('data-apartment') : null;
+    const apartment = trigger ? trigger.getAttribute('data-apartment') : 'Apartamento';
     
-    // 2. Build template message
-    let message = "Hola, me gustaría reservar un apartamento con el 10% de descuento en las fechas...";
-    if (apartment) {
-      message = `Hola, me gustaría reservar el ${apartment} con el 10% de descuento en las fechas...`;
+    // 2. Toggle Booking button visibility
+    const bookingOption = document.getElementById('modal-booking-option');
+    if (bookingOption) {
+      if (trigger && trigger.hasAttribute('data-apartment')) {
+        bookingOption.style.display = 'none'; // Hide if from apartment card
+      } else {
+        bookingOption.style.display = 'flex'; // Show if generic "Reserva ya!"
+      }
+    }
+
+    // Save apartment name in form dataset for submit handler
+    if (contactForm) contactForm.dataset.apartment = apartment;
+
+    const isEn = window.location.pathname.includes('/en/');
+    let message = isEn 
+      ? `Hello, I would like to book the apartment with the 10% discount for dates...`
+      : `Hola, me gustaría reservar un apartamento con el 10% de descuento en las fechas...`;
+    
+    if (apartment && apartment !== 'Apartamento') {
+       message = isEn 
+         ? `Hello, I would like to book the ${apartment} with the 10% discount for dates...`
+         : `Hola, me gustaría reservar el ${apartment} con el 10% de descuento en las fechas...`;
     }
     
     // 3. Update WhatsApp link
     const waLink = document.getElementById('modal-whatsapp');
     if (waLink) {
       waLink.href = `https://wa.me/34610543850?text=${encodeURIComponent(message)}`;
-    }
-    
-    // 4. Update Email link
-    const mailLink = document.getElementById('modal-email');
-    if (mailLink) {
-      mailLink.href = `mailto:alejandro@romeroluna.com?subject=${encodeURIComponent("Reserva Apartamento")}&body=${encodeURIComponent(message)}`;
     }
 
     modal.classList.add('open');
@@ -290,10 +371,41 @@
     document.body.style.overflow = '';
   }
 
-  // Use event delegation for dynamic elements if any, or trigger for each
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', openModal);
-  });
+  // Toggle form
+  if (showFormBtn && contactForm) {
+    showFormBtn.addEventListener('click', () => {
+      if (optionsDiv) optionsDiv.style.display = 'none';
+      contactForm.style.display = 'block';
+    });
+  }
+
+  // Submit Form
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('form-name').value;
+      const email = document.getElementById('form-email').value;
+      const phone = document.getElementById('form-phone').value;
+      const msg = document.getElementById('form-message').value;
+      const apartment = contactForm.dataset.apartment || 'Apartamento';
+
+      const isEn = window.location.pathname.includes('/en/');
+      const subject = isEn ? `Booking Request - ${apartment}` : `Solicitud de Reserva - ${apartment}`;
+      
+      let bodyText = isEn 
+        ? `Request for: ${apartment}\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nComments:\n${msg}`
+        : `Solicitud para: ${apartment}\n\nNombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\n\nComentarios:\n${msg}`;
+
+      const mailtoUrl = `mailto:alejandro@romeroluna.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+      window.location.href = mailtoUrl;
+    });
+  }
+
+  if (triggers) {
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', openModal);
+    });
+  }
 
   if (closeBtn) {
     closeBtn.addEventListener('click', closeModal);
