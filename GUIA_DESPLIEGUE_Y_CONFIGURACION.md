@@ -17,7 +17,7 @@ Abra el archivo `chatbot-backend/.env` y realice los siguientes cambios:
 1. Elimine o comente la línea de `GROQ_API_KEY`.
 2. Añada su clave de OpenAI:
    ```env
-   OPENAI_API_KEY=sk-proj-xxxxxxxxxxxx
+   OPENAI_API_KEY=tu_clave_api_aqui
    PORT=3000
    ```
 
@@ -42,7 +42,8 @@ Para que el chatbot funcione en la web real sin depender de su ordenador persona
 5. **Variables de Entorno (CRÍTICO):** 
    Vaya a la pestaña "Env Vars" en Render y añada:
    - `OPENAI_API_KEY` = (Su clave de OpenAI)
-   - `PORT` = `3000`
+   - `PORT` = (Puerto del servidor)
+
 
 ---
 

@@ -71,6 +71,6 @@ Si tu jefe desea sustituir Groq por ChatGPT en el futuro, es muy simple y el có
    ```
 2. En `.env`, reemplaza `GROQ_API_KEY` por tu clave de OpenAI:
    ```env
-   OPENAI_API_KEY=sk-...
+   OPENAI_API_KEY=tu_clave_aqui
    ```
 3. Mutea/comenta las líneas de código de `Groq` dentro de `server.js` y sigue los comentarios marcados como `NOTA PARA MODIFICACIÓN FUTURA A CHATGPT`. Sustituye la instanciación de Groq por OpenAI y adapta ligeramente el endpoint de la API.
