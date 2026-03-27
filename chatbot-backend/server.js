@@ -1,25 +1,19 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const { Groq } = require('groq-sdk');
+const { OpenAI } = require('openai');
 const { systemPrompt } = require('./prompt');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Configuración de CORS
-// IMPORTANTE: En producción puedes especificar los dominios permitidos 
-// ej: app.use(cors({ origin: 'https://midominio.com' }))
 app.use(cors());
 app.use(express.json());
 
-// Inicializar el cliente de Groq.
-// NOTA PARA MODIFICACIÓN FUTURA A CHATGPT (OPENAI):
-// 1. Instalar openai: npm install openai
-// 2. Importar: const { OpenAI } = require('openai');
-// 3. Inicializar: const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY
+// Inicializar el cliente de OpenAI
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
 });
 
 // Endpoint principal para el chatbot
@@ -51,17 +45,10 @@ app.post('/api/chat', async (req, res) => {
       ...messages
     ];
 
-    // NOTA PARA MODIFICACIÓN FUTURA A CHATGPT (OPENAI):
-    // const completion = await openai.chat.completions.create({
-    //   model: 'gpt-4o', // Puedes cambiar el modelo aquí
-    //   messages: apiMessages,
-    //   temperature: 0.7,
-    // });
-    
-    // Llamada a la API de Groq
-    const completion = await groq.chat.completions.create({
+    // Llamada a la API de OpenAI
+    const completion = await openai.chat.completions.create({
       messages: apiMessages,
-      model: process.env.GROQ_MODEL || 'llama3-70b-8192',
+      model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
       temperature: 0.7,
       max_tokens: 1000,
     });

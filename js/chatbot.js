@@ -1,17 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Inject HTML structure into the body
+  // ─── Inject Bootstrap Icons (if not already loaded) ─────────────────────────
+  if (!document.querySelector('link[href*="bootstrap-icons"]')) {
+    const biLink = document.createElement('link');
+    biLink.rel = 'stylesheet';
+    biLink.href = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css';
+    document.head.appendChild(biLink);
+  }
+
+  // ─── Logo path ─────────────────────────────────────────────────────────────
+  const LOGO_PATH = 'assets/romeroluna logo.png';
+
+  // ─── HTML Structure ────────────────────────────────────────────────────────
   const widgetHTML = `
     <div id="chatbot-widget">
-      <!-- Chatbot Popup -->
       <div id="chatbot-popup">
+        <!-- Header -->
         <div id="chatbot-header">
-          <span>Asistente Virtual Romero Luna</span>
-          <button id="chatbot-close">&times;</button>
+          <div class="cb-header-bot">
+            <img src="${LOGO_PATH}" alt="Romero Luna" class="cb-bot-avatar">
+            <div class="cb-header-info">
+              <span>Asistente Romero Luna</span>
+              <small><i class="bi bi-circle-fill" style="font-size:6px; color:#66a307;"></i> En línea</small>
+            </div>
+          </div>
+          <button id="chatbot-close" aria-label="Cerrar chat"><i class="bi bi-x-lg"></i></button>
         </div>
-        
+
         <!-- Profiling Form -->
         <div id="chatbot-form-container">
-          <h3>¡Hola! Para ayudarte mejor, cuéntame un poco sobre tu viaje:</h3>
+          <h3><i class="bi bi-hand-thumbs-up-fill" style="color:#66a307"></i> ¡Hola! Cuéntanos sobre tu viaje:</h3>
           <form id="chatbot-form">
             <div class="chatbot-form-group">
               <label>Rango de edad</label>
@@ -45,32 +62,39 @@ document.addEventListener('DOMContentLoaded', () => {
               <label>Intereses o necesidades (Opcional)</label>
               <input type="text" id="cb-interests" placeholder="Ej: cerca del centro, mascotas, parking...">
             </div>
-            <button type="submit" id="chatbot-start-btn">Comenzar chat</button>
+            <button type="submit" id="chatbot-start-btn">
+              <i class="bi bi-chat-dots-fill"></i> Comenzar chat
+            </button>
           </form>
         </div>
 
         <!-- Chat Interface -->
         <div id="chatbot-chat-container">
-          <div id="chatbot-messages">
-            <!-- Messages will appear here -->
+          <div id="cb-messages-wrapper">
+             <div class="cb-watermark">
+                <img src="${LOGO_PATH}" alt="Romero Luna Logo">
+             </div>
+             <div id="chatbot-messages"></div>
           </div>
           <div id="chatbot-input-area">
             <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje..." autocomplete="off">
-            <button id="chatbot-send-btn">&#10148;</button>
+            <button id="chatbot-send-btn" aria-label="Enviar">
+              <i class="bi bi-send-fill"></i>
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- Floating Button -->
-      <button id="chatbot-trigger">
-        💬
+      <!-- Floating Trigger -->
+      <button id="chatbot-trigger" aria-label="Abrir chat">
+        <img src="${LOGO_PATH}" alt="Romero Luna Chat">
       </button>
     </div>
   `;
 
   document.body.insertAdjacentHTML('beforeend', widgetHTML);
 
-  // Variables
+  // ─── DOM References ─────────────────────────────────────────────────────────
   const triggerBtn = document.getElementById('chatbot-trigger');
   const popup = document.getElementById('chatbot-popup');
   const closeBtn = document.getElementById('chatbot-close');
@@ -83,21 +107,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let userProfile = null;
   let chatHistory = [];
-  
-  // En producción, debería ser la URL del servidor backend desplegado
-  // Ejemplo: const apiUrl = 'https://mi-backend.com/api/chat';
-  const apiUrl = 'http://localhost:3000/api/chat'; 
+  const apiUrl = '/.netlify/functions/chat';
 
-  // Toggle Popup
+  // ─── Toggle Popup ────────────────────────────────────────────────────────────
   triggerBtn.addEventListener('click', () => {
-    popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
+    const isVisible = popup.style.display === 'flex';
+    popup.style.display = isVisible ? 'none' : 'flex';
   });
 
   closeBtn.addEventListener('click', () => {
     popup.style.display = 'none';
   });
 
-  // Handle Form Submission
+  // ─── Form Submission ─────────────────────────────────────────────────────────
   profileForm.addEventListener('submit', (e) => {
     e.preventDefault();
     userProfile = {
@@ -106,85 +128,272 @@ document.addEventListener('DOMContentLoaded', () => {
       travelers: document.getElementById('cb-travelers').value,
       interests: document.getElementById('cb-interests').value,
     };
-
     formContainer.style.display = 'none';
     chatContainer.style.display = 'flex';
-
-    // Start Chat
-    addMessage('bot', '¡Gracias! 😊 He guardado tus preferencias. ¿En qué puedo ayudarte hoy? ¿Buscas información sobre algún apartamento en concreto o recomendaciones de la ciudad?');
+    addBotMessage('¡Genial! 😊 Ya tengo tus preferencias. ¿En qué puedo ayudarte? ¿Buscas apartamento o te cuento qué ver por la zona?');
   });
 
-  // Handle Chat Sending
+  // ─── Markdown → HTML parser (lightweight) ───────────────────────────────────
+  function parseMarkdown(text) {
+    // Escape HTML first
+    let html = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // Bold **text** or __text__
+    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
+
+    // Italic *text* or _text_
+    html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    html = html.replace(/_(.*?)_/g, '<em>$1</em>');
+
+    // Headings ### and ##
+    html = html.replace(/^### (.+)$/gm, '<h4>$1</h4>');
+    html = html.replace(/^## (.+)$/gm, '<h3>$1</h3>');
+
+    // Unordered lists: - item or * item
+    html = html.replace(/^[\-\*] (.+)$/gm, '<li>$1</li>');
+    html = html.replace(/(<li>[\s\S]*?<\/li>)(\s*(?=<li>|$))/g, (m) => {
+      return m;
+    });
+    // Wrap consecutive <li> in <ul>
+    html = html.replace(/((<li>.*?<\/li>\s*)+)/g, '<ul>$1</ul>');
+
+    // Ordered lists: 1. item
+    html = html.replace(/^\d+\. (.+)$/gm, '<oli>$1</oli>');
+    html = html.replace(/((<oli>.*?<\/oli>\s*)+)/g, (m) => {
+      return '<ol>' + m.replace(/<oli>/g, '<li>').replace(/<\/oli>/g, '</li>') + '</ol>';
+    });
+
+    // Paragraphs: split by blank lines
+    const blocks = html.split(/\n{2,}/);
+    html = blocks.map(block => {
+      block = block.trim();
+      if (!block) return '';
+      if (/^<(ul|ol|h[2-4])/.test(block)) return block;
+      // Inline line breaks within a paragraph
+      block = block.replace(/\n/g, '<br>');
+      return '<p>' + block + '</p>';
+    }).join('');
+
+    return html;
+  }
+
+  // ─── Add Bot Message ─────────────────────────────────────────────────────────
+  function addBotMessage(text) {
+    const row = document.createElement('div');
+    row.className = 'cb-message-row bot';
+
+    const avatar = document.createElement('img');
+    avatar.src = LOGO_PATH;
+    avatar.alt = 'Bot';
+    avatar.className = 'cb-avatar';
+
+    const wrap = document.createElement('div');
+    wrap.className = 'cb-message-wrap';
+
+    const label = document.createElement('div');
+    label.className = 'cb-sender-label';
+    label.textContent = 'Asistente';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'chatbot-message bot';
+    bubble.innerHTML = parseMarkdown(text);
+
+    wrap.appendChild(label);
+    wrap.appendChild(bubble);
+    row.appendChild(avatar);
+    row.appendChild(wrap);
+    messagesDiv.appendChild(row);
+    scrollToBottom();
+    return bubble;
+  }
+
+  // ─── Add User Message ────────────────────────────────────────────────────────
+  function addUserMessage(text) {
+    const row = document.createElement('div');
+    row.className = 'cb-message-row user';
+
+    const avatar = document.createElement('div');
+    avatar.className = 'cb-avatar user-avatar';
+    avatar.innerHTML = '<i class="bi bi-person-fill"></i>';
+
+    const wrap = document.createElement('div');
+    wrap.className = 'cb-message-wrap';
+
+    const label = document.createElement('div');
+    label.className = 'cb-sender-label';
+    label.textContent = 'Tú';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'chatbot-message user';
+    bubble.textContent = text;
+
+    wrap.appendChild(label);
+    wrap.appendChild(bubble);
+    row.appendChild(wrap);
+    row.appendChild(avatar);
+    messagesDiv.appendChild(row);
+    scrollToBottom();
+  }
+
+  // ─── Typing indicator ────────────────────────────────────────────────────────
+  function showTyping() {
+    const row = document.createElement('div');
+    row.className = 'cb-message-row bot';
+    row.id = 'cb-typing-row';
+
+    const avatar = document.createElement('img');
+    avatar.src = LOGO_PATH;
+    avatar.alt = 'Bot';
+    avatar.className = 'cb-avatar';
+
+    const typing = document.createElement('div');
+    typing.className = 'cb-typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+
+    row.appendChild(avatar);
+    row.appendChild(typing);
+    messagesDiv.appendChild(row);
+    scrollToBottom();
+  }
+
+  function hideTyping() {
+    const row = document.getElementById('cb-typing-row');
+    if (row) row.remove();
+  }
+
+  function scrollToBottom() {
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  // ─── Typewriter animation ──────────────────────────────────────────────────
+  function typewriterEffect(container, htmlContent, onComplete) {
+    // We animate character by character over the plain text, but render final HTML.
+    // Strategy: progressively reveal the final parsed HTML by slicing the raw text
+    // and re-parsing at each step, but that is expensive. Instead we render the
+    // full HTML immediately into a hidden clone, then animate the text nodes.
+    container.innerHTML = htmlContent;
+    container.classList.add('streaming');
+
+    // Collect all text nodes
+    const allTextNodes = [];
+    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+    let node;
+    while ((node = walker.nextNode())) {
+      allTextNodes.push({ node, original: node.textContent });
+      node.textContent = '';
+    }
+
+    let nodeIdx = 0;
+    let charIdx = 0;
+    const speed = 14; // ms per character
+    let lastTime = 0;
+
+    function tick(timestamp) {
+      if (timestamp - lastTime < speed) {
+        requestAnimationFrame(tick);
+        return;
+      }
+      lastTime = timestamp;
+
+      if (nodeIdx >= allTextNodes.length) {
+        container.classList.remove('streaming');
+        if (onComplete) onComplete();
+        scrollToBottom();
+        return;
+      }
+
+      const current = allTextNodes[nodeIdx];
+      current.node.textContent = current.original.slice(0, charIdx + 1);
+      charIdx++;
+      scrollToBottom();
+
+      if (charIdx >= current.original.length) {
+        nodeIdx++;
+        charIdx = 0;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  // ─── Send Message ──────────────────────────────────────────────────────────
   const sendMessage = async () => {
     const text = inputField.value.trim();
     if (!text) return;
 
-    addMessage('user', text);
+    addUserMessage(text);
     inputField.value = '';
-    
-    // Add to history
     chatHistory.push({ role: 'user', content: text });
 
-    // Show loading
-    const loadingId = 'loading-' + Date.now();
-    addLoading(loadingId);
-    
     inputField.disabled = true;
     sendBtn.disabled = true;
+    showTyping();
 
     try {
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: chatHistory, userProfile })
+        body: JSON.stringify({ messages: chatHistory, userProfile, stream: false })
       });
 
-      const data = await response.json();
-      removeLoading(loadingId);
+      hideTyping();
 
-      if (data.message) {
-        addMessage('bot', data.message);
-        chatHistory.push({ role: 'assistant', content: data.message });
-      } else {
-        addMessage('bot', 'Error del servidor. Es probable que la API Key de Groq haya caducado (Revisa iniciar_chatbot.bat).');
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        console.error('Server error:', errData);
+        addBotMessage('⚠️ Ha habido un problema en el servidor. Inténtalo de nuevo en un momento.');
+        return;
       }
+
+      const data = await response.json();
+      if (data.message) {
+        // Create the row + bubble, then animate the text
+        const row = document.createElement('div');
+        row.className = 'cb-message-row bot';
+
+        const avatar = document.createElement('img');
+        avatar.src = LOGO_PATH; avatar.alt = 'Bot'; avatar.className = 'cb-avatar';
+
+        const wrap = document.createElement('div'); wrap.className = 'cb-message-wrap';
+        const label = document.createElement('div'); label.className = 'cb-sender-label'; label.textContent = 'Asistente';
+        const bubble = document.createElement('div'); bubble.className = 'chatbot-message bot streaming';
+
+        wrap.appendChild(label); wrap.appendChild(bubble);
+        row.appendChild(avatar); row.appendChild(wrap);
+        messagesDiv.appendChild(row);
+        scrollToBottom();
+
+        typewriterEffect(bubble, parseMarkdown(data.message), () => {
+          chatHistory.push({ role: 'assistant', content: data.message });
+          inputField.disabled = false;
+          sendBtn.disabled = false;
+          inputField.focus();
+        });
+        // Don't re-enable inputs here — done inside typewriter callback
+        return;
+
+      } else {
+        addBotMessage('⚠️ Respuesta inesperada del servidor. Inténtalo de nuevo.');
+      }
+
     } catch (error) {
-      console.error('Error in chatbot:', error);
-      removeLoading(loadingId);
-      addMessage('bot', 'Error de conexión. Asegúrate de ejecutar "iniciar_chatbot.bat" antes de probar el chat.');
-    } finally {
-      inputField.disabled = false;
-      sendBtn.disabled = false;
-      inputField.focus();
+      hideTyping();
+      console.error('Chatbot error:', error);
+      addBotMessage('❌ Error de conexión. Asegúrate de que el servidor está activo (iniciar_chatbot.bat).');
     }
+
+    inputField.disabled = false;
+    sendBtn.disabled = false;
+    inputField.focus();
   };
 
   sendBtn.addEventListener('click', sendMessage);
   inputField.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
+    if (e.key === 'Enter' && !e.shiftKey) sendMessage();
   });
-
-  // UI Helpers
-  function addMessage(sender, text) {
-    const msg = document.createElement('div');
-    msg.classList.add('chatbot-message', sender);
-    // Para simplificar la inyección de saltos de línea y formateo basico
-    msg.innerHTML = text.replace(/\\n/g, '<br>').replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>');
-    messagesDiv.appendChild(msg);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  }
-
-  function addLoading(id) {
-    const msg = document.createElement('div');
-    msg.classList.add('chatbot-loading');
-    msg.id = id;
-    msg.textContent = 'Escribiendo...';
-    messagesDiv.appendChild(msg);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  }
-
-  function removeLoading(id) {
-    const el = document.getElementById(id);
-    if (el) el.remove();
-  }
 });

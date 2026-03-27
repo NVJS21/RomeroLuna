@@ -1,0 +1,94 @@
+const { systemPrompt } = require('./prompt');
+
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Content-Type': 'application/json',
+};
+
+exports.handler = async (event) => {
+  // Handle CORS preflight
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers: CORS_HEADERS, body: '' };
+  }
+
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, headers: CORS_HEADERS, body: JSON.stringify({ error: 'Método no permitido.' }) };
+  }
+
+  try {
+    const { messages, userProfile } = JSON.parse(event.body || '{}');
+
+    if (!messages || !Array.isArray(messages)) {
+      return {
+        statusCode: 400,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({ error: 'Faltan los mensajes o su formato es incorrecto.' }),
+      };
+    }
+
+    // Build user profile context
+    let profileContext = '';
+    if (userProfile) {
+      profileContext = '[DATOS DEL USUARIO - FORMULARIO DE INICIO]\n';
+      if (userProfile.age)          profileContext += `- Edad o rango: ${userProfile.age}\n`;
+      if (userProfile.tourismType)  profileContext += `- Tipo de turismo: ${userProfile.tourismType}\n`;
+      if (userProfile.interests)    profileContext += `- Intereses en la zona: ${userProfile.interests}\n`;
+      if (userProfile.travelers)    profileContext += `- Número de viajeros: ${userProfile.travelers}\n`;
+      profileContext += '\nINSTRUCCIÓN EXTRA: Usa obligatoriamente esta información para personalizar tus respuestas.\n';
+    }
+
+    const apiMessages = [
+      { role: 'system', content: systemPrompt },
+      ...(profileContext ? [{ role: 'system', content: profileContext }] : []),
+      ...messages,
+    ];
+
+    // Call OpenAI REST directly (no SDK needed — avoids bundling issues)
+    const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: OPENAI_MODEL,
+        messages: apiMessages,
+        temperature: 0.7,
+        max_tokens: 1000,
+      }),
+    });
+
+    if (!openaiRes.ok) {
+      const errText = await openaiRes.text();
+      console.error('OpenAI error:', errText);
+      return {
+        statusCode: 502,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({ error: 'Error al conectar con el servicio de IA.' }),
+      };
+    }
+
+    const data = await openaiRes.json();
+    const botResponse = data.choices?.[0]?.message?.content
+      || 'Lo siento, no he podido procesar tu solicitud. ¿Puedes intentarlo de nuevo?';
+
+    return {
+      statusCode: 200,
+      headers: CORS_HEADERS,
+      body: JSON.stringify({ message: botResponse }),
+    };
+
+  } catch (error) {
+    console.error('Function error:', error);
+    return {
+      statusCode: 500,
+      headers: CORS_HEADERS,
+      body: JSON.stringify({ error: 'Ha ocurrido un error interno en el servidor.' }),
+    };
+  }
+};

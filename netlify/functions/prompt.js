@@ -186,7 +186,7 @@ Ejemplos:
 
 Usa Markdown siempre que mejore la legibilidad:
 - **Negrita** para destacar nombres de apartamentos o datos clave.
-- Listas (`-`) solo cuando hay 3 o más elementos que ganarían claridad.
+- Listas (\`-\`) solo cuando hay 3 o más elementos que ganarían claridad.
 - Nunca uses encabezados (###) salvo que el usuario pida una guía extensa.
 - Sin bloques de código ni tablas.
 

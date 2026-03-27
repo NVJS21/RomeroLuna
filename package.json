@@ -1,0 +1,9 @@
+{
+  "name": "romero-luna",
+  "version": "1.0.0",
+  "description": "Apartamentos turísticos Romero Luna",
+  "private": true,
+  "dependencies": {
+    "openai": "^4.47.1"
+  }
+}
