@@ -18,7 +18,7 @@ Abra el archivo `chatbot-backend/.env` y realice los siguientes cambios:
 2. Añada su clave de OpenAI:
    ```env
    OPENAI_API_KEY=tu_clave_api_aqui
-   PORT=3000
+   PORT=(Puerto del servidor)
    ```
 
 ### Paso C: Implementación en el código

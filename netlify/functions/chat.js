@@ -1,7 +1,7 @@
 const { systemPrompt } = require('./prompt');
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+const OPENAI_MODEL = process.env.OPENAI_MODEL;
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
