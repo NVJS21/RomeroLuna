@@ -53,14 +53,9 @@ Una vez que Render termine de desplegar, le dará una URL pública (ejemplo: `ht
 
 Para terminar la conexión:
 1. Abra el archivo `js/chatbot.js` en su proyecto.
-2. Localice la línea 89:
-   ```javascript
-   const apiUrl = 'http://localhost:3000/api/chat'; 
-   ```
-3. Sustituya `http://localhost:3000/api/chat` por su nueva URL de Render:
-   ```javascript
-   const apiUrl = 'https://chatbot-romeroluna.onrender.com/api/chat';
-   ```
+2. Localice la línea para `apiUrl`.
+3. Sustituya la URL antigua por su nueva URL de producción si fuera necesario (aunque ahora usamos funciones serverless, así que la URL ya está configurada como `/.netlify/functions/chat`).
+4. Guarde y suba este cambio a GitHub/Netlify.
 4. Guarde y suba este cambio a GitHub/Netlify.
 
 ---
