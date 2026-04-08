@@ -76,17 +76,15 @@ document.addEventListener('DOMContentLoaded', () => {
              <div class="cb-watermark">
                 <img src="${LOGO_PATH}" alt="Romero Luna Logo">
              </div>
-             <div id="chatbot-messages">
-                <!-- Starter Phrases -->
-                <div id="chatbot-starter-container">
-                  <p class="cb-starter-title">Preguntas frecuentes:</p>
-                  <div class="cb-starter-pills">
-                    <button class="cb-starter-btn">Dime buenos sitios para comer paella</button>
-                    <button class="cb-starter-btn">¿Qué excursiones puedo hacer si tengo coche?</button>
-                    <button class="cb-starter-btn">¿Cómo puedo llegar al museo Picasso?</button>
-                  </div>
-                </div>
-             </div>
+             <div id="chatbot-messages"></div>
+          </div>
+          <!-- Starter Phrases (Persistent) -->
+          <div id="chatbot-starter-container">
+            <div class="cb-starter-pills">
+              <button class="cb-starter-btn">Dime buenos sitios para comer paella</button>
+              <button class="cb-starter-btn">¿Qué excursiones puedo hacer si tengo coche?</button>
+              <button class="cb-starter-btn">¿Cómo puedo llegar al museo Picasso?</button>
+            </div>
           </div>
           <div id="chatbot-input-area">
             <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje..." autocomplete="off">
@@ -435,8 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const text = btn.textContent;
       sendMessage(text);
-      // Hide starters after first use
-      if (starterContainer) starterContainer.style.display = 'none';
+      // No longer hiding starters after use
     });
   });
 });
