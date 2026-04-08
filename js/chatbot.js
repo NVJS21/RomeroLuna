@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const widgetHTML = `
     <div id="chatbot-widget">
       <div id="chatbot-popup">
-        <!-- Header -->
         <div id="chatbot-header">
           <div class="cb-header-bot">
             <img src="${LOGO_PATH}" alt="Romero Luna" class="cb-bot-avatar">
@@ -23,7 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
               <small><i class="bi bi-circle-fill" style="font-size:6px; color:#66a307;"></i> En línea</small>
             </div>
           </div>
-          <button id="chatbot-close" aria-label="Cerrar chat"><i class="bi bi-x-lg"></i></button>
+          <div class="cb-header-actions">
+            <button id="chatbot-filter-btn" title="Preferencias de viaje"><i class="bi bi-sliders2"></i></button>
+            <button id="chatbot-close" aria-label="Cerrar chat"><i class="bi bi-x-lg"></i></button>
+          </div>
         </div>
 
         <!-- Profiling Form -->
@@ -69,12 +71,22 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <!-- Chat Interface -->
-        <div id="chatbot-chat-container">
+        <div id="chatbot-chat-container" style="display: flex;">
           <div id="cb-messages-wrapper">
              <div class="cb-watermark">
                 <img src="${LOGO_PATH}" alt="Romero Luna Logo">
              </div>
-             <div id="chatbot-messages"></div>
+             <div id="chatbot-messages">
+                <!-- Starter Phrases -->
+                <div id="chatbot-starter-container">
+                  <p class="cb-starter-title">Preguntas frecuentes:</p>
+                  <div class="cb-starter-pills">
+                    <button class="cb-starter-btn">Dime buenos sitios para comer paella</button>
+                    <button class="cb-starter-btn">¿Qué excursiones puedo hacer si tengo coche?</button>
+                    <button class="cb-starter-btn">¿Cómo puedo llegar al museo Picasso?</button>
+                  </div>
+                </div>
+             </div>
           </div>
           <div id="chatbot-input-area">
             <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje..." autocomplete="off">
@@ -104,19 +116,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const messagesDiv = document.getElementById('chatbot-messages');
   const inputField = document.getElementById('chatbot-input');
   const sendBtn = document.getElementById('chatbot-send-btn');
+  const filterBtn = document.getElementById('chatbot-filter-btn');
+  const starterContainer = document.getElementById('chatbot-starter-container');
 
   let userProfile = null;
   let chatHistory = [];
   const apiUrl = '/.netlify/functions/chat';
+  let isWelcomeAdded = false;
 
   // ─── Toggle Popup ────────────────────────────────────────────────────────────
   triggerBtn.addEventListener('click', () => {
     const isVisible = popup.style.display === 'flex';
     popup.style.display = isVisible ? 'none' : 'flex';
+
+    // Show initial welcome if not already added
+    if (!isVisible && !isWelcomeAdded) {
+      addBotMessage('¡Hola! 👋 Soy tu asistente en Romero Luna. ¿En qué puedo ayudarte hoy?');
+      isWelcomeAdded = true;
+    }
   });
 
   closeBtn.addEventListener('click', () => {
     popup.style.display = 'none';
+  });
+
+  // Toggle filter form
+  filterBtn.addEventListener('click', () => {
+    const formVisible = formContainer.style.display === 'block';
+    formContainer.style.display = formVisible ? 'none' : 'block';
   });
 
   // ─── Form Submission ─────────────────────────────────────────────────────────
@@ -322,16 +349,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ─── Send Message ──────────────────────────────────────────────────────────
-  const sendMessage = async () => {
-    const text = inputField.value.trim();
+  const sendMessage = async (presetText = null) => {
+    // If presetText is an event object (from click listener), ignore it and use input value
+    const text = (typeof presetText === 'string') ? presetText : inputField.value.trim();
     if (!text) return;
 
+    // Only clear input if we are NOT using a preset button
+    if (typeof presetText !== 'string') {
+      inputField.value = '';
+    }
+    
     addUserMessage(text);
-    inputField.value = '';
     chatHistory.push({ role: 'user', content: text });
 
     inputField.disabled = true;
     sendBtn.disabled = true;
+
     showTyping();
 
     try {
@@ -395,5 +428,15 @@ document.addEventListener('DOMContentLoaded', () => {
   sendBtn.addEventListener('click', sendMessage);
   inputField.addEventListener('keypress', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) sendMessage();
+  });
+
+  // ─── Starter Phrases Interaction ───────────────────────────────────────────
+  document.querySelectorAll('.cb-starter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.textContent;
+      sendMessage(text);
+      // Hide starters after first use
+      if (starterContainer) starterContainer.style.display = 'none';
+    });
   });
 });

@@ -396,7 +396,7 @@
         ? `Request for: ${apartment}\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nComments:\n${msg}`
         : `Solicitud para: ${apartment}\n\nNombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\n\nComentarios:\n${msg}`;
 
-      const mailtoUrl = `mailto:alejandro@romeroluna.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+      const mailtoUrl = `mailto:alejandro@romeroluna.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}&cc=${encodeURIComponent(email)}`;
       window.location.href = mailtoUrl;
     });
   }
