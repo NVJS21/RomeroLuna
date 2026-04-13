@@ -19,6 +19,7 @@
   width: 62px;
   height: 62px;
   border-radius: 50%;
+  border-bottom-left-radius: 6px;
   background: #66a307;
   color: white;
   border: none;
@@ -607,11 +608,16 @@
 }
 
 /* Responsive */
-@media (max-width: 420px) {
+@media (max-width: 450px) {
   #chatbot-popup {
-    width: calc(100vw - 32px);
-    height: 480px;
-    bottom: 76px;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    bottom: 0;
     right: 0;
+    border-radius: 0;
+    border: none;
+    position: fixed;
+    z-index: 10000;
   }
 }

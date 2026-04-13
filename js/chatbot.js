@@ -27,8 +27,53 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(emojiScript);
   }
 
-  // ─── Logo path ─────────────────────────────────────────────────────────────
+  // ─── Inject Marked.js for perfect Markdown parsing ─────────
+  if (!document.querySelector('script[src*="marked.min.js"]')) {
+    const markedScript = document.createElement('script');
+    markedScript.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+    document.head.appendChild(markedScript);
+  }
+
+  // ─── Logo path & i18n ──────────────────────────────────────────────────────
   const LOGO_PATH = 'assets/romeroluna logo.png';
+  const isEn = document.documentElement.lang.startsWith('en') || window.location.pathname.includes('/en/');
+
+  const t = {
+    botName: isEn ? 'Romero Luna Assistant' : 'Asistente Romero Luna',
+    online: isEn ? 'Online' : 'En línea',
+    welcomeSub: isEn ? 'Hi! Tell us about your trip:' : '¡Hola! Cuéntanos sobre tu viaje:',
+    ageLabel: isEn ? 'Age range' : 'Rango de edad',
+    selectOpt: isEn ? 'Select...' : 'Selecciona...',
+    age1: isEn ? '18-25 years' : '18-25 años',
+    age2: isEn ? '26-35 years' : '26-35 años',
+    age3: isEn ? '36-50 years' : '36-50 años',
+    age4: isEn ? 'Over 50 years' : 'Más de 50 años',
+    typeLabel: isEn ? 'Tourism type' : 'Tipo de turismo',
+    typeFamiliar: isEn ? 'Family' : 'Familiar',
+    typeCultural: isEn ? 'Cultural' : 'Cultural',
+    typeRelax: 'Relax',
+    typeRomantico: isEn ? 'Romantic' : 'Romántico',
+    typeFestivo: isEn ? 'Party' : 'Festivo',
+    typeNegocios: isEn ? 'Business' : 'Negocios',
+    typeGastro: isEn ? 'Gastronomic' : 'Gastronómico',
+    typeNaturaleza: isEn ? 'Nature' : 'Naturaleza',
+    locationLabel: isEn ? 'Preferred Location (Optional)' : 'Ubicación de interés (Opcional)',
+    travelersLabel: isEn ? 'Travelers' : 'Viajeros',
+    travelersPh: isEn ? 'Eg: 2' : 'Ej: 2',
+    interestsLabel: isEn ? 'Interests or needs (Optional)' : 'Intereses o necesidades (Opcional)',
+    interestsPh: isEn ? 'Eg: near center, pets, parking...' : 'Ej: cerca del centro, mascotas, parking...',
+    startChat: isEn ? 'Start chat' : 'Comenzar chat',
+    starter1: isEn ? 'Recommend me some good local food' : 'Dime buenos sitios para comer paella',
+    starter2: isEn ? 'What excursions can I do by car?' : '¿Qué excursiones puedo hacer si tengo coche?',
+    starter3: isEn ? 'How do I get to Picasso Museum?' : '¿Cómo puedo llegar al museo Picasso?',
+    placeholder: isEn ? 'Type your message...' : 'Escribe tu mensaje...',
+    helloPrompt: isEn ? 'Hi! 👋 I am your Romero Luna assistant. How can I help you today?' : '¡Hola! 👋 Soy tu asistente en Romero Luna. ¿En qué puedo ayudarte hoy?',
+    preferencesSet: isEn ? 'Great! 😊 I have your preferences. How can I help you? Are you looking for an apartment or what to see around?' : '¡Genial! 😊 Ya tengo tus preferencias. ¿En qué puedo ayudarte? ¿Buscas apartamento o te cuento qué ver por la zona?',
+    you: isEn ? 'You' : 'Tú',
+    errServer: isEn ? '⚠️ There was a problem. Try again in a moment.' : '⚠️ Ha habido un problema en el servidor. Inténtalo de nuevo en un momento.',
+    errInvalid: isEn ? '⚠️ Unexpected server response. Try again.' : '⚠️ Respuesta inesperada del servidor. Inténtalo de nuevo.',
+    errConn: isEn ? '❌ Connection error. Please try again.' : '❌ Error de conexión. Asegúrate de que el servidor está activo.',
+  };
 
   // ─── HTML Structure ────────────────────────────────────────────────────────
   const widgetHTML = `
@@ -38,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="cb-header-bot">
             <img src="${LOGO_PATH}" alt="Romero Luna" class="cb-bot-avatar">
             <div class="cb-header-info">
-              <span>Asistente Romero Luna</span>
-              <small><i class="bi bi-circle-fill" style="font-size:6px; color:#66a307;"></i> En línea</small>
+              <span>${t.botName}</span>
+              <small><i class="bi bi-circle-fill" style="font-size:6px; color:#66a307;"></i> ${t.online}</small>
             </div>
           </div>
           <div class="cb-header-actions">
@@ -50,42 +95,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <!-- Profiling Form -->
         <div id="chatbot-form-container">
-          <h3><i class="bi bi-hand-thumbs-up-fill" style="color:#66a307"></i> ¡Hola! Cuéntanos sobre tu viaje:</h3>
+          <h3><i class="bi bi-hand-thumbs-up-fill" style="color:#66a307"></i> ${t.welcomeSub}</h3>
           <form id="chatbot-form">
             <div class="chatbot-form-group">
-              <label>Rango de edad</label>
+              <label>${t.ageLabel}</label>
               <select id="cb-age">
-                <option value="">Selecciona...</option>
-                <option value="18-25">18-25 años</option>
-                <option value="26-35">26-35 años</option>
-                <option value="36-50">36-50 años</option>
-                <option value="50+">Más de 50 años</option>
+                <option value="">${t.selectOpt}</option>
+                <option value="18-25">${t.age1}</option>
+                <option value="26-35">${t.age2}</option>
+                <option value="36-50">${t.age3}</option>
+                <option value="50+">${t.age4}</option>
               </select>
             </div>
             <div class="chatbot-form-group">
-              <label>Tipo de turismo</label>
+              <label>${t.typeLabel}</label>
               <select id="cb-type" required>
-                <option value="">Selecciona...</option>
-                <option value="Familiar">Familiar</option>
-                <option value="Cultural">Cultural</option>
-                <option value="Relax">Relax</option>
-                <option value="Romántico">Romántico</option>
-                <option value="Festivo">Festivo</option>
-                <option value="Negocios">Negocios</option>
-                <option value="Gastronómico">Gastronómico</option>
-                <option value="Naturaleza">Naturaleza</option>
+                <option value="">${t.selectOpt}</option>
+                <option value="Familiar">${t.typeFamiliar}</option>
+                <option value="Cultural">${t.typeCultural}</option>
+                <option value="Relax">${t.typeRelax}</option>
+                <option value="Romántico">${t.typeRomantico}</option>
+                <option value="Festivo">${t.typeFestivo}</option>
+                <option value="Negocios">${t.typeNegocios}</option>
+                <option value="Gastronómico">${t.typeGastro}</option>
+                <option value="Naturaleza">${t.typeNaturaleza}</option>
               </select>
             </div>
             <div class="chatbot-form-group">
-              <label>Viajeros</label>
-              <input type="number" id="cb-travelers" min="1" max="15" placeholder="Ej: 2" required>
+              <label>${t.locationLabel}</label>
+              <select id="cb-location">
+                <option value="">${t.selectOpt}</option>
+                <option value="Centro Histórico">Centro Histórico</option>
+                <option value="Teatro Soho">Teatro Soho</option>
+              </select>
             </div>
             <div class="chatbot-form-group">
-              <label>Intereses o necesidades (Opcional)</label>
-              <input type="text" id="cb-interests" placeholder="Ej: cerca del centro, mascotas, parking...">
+              <label>${t.travelersLabel}</label>
+              <input type="number" id="cb-travelers" min="1" max="15" placeholder="${t.travelersPh}" required>
+            </div>
+            <div class="chatbot-form-group">
+              <label>${t.interestsLabel}</label>
+              <input type="text" id="cb-interests" placeholder="${t.interestsPh}">
             </div>
             <button type="submit" id="chatbot-start-btn">
-              <i class="bi bi-chat-dots-fill"></i> Comenzar chat
+              <i class="bi bi-chat-dots-fill"></i> ${t.startChat}
             </button>
           </form>
         </div>
@@ -101,13 +154,13 @@ document.addEventListener('DOMContentLoaded', () => {
           <!-- Starter Phrases (Persistent) -->
           <div id="chatbot-starter-container">
             <div class="cb-starter-pills">
-              <button class="cb-starter-btn">Dime buenos sitios para comer paella</button>
-              <button class="cb-starter-btn">¿Qué excursiones puedo hacer si tengo coche?</button>
-              <button class="cb-starter-btn">¿Cómo puedo llegar al museo Picasso?</button>
+              <button class="cb-starter-btn">${t.starter1}</button>
+              <button class="cb-starter-btn">${t.starter2}</button>
+              <button class="cb-starter-btn">${t.starter3}</button>
             </div>
           </div>
           <div id="chatbot-input-area">
-            <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje..." autocomplete="off">
+            <input type="text" id="chatbot-input" placeholder="${t.placeholder}" autocomplete="off">
             <button id="chatbot-send-btn" aria-label="Enviar">
               <i class="bi bi-send-fill"></i>
             </button>
@@ -142,6 +195,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const apiUrl = '/.netlify/functions/chat';
   let isWelcomeAdded = false;
 
+  // ─── Auto-Scroll Logic ─────────────────────────────────────────
+  let isUserScrolling = false;
+  messagesDiv.addEventListener('scroll', () => {
+    // If user scrolls up by more than 10px from the bottom, mark as 'user is scrolling manually'
+    const atBottom = messagesDiv.scrollHeight - messagesDiv.scrollTop <= messagesDiv.clientHeight + 10;
+    isUserScrolling = !atBottom;
+  });
+
+  function scrollToBottom(force = false) {
+    if (force || !isUserScrolling) {
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+  }
+
   // ─── Toggle Popup ────────────────────────────────────────────────────────────
   triggerBtn.addEventListener('click', () => {
     const isVisible = popup.style.display === 'flex';
@@ -149,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Show initial welcome if not already added
     if (!isVisible && !isWelcomeAdded) {
-      addBotMessage('¡Hola! 👋 Soy tu asistente en Romero Luna. ¿En qué puedo ayudarte hoy?');
+      addBotMessage(t.helloPrompt);
       isWelcomeAdded = true;
     }
   });
@@ -170,64 +237,29 @@ document.addEventListener('DOMContentLoaded', () => {
     userProfile = {
       age: document.getElementById('cb-age').value,
       tourismType: document.getElementById('cb-type').value,
+      location: document.getElementById('cb-location').value,
       travelers: document.getElementById('cb-travelers').value,
       interests: document.getElementById('cb-interests').value,
     };
     formContainer.style.display = 'none';
     chatContainer.style.display = 'flex';
-    addBotMessage('¡Genial! 😊 Ya tengo tus preferencias. ¿En qué puedo ayudarte? ¿Buscas apartamento o te cuento qué ver por la zona?');
+    addBotMessage(t.preferencesSet);
   });
 
-  // ─── Markdown → HTML parser (lightweight) ───────────────────────────────────
+  // ─── Markdown → HTML parser (lightweight + Marked.js) ─────────────────────
   function parseMarkdown(text) {
-    // Escape HTML first
-    let html = text
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-
-    // Bold **text** or __text__
-    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
-
-    // Italic *text* or _text_
-    html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-    html = html.replace(/_(.*?)_/g, '<em>$1</em>');
-
-    // Headings ### and ##
-    html = html.replace(/^### (.+)$/gm, '<h4>$1</h4>');
-    html = html.replace(/^## (.+)$/gm, '<h3>$1</h3>');
-
-    // Unordered lists: - item or * item
-    html = html.replace(/^[\-\*] (.+)$/gm, '<li>$1</li>');
-    html = html.replace(/(<li>[\s\S]*?<\/li>)(\s*(?=<li>|$))/g, (m) => {
-      return m;
-    });
-    // Wrap consecutive <li> in <ul>
-    html = html.replace(/((<li>.*?<\/li>\s*)+)/g, '<ul>$1</ul>');
-
-    // Ordered lists: 1. item
-    html = html.replace(/^\d+\. (.+)$/gm, '<oli>$1</oli>');
-    html = html.replace(/((<oli>.*?<\/oli>\s*)+)/g, (m) => {
-      return '<ol>' + m.replace(/<oli>/g, '<li>').replace(/<\/oli>/g, '</li>') + '</ol>';
-    });
-
-    // Paragraphs: split by blank lines
-    const blocks = html.split(/\n{2,}/);
-    html = blocks.map(block => {
-      block = block.trim();
-      if (!block) return '';
-      if (/^<(ul|ol|h[2-4])/.test(block)) return block;
-      // Inline line breaks within a paragraph
-      block = block.replace(/\n/g, '<br>');
-      return '<p>' + block + '</p>';
-    }).join('');
+    let html = text;
+    if (typeof marked !== 'undefined') {
+      html = marked.parse(text, { breaks: true });
+    } else {
+      // Fallback
+      html = text.replace(/\n/g, '<br>');
+    }
 
     // Convert Unicode emojis to Apple Emojis (WhatsApp style)
     if (emojiConvertor) {
       html = emojiConvertor.replace_unified(html);
     }
-
     return html;
   }
 
@@ -246,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const label = document.createElement('div');
     label.className = 'cb-sender-label';
-    label.textContent = 'Asistente';
+    label.textContent = t.botName;
 
     const bubble = document.createElement('div');
     bubble.className = 'chatbot-message bot';
@@ -257,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
     row.appendChild(avatar);
     row.appendChild(wrap);
     messagesDiv.appendChild(row);
-    scrollToBottom();
+    scrollToBottom(true);
     return bubble;
   }
 
@@ -275,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const label = document.createElement('div');
     label.className = 'cb-sender-label';
-    label.textContent = 'Tú';
+    label.textContent = t.you;
 
     const bubble = document.createElement('div');
     bubble.className = 'chatbot-message user';
@@ -286,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     row.appendChild(wrap);
     row.appendChild(avatar);
     messagesDiv.appendChild(row);
-    scrollToBottom();
+    scrollToBottom(true);
   }
 
   // ─── Typing indicator ────────────────────────────────────────────────────────
@@ -307,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
     row.appendChild(avatar);
     row.appendChild(typing);
     messagesDiv.appendChild(row);
-    scrollToBottom();
+    scrollToBottom(true);
   }
 
   function hideTyping() {
@@ -315,20 +347,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (row) row.remove();
   }
 
-  function scrollToBottom() {
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  }
-
   // ─── Typewriter animation ──────────────────────────────────────────────────
   function typewriterEffect(container, htmlContent, onComplete) {
-    // We animate character by character over the plain text, but render final HTML.
-    // Strategy: progressively reveal the final parsed HTML by slicing the raw text
-    // and re-parsing at each step, but that is expensive. Instead we render the
-    // full HTML immediately into a hidden clone, then animate the text nodes.
     container.innerHTML = htmlContent;
     container.classList.add('streaming');
 
-    // Collect all text nodes
     const allTextNodes = [];
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
     let node;
@@ -339,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let nodeIdx = 0;
     let charIdx = 0;
-    const speed = 14; // ms per character
+    const speed = 14; 
     let lastTime = 0;
 
     function tick(timestamp) {
@@ -352,14 +375,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (nodeIdx >= allTextNodes.length) {
         container.classList.remove('streaming');
         if (onComplete) onComplete();
-        scrollToBottom();
+        scrollToBottom(false); // Only scroll if user is not manually scrolling
         return;
       }
 
       const current = allTextNodes[nodeIdx];
       current.node.textContent = current.original.slice(0, charIdx + 1);
       charIdx++;
-      scrollToBottom();
+      scrollToBottom(false);
 
       if (charIdx >= current.original.length) {
         nodeIdx++;
@@ -373,11 +396,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── Send Message ──────────────────────────────────────────────────────────
   const sendMessage = async (presetText = null) => {
-    // If presetText is an event object (from click listener), ignore it and use input value
     const text = (typeof presetText === 'string') ? presetText : inputField.value.trim();
     if (!text) return;
 
-    // Only clear input if we are NOT using a preset button
     if (typeof presetText !== 'string') {
       inputField.value = '';
     }
@@ -400,15 +421,12 @@ document.addEventListener('DOMContentLoaded', () => {
       hideTyping();
 
       if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        console.error('Server error:', errData);
-        addBotMessage('⚠️ Ha habido un problema en el servidor. Inténtalo de nuevo en un momento.');
+        addBotMessage(t.errServer);
         return;
       }
 
       const data = await response.json();
       if (data.message) {
-        // Create the row + bubble, then animate the text
         const row = document.createElement('div');
         row.className = 'cb-message-row bot';
 
@@ -416,13 +434,13 @@ document.addEventListener('DOMContentLoaded', () => {
         avatar.src = LOGO_PATH; avatar.alt = 'Bot'; avatar.className = 'cb-avatar';
 
         const wrap = document.createElement('div'); wrap.className = 'cb-message-wrap';
-        const label = document.createElement('div'); label.className = 'cb-sender-label'; label.textContent = 'Asistente';
+        const label = document.createElement('div'); label.className = 'cb-sender-label'; label.textContent = t.botName;
         const bubble = document.createElement('div'); bubble.className = 'chatbot-message bot streaming';
 
         wrap.appendChild(label); wrap.appendChild(bubble);
         row.appendChild(avatar); row.appendChild(wrap);
         messagesDiv.appendChild(row);
-        scrollToBottom();
+        scrollToBottom(true); // force jump to start of bot response
 
         typewriterEffect(bubble, parseMarkdown(data.message), () => {
           chatHistory.push({ role: 'assistant', content: data.message });
@@ -430,17 +448,15 @@ document.addEventListener('DOMContentLoaded', () => {
           sendBtn.disabled = false;
           inputField.focus();
         });
-        // Don't re-enable inputs here — done inside typewriter callback
         return;
 
       } else {
-        addBotMessage('⚠️ Respuesta inesperada del servidor. Inténtalo de nuevo.');
+        addBotMessage(t.errInvalid);
       }
 
     } catch (error) {
       hideTyping();
-      console.error('Chatbot error:', error);
-      addBotMessage('❌ Error de conexión. Asegúrate de que el servidor está activo (iniciar_chatbot.bat).');
+      addBotMessage(t.errConn);
     }
 
     inputField.disabled = false;
@@ -453,12 +469,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter' && !e.shiftKey) sendMessage();
   });
 
-  // ─── Starter Phrases Interaction ───────────────────────────────────────────
   document.querySelectorAll('.cb-starter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const text = btn.textContent;
       sendMessage(text);
-      // No longer hiding starters after use
     });
   });
 });

@@ -1,5 +1,3 @@
-const { systemPrompt } = require('./prompt');
-
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_MODEL = process.env.OPENAI_MODEL;
 
@@ -9,6 +7,11 @@ const CORS_HEADERS = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Content-Type': 'application/json',
 };
+
+const DOC_PROMPTS = 'https://docs.google.com/document/d/1zrdemMNFUr_lDvUyUMtbbU-NKSceebeZ3HqASA4DtOA/export?format=txt';
+const DOC_SOHO = 'https://docs.google.com/document/d/1neF99GgDqwbVo6h8DLWc8OYwfSDGlimKstFaYlFfJAs/export?format=txt';
+const DOC_HISTORICO = 'https://docs.google.com/document/d/1vBfbAixcM8XwBdnH9wiqd5vkaEY80sqLqVy7EVyXeQE/export?format=txt';
+const DOC_COMUN = 'https://docs.google.com/document/d/100wAMPfAh9rrJhZAF6StT8EQZnYEGYq0M23fzvk6Lk8/export?format=txt';
 
 const SHEET_1_URL = 'https://docs.google.com/spreadsheets/d/1M6IoNfzbTuxi_i9ydF9OhdMOsG2ZaPbc6nORxwWjazw/export?format=csv';
 const SHEET_2_URL = 'https://docs.google.com/spreadsheets/d/1qQlEnTWQh8bGtdcxfK_aQxqCEqd_SoaTrATslGzzxSU/export?format=csv';
@@ -40,32 +43,43 @@ exports.handler = async (event) => {
       profileContext = '[DATOS DEL USUARIO - FORMULARIO DE INICIO]\n';
       if (userProfile.age)          profileContext += `- Edad o rango: ${userProfile.age}\n`;
       if (userProfile.tourismType)  profileContext += `- Tipo de turismo: ${userProfile.tourismType}\n`;
+      if (userProfile.location)     profileContext += `- Ubicación del apartamento de interés: ${userProfile.location}\n`;
       if (userProfile.interests)    profileContext += `- Intereses en la zona: ${userProfile.interests}\n`;
       if (userProfile.travelers)    profileContext += `- Número de viajeros: ${userProfile.travelers}\n`;
-      profileContext += '\nINSTRUCCIÓN EXTRA: Usa obligatoriamente esta información para personalizar tus respuestas.\n';
+      
+      profileContext += '\nINSTRUCCIÓN EXTRA DE PRIORIZACIÓN: Usa obligatoriamente esta información para personalizar tus respuestas.\n';
+      profileContext += '\nREGLA ESTRICTA 1: Debes priorizar siempre los locales o lugares de las tablas que tengan un "5" en el apartado "Recomendación Anfitrion en su categoría".\n';
+      profileContext += '\nREGLA ESTRICTA 2: Devuelve SIEMPRE los enlaces utilizando formato MarkDown para que sean clicables. Ejemplo: [Nombre del Sitio](https://link.com) \n';
     }
 
-    // Fetch Google Sheets data for dynamic knowledge base
-    let dynamicKnowledge = '\n\n--- DATOS DE LUGARES, RESTAURANTES Y EXCURSIONES RECOMENDADOS (ACTUALIZADO) ---\n\n';
+    // Fetch All Google Docs and Sheets data for dynamic knowledge base
+    let dynamicKnowledge = '';
     try {
-      const [res1, res2] = await Promise.all([
+      const responses = await Promise.all([
+        fetch(DOC_PROMPTS),
+        fetch(DOC_SOHO),
+        fetch(DOC_HISTORICO),
+        fetch(DOC_COMUN),
         fetch(SHEET_1_URL),
         fetch(SHEET_2_URL)
       ]);
-      if (res1.ok && res2.ok) {
-        const csv1 = await res1.text();
-        const csv2 = await res2.text();
-        dynamicKnowledge += 'HOJA 1 (Lugares y excursiones):\n' + csv1 + '\n\n';
-        dynamicKnowledge += 'HOJA 2 (Restaurantes, Tapas y Desayunos):\n' + csv2 + '\n\n';
-      } else {
-        console.error('Error fetching one of the sheets by HTTP status.');
-      }
+      
+      const texts = await Promise.all(responses.map(r => r.ok ? r.text() : ''));
+      
+      dynamicKnowledge += texts[0] + '\n\n';
+      dynamicKnowledge += '--- KNOWLEDGE BASE APARTAMENTO ROMERO LUNA TEATRO SOHO ---\n' + texts[1] + '\n\n';
+      dynamicKnowledge += '--- KNOWLEDGE BASE APARTAMENTOS ROMERO LUNA CENTRO HISTORICO ---\n' + texts[2] + '\n\n';
+      dynamicKnowledge += '--- KNOWLEDGE BASE APARTAMENTOS ROMERO LUNA INFORMACION COMUN ---\n' + texts[3] + '\n\n';
+      dynamicKnowledge += '--- DATOS DE LUGARES, RESTAURANTES Y EXCURSIONES RECOMENDADOS (ACTUALIZADO) ---\n\n';
+      dynamicKnowledge += 'HOJA 1 (Lugares y excursiones):\n' + texts[4] + '\n\n';
+      dynamicKnowledge += 'HOJA 2 (Restaurantes, Tapas y Desayunos):\n' + texts[5] + '\n\n';
+
     } catch (e) {
-      console.error('Network error fetching Google Sheets:', e);
+      console.error('Network error fetching Google Data:', e);
     }
 
     const apiMessages = [
-      { role: 'system', content: systemPrompt + dynamicKnowledge },
+      { role: 'system', content: dynamicKnowledge },
       ...(profileContext ? [{ role: 'system', content: profileContext }] : []),
       ...messages,
     ];
