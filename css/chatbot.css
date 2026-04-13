@@ -18,8 +18,7 @@
 #chatbot-trigger {
   width: 62px;
   height: 62px;
-  border-radius: 50%;
-  border-bottom-left-radius: 6px;
+  border-radius: 20px 20px 4px 20px;
   background: #66a307;
   color: white;
   border: none;
@@ -30,19 +29,32 @@
   align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding: 0;
-  overflow: hidden;
+  position: relative;
+}
+
+#chatbot-trigger::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  right: 12px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 12px solid #66a307;
+  transform: rotate(-15deg);
 }
 
 #chatbot-trigger img {
   width: 42px;
   height: 42px;
   object-fit: contain;
-  border-radius: 50%;
+  border-radius: 12px;
 }
 
 #chatbot-trigger:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 22px rgba(102, 163, 7, 0.55);
+  transform: scale(1.08) translateY(-4px);
+  box-shadow: 0 8px 26px rgba(102, 163, 7, 0.55);
 }
 
 /* Main Popup */
