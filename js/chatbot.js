@@ -212,18 +212,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // ─── Toggle Popup ────────────────────────────────────────────────────────────
   triggerBtn.addEventListener('click', () => {
     const isVisible = popup.style.display === 'flex';
-    popup.style.display = isVisible ? 'none' : 'flex';
-
-    // Show initial welcome if not already added
-    if (!isVisible && !isWelcomeAdded) {
-      addBotMessage(t.helloPrompt);
-      isWelcomeAdded = true;
+    if (!isVisible) {
+      popup.style.display = 'flex';
+      history.pushState(null, null, '#chatbot'); // Update URL for QR tracking
+      
+      // Show initial welcome if not already added
+      if (!isWelcomeAdded) {
+        addBotMessage(t.helloPrompt);
+        isWelcomeAdded = true;
+      }
+    } else {
+      popup.style.display = 'none';
+      if (window.location.hash === '#chatbot') {
+        history.pushState(null, null, ' '); // Remove hash
+      }
     }
   });
 
   closeBtn.addEventListener('click', () => {
     popup.style.display = 'none';
+    if (window.location.hash === '#chatbot') {
+      history.pushState(null, null, ' ');
+    }
   });
+
+  // Open automatically if from QR code
+  if (window.location.hash === '#chatbot') {
+    setTimeout(() => {
+      if (popup.style.display !== 'flex') triggerBtn.click();
+    }, 300);
+  }
 
   // Toggle filter form
   filterBtn.addEventListener('click', () => {
@@ -348,19 +366,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ─── Typewriter animation ──────────────────────────────────────────────────
-  function typewriterEffect(container, htmlContent, onComplete) {
-    container.innerHTML = htmlContent;
+  function typewriterEffect(container, rawMarkdown, onComplete) {
     container.classList.add('streaming');
-
-    const allTextNodes = [];
-    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
-    let node;
-    while ((node = walker.nextNode())) {
-      allTextNodes.push({ node, original: node.textContent });
-      node.textContent = '';
-    }
-
-    let nodeIdx = 0;
     let charIdx = 0;
     const speed = 14; 
     let lastTime = 0;
@@ -372,22 +379,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       lastTime = timestamp;
 
-      if (nodeIdx >= allTextNodes.length) {
+      if (charIdx > rawMarkdown.length) {
         container.classList.remove('streaming');
         if (onComplete) onComplete();
         scrollToBottom(false); // Only scroll if user is not manually scrolling
         return;
       }
 
-      const current = allTextNodes[nodeIdx];
-      current.node.textContent = current.original.slice(0, charIdx + 1);
+      container.innerHTML = parseMarkdown(rawMarkdown.slice(0, charIdx));
       charIdx++;
       scrollToBottom(false);
 
-      if (charIdx >= current.original.length) {
-        nodeIdx++;
-        charIdx = 0;
-      }
       requestAnimationFrame(tick);
     }
 
@@ -442,7 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
         messagesDiv.appendChild(row);
         scrollToBottom(true); // force jump to start of bot response
 
-        typewriterEffect(bubble, parseMarkdown(data.message), () => {
+        typewriterEffect(bubble, data.message, () => {
           chatHistory.push({ role: 'assistant', content: data.message });
           inputField.disabled = false;
           sendBtn.disabled = false;

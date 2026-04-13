@@ -48,7 +48,7 @@ exports.handler = async (event) => {
       if (userProfile.travelers)    profileContext += `- Número de viajeros: ${userProfile.travelers}\n`;
       
       profileContext += '\nINSTRUCCIÓN EXTRA DE PRIORIZACIÓN: Usa obligatoriamente esta información para personalizar tus respuestas.\n';
-      profileContext += '\nREGLA ESTRICTA 1: Debes priorizar siempre los locales o lugares de las tablas que tengan un "5" en el apartado "Recomendación Anfitrion en su categoría".\n';
+      profileContext += '\nREGLA ESTRICTA 1: CUANDO EL USUARIO PIDA RECOMENDACIONES DE LUGARES O RESTAURANTES, DEBES RECOMENDAR *ÚNICA Y EXCLUSIVAMENTE* LOS LOCALES QUE TIENEN UN "5" EN LA COLUMNA DE "Recomendación Anfitrion en su categoría". ES UNA REGLA MUY ESTRICTA. NO MENCIONES LOCALES CON UNA VALORACIÓN INFERIOR A 5 JAMÁS, A MENOS QUE EL USUARIO PREGUNTE ESPECÍFICAMENTE POR UN LOCAL EN CONCRETO, O NO HAYA NINGUNO CON 5 EN ESA CATEGORÍA.\n';
       profileContext += '\nREGLA ESTRICTA 2: Devuelve SIEMPRE los enlaces utilizando formato MarkDown para que sean clicables. Ejemplo: [Nombre del Sitio](https://link.com) \n';
     }
 
