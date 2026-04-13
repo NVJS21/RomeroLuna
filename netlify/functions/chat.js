@@ -10,6 +10,9 @@ const CORS_HEADERS = {
   'Content-Type': 'application/json',
 };
 
+const SHEET_1_URL = 'https://docs.google.com/spreadsheets/d/1M6IoNfzbTuxi_i9ydF9OhdMOsG2ZaPbc6nORxwWjazw/export?format=csv';
+const SHEET_2_URL = 'https://docs.google.com/spreadsheets/d/1qQlEnTWQh8bGtdcxfK_aQxqCEqd_SoaTrATslGzzxSU/export?format=csv';
+
 exports.handler = async (event) => {
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
@@ -42,8 +45,27 @@ exports.handler = async (event) => {
       profileContext += '\nINSTRUCCIÓN EXTRA: Usa obligatoriamente esta información para personalizar tus respuestas.\n';
     }
 
+    // Fetch Google Sheets data for dynamic knowledge base
+    let dynamicKnowledge = '\n\n--- DATOS DE LUGARES, RESTAURANTES Y EXCURSIONES RECOMENDADOS (ACTUALIZADO) ---\n\n';
+    try {
+      const [res1, res2] = await Promise.all([
+        fetch(SHEET_1_URL),
+        fetch(SHEET_2_URL)
+      ]);
+      if (res1.ok && res2.ok) {
+        const csv1 = await res1.text();
+        const csv2 = await res2.text();
+        dynamicKnowledge += 'HOJA 1 (Lugares y excursiones):\n' + csv1 + '\n\n';
+        dynamicKnowledge += 'HOJA 2 (Restaurantes, Tapas y Desayunos):\n' + csv2 + '\n\n';
+      } else {
+        console.error('Error fetching one of the sheets by HTTP status.');
+      }
+    } catch (e) {
+      console.error('Network error fetching Google Sheets:', e);
+    }
+
     const apiMessages = [
-      { role: 'system', content: systemPrompt },
+      { role: 'system', content: systemPrompt + dynamicKnowledge },
       ...(profileContext ? [{ role: 'system', content: profileContext }] : []),
       ...messages,
     ];

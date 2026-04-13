@@ -7,6 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(biLink);
   }
 
+  // ─── Inject Emoji-JS for WhatsApp-like emojis (Apple Emojis) ────────────────
+  let emojiConvertor = null;
+  if (!document.querySelector('script[src*="emoji.min.js"]')) {
+    const emojiStyle = document.createElement('style');
+    emojiStyle.textContent = '.emoji { height: 1.3em; width: 1.3em; vertical-align: -0.2em; display: inline-block; margin: 0 0.1em; }';
+    document.head.appendChild(emojiStyle);
+
+    const emojiScript = document.createElement('script');
+    emojiScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/emoji-js/3.8.0/emoji.min.js';
+    emojiScript.onload = () => {
+      emojiConvertor = new EmojiConvertor();
+      emojiConvertor.replace_mode = 'img';
+      emojiConvertor.img_set = 'apple';
+      emojiConvertor.use_sheet = false;
+      emojiConvertor.img_sets.apple.path = 'https://unpkg.com/emoji-datasource-apple@15.0.1/img/apple/64/';
+      emojiConvertor.img_sets.apple.ext = '.png';
+    };
+    document.head.appendChild(emojiScript);
+  }
+
   // ─── Logo path ─────────────────────────────────────────────────────────────
   const LOGO_PATH = 'assets/romeroluna logo.png';
 
@@ -202,6 +222,11 @@ document.addEventListener('DOMContentLoaded', () => {
       block = block.replace(/\n/g, '<br>');
       return '<p>' + block + '</p>';
     }).join('');
+
+    // Convert Unicode emojis to Apple Emojis (WhatsApp style)
+    if (emojiConvertor) {
+      html = emojiConvertor.replace_unified(html);
+    }
 
     return html;
   }
