@@ -268,7 +268,15 @@ document.addEventListener('DOMContentLoaded', () => {
   function parseMarkdown(text) {
     let html = text;
     if (typeof marked !== 'undefined') {
-      html = marked.parse(text, { breaks: true });
+      // Configuration to open links in new tab
+      const renderer = new marked.Renderer();
+      const linkRenderer = renderer.link;
+      renderer.link = (href, title, text) => {
+        const localLink = linkRenderer.call(renderer, href, title, text);
+        return localLink.replace('<a ', '<a target="_blank" rel="noopener" ');
+      };
+      
+      html = marked.parse(text, { renderer, breaks: true });
     } else {
       // Fallback
       html = text.replace(/\n/g, '<br>');
