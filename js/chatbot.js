@@ -192,7 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let userProfile = null;
   let chatHistory = [];
-  const apiUrl = '/.netlify/functions/chat';
+
+  // Auto-detect backend: Netlify Functions or PHP (Arsys/any standard hosting)
+  const isNetlify = window.location.hostname.includes('netlify.app') || 
+                    document.head.querySelector('meta[name="generator"][content*="netlify"]') !== null;
+  const apiUrl = isNetlify ? '/.netlify/functions/chat' : './api/chat.php';
+
   let isWelcomeAdded = false;
 
   // ─── Auto-Scroll Logic ─────────────────────────────────────────
